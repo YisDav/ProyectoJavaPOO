@@ -11,7 +11,7 @@ class Main
   // ---------------------- ]   CONFIG    [ ----------------------//
   public static ArrayList<String> firstMenu_Options = new ArrayList<String>(), secondMenu_Options = new ArrayList<String>(), mensajesDefault = new ArrayList<String>();
   public static ArrayList<Integer> primerMenu_exit = new ArrayList<Integer>(), segundoMenu_exit = new ArrayList<Integer>();
-  public static Pedido pedidoUsuario = new Pedido();
+  public static Order pedidoUsuario = new Order();
 
   // ---------------------- ]    MAIN    [ ---------------------- //
   public static void main(String[] args) 
@@ -81,7 +81,7 @@ class Main
         int opcionElegida_tercerMenu = mostrarOpciones_tercerMenu(opcionElegida_segundoMenu-1);
 
         // Obtenemos el objeto del producto que el usuario eligió
-        Producto productoElegido = getProductByID(opcionElegida_tercerMenu-1);
+        Product productoElegido = getProductByID(opcionElegida_tercerMenu-1);
         sysout("\n ** Se ha añadido "+productoElegido.name+" a tu carrito. ¡Sigue satisfaciendo tus antojos! ** ");
         pedidoUsuario.addProduct(productoElegido);
         productoElegido.stock -= 1;
@@ -174,8 +174,8 @@ class Main
   {
     String message = "";
     
-    for(int i = 0; i < Producto.getProductsCount(); i++) {
-      Producto product = getProductByID(i);
+    for(int i = 0; i < Product.getProductsCount(); i++) {
+      Product product = getProductByID(i);
       if(product.type == productType) {
         int Stock = product.stock;
         String price = darFormatoDinero(product.price);
@@ -192,7 +192,7 @@ class Main
   
   public static boolean isValidChoosenProduct(int type, int ID) 
   {
-    Producto choosedElement = Producto.getProductElementByID(ID);
+    Product choosedElement = Product.getProductElementByID(ID);
     if(choosedElement.type != type)
       return false;
     else return true;
@@ -245,9 +245,9 @@ class Main
     return validOptions;
   }
 
-  public static Producto getProductByID(int ID)  
+  public static Product getProductByID(int ID)  
   {
-    return Producto.getProductElementByID(ID);
+    return Product.getProductElementByID(ID);
   }
   
   public static void sysout(String message) 
@@ -283,20 +283,20 @@ class Main
     
     //Default products
     // Producto(String name, int type, String description, double price, int stock)
-    new Producto("Hamburguesa sencilla", 2, "carne de 90gr, lechuga, tomate, cebolla, queso mozarela, huevo de codorniz y tocino", 10000, 5);
-    new Producto("Hamburguesa especial", 2, "carne de 120gr, lechuga, tomate, cebolla, queso mozarela, huevo de codorniz, carne o pollo desmechado y tocino", 15000, 5);
-    new Producto("Salchipapa",2, "Papa, salchica y chorizo", 6000, 10);
-    new Producto("Pizza",2, "Mixta (pollo, carne y champiñón), 5000", 6000, 14);
-    new Producto("Hot Dog",2, "Chorizo, papa fosforito, cebolla, queso y tocino", 4500, 10);
-    new Producto("Gaseosa",0, "Refrescante", 3500, 20);
-    new Producto("Jugo natural",0, "En leche o agua", 3000, 20);
-    new Producto("Cerveza",0, "Espumoza", 3800, 20);
-    new Producto("Agua",0, "Natural", 2500, 20);
-    new Producto("Té",0, "De limon o durazno", 3500, 20);
-    new Producto("Pastel tres leches",1, "Dulce y suave", 2500, 20);
-    new Producto("Cheesecake",1, "Limon, mora, maracuyá o lulo", 4000, 20);
-    new Producto("Torta de chocolate",1, "Con relleno de arequipe", 12000, 20);
-    new Producto("Fresas con crema",1, "Frescas y deliciosas", 12000, 20);
+    new Product("Hamburguesa sencilla", 2, "carne de 90gr, lechuga, tomate, cebolla, queso mozarela, huevo de codorniz y tocino", 10000, 5);
+    new Product("Hamburguesa especial", 2, "carne de 120gr, lechuga, tomate, cebolla, queso mozarela, huevo de codorniz, carne o pollo desmechado y tocino", 15000, 5);
+    new Product("Salchipapa",2, "Papa, salchica y chorizo", 6000, 10);
+    new Product("Pizza",2, "Mixta (pollo, carne y champiñón), 5000", 6000, 14);
+    new Product("Hot Dog",2, "Chorizo, papa fosforito, cebolla, queso y tocino", 4500, 10);
+    new Product("Gaseosa",0, "Refrescante", 3500, 20);
+    new Product("Jugo natural",0, "En leche o agua", 3000, 20);
+    new Product("Cerveza",0, "Espumoza", 3800, 20);
+    new Product("Agua",0, "Natural", 2500, 20);
+    new Product("Té",0, "De limon o durazno", 3500, 20);
+    new Product("Pastel tres leches",1, "Dulce y suave", 2500, 20);
+    new Product("Cheesecake",1, "Limon, mora, maracuyá o lulo", 4000, 20);
+    new Product("Torta de chocolate",1, "Con relleno de arequipe", 12000, 20);
+    new Product("Fresas con crema",1, "Frescas y deliciosas", 12000, 20);
   }
   
 }

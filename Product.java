@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Producto {
+public class Product {
  
   private int ID;
   public String name, description; 
@@ -11,9 +11,9 @@ public class Producto {
   
 
   /*
-  * @ Constructor Producto
+  * @ Constructor Product
   */
-  Producto(String name, int type, String description, double price, int stock) {
+  Product(String name, int type, String description, double price, int stock) {
     this.name = name;
     this.type = type;
     this.description = description;
@@ -61,12 +61,12 @@ public class Producto {
   */
 
   private static int lastCreatedID = -1;
-  private static ArrayList<Producto> productList2 = new ArrayList<Producto>();
+  private static ArrayList<Product> productList2 = new ArrayList<Product>();
   public static int getLastCreatedID() {
     return lastCreatedID;
   }
-  public static Producto getProductElementByID(int ID) {
-    Producto producto_actual;
+  public static Product getProductElementByID(int ID) {
+    Product producto_actual;
     for(int i = 0 ; i <= productList2.size() ; i++) {
       producto_actual = productList2.get(i);
       if(producto_actual.getID() == ID)

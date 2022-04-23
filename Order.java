@@ -1,19 +1,19 @@
 import java.util.*;
 
-public class Pedido {
+public class Order {
 
-  private ArrayList<Producto> ListaProductos = new ArrayList<Producto>();
+  private ArrayList<Product> ListaProductos = new ArrayList<Product>();
   private double precio_total=0;
   private boolean isDelivery = false;
   private String deliveryAddress = "";
   private String phoneNumber = "0";
   
 
-  Pedido() {
+  Order() {
     super();
   }
 
-  public ArrayList<Producto> getListaProductos() {
+  public ArrayList<Product> getListaProductos() {
     return ListaProductos;
   }
   
@@ -35,7 +35,7 @@ public class Pedido {
     else return null;
   }
   
-  public ArrayList<Producto> addProduct (Producto producto){
+  public ArrayList<Product> addProduct (Product producto){
     ListaProductos.add(producto);
     this.precio_total += producto.price;
     return ListaProductos;  
@@ -56,7 +56,7 @@ public class Pedido {
   public void Facturar()
   {
     for(int indice = 0;indice<ListaProductos.size();indice++) {
-        Producto myProduct = ListaProductos.get(indice);
+        Product myProduct = ListaProductos.get(indice);
         System.out.println(" * " + myProduct.name + " - " + Main.darFormatoDinero(myProduct.price));
     }
     if(this.isDelivery) 
