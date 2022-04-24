@@ -97,11 +97,17 @@ boolean datosAdecuados = true;
             int optionEmp1 = askUserInt("\n1. Modificar empleado \n2. Agregar empleado \n3. Eliminar empleado");
               switch(optionEmp1){
               case 1: 
-            int optionEmp2 =   askUserInt("\n1. \n2. Agregar empleado \n3. Eliminar empleado");
+            int optionEmp2 =   askUserInt("\n1. Editar sueldo \n2. Editar nombre");
               switch(optionEmp2){
-              case 1: 
+              case 1: //"Se edita el sueldo"
+              case 2: //"Se edita el nombre"
               }
               case 2: 
+            name = askUserStr("Ingrese el nombre completo del nuevo empleado: ");
+            ID = askUserInt("Ingrese el ID del nuevo empleado: ");
+            //birth_date =  
+            //join_date =
+            salary = askUserDouble("Ingrese el salario del nuevo empleado");
 
               case 3: 
 
@@ -117,7 +123,8 @@ boolean datosAdecuados = true;
          
       
     sysout("******************* DATOS DEL EMPLEADO *******************");
-          //Sysout("ID: + Waiter.getID ");
+          //Sysout("Nombre: + Pearson.getFullName ");
+          //Sysout("ID: + Pearson.getID ");
           //Sysout("Fecha de ingreso: "+Waiter.getJoinDate());
           //Sysout("Propina:"+Waiter.getBaksheesh());
           //Sysout("Salario: "+Waiter.getSalary()); 
@@ -351,6 +358,7 @@ boolean datosAdecuados = true;
     try {
       sysout(message);
       answer = scanner_.nextDouble();
+      valid = true;
     }
     catch (Exception e) {
       sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");

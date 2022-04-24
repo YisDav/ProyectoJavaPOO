@@ -1,3 +1,5 @@
+import java.util.*;
+
 class Admin extends Employee {
   //---- Attributes
   //---- / Attributes
@@ -38,6 +40,7 @@ class Admin extends Employee {
   
   // METODO PARA CAMBIAR EL PRECIO UN PRODUCTO
   public void changePrice(int productID) {
+    Scanner readerDouble = new Scanner(System.in);
     Product productChange = Product.getProductElementByID(productID);
     productChange.price = Main.askUserDouble("Ingresa el nuevo precio del plato '"+productChange.name+"':");
     Main.sysout("¡Cambio de precio exitoso!");
