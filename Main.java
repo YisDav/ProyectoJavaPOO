@@ -324,8 +324,6 @@ class Main
       valid = false;
     }
 
-    scanner_.close();
-
     if(!valid) return askUserInt(message);    
     return answer;
   }
