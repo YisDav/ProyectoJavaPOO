@@ -21,19 +21,20 @@ class Main
     do 
     {
       opcionMenu_inicio = askUserInt("Por favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
-  
+      if(opcionMenu_inicio == 0) continue; // exit
+
 
       String name = "", password = "";
-      // Si es administrador/empleado se piden credenciales
-      if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2) {
+      if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2)   // Si es administrador o empleado se piden credenciales
+      {
         while( (name.equals("123")) && (password.equals("123")) ) {
           name = askUserStr("Usuario: ");
           password = askUserStr("Contraseña : ");
         }
         sysout("Usuario incorrecto");
-      }
-      // De lo contrario, pide nombre completo
-      else name = askUserStr("Ingrese su nombre completo: ");
+      } 
+      else // De lo contrario, pide nombre completo
+        name = askUserStr("Ingrese su nombre completo: ");
 
 
       switch(opcionMenu_inicio) 
@@ -122,11 +123,6 @@ class Main
         case 3:
           executeClientMenu(name);
         break;
-        
-        // Salida
-        default:
-          sysout("\n\nSaliendo...");
-        break;
       }
     }
     while(opcionMenu_inicio != 0);
@@ -152,6 +148,7 @@ class Main
     }
 
     // Creación del objeto cliente y orden
+    
     Client userClient = new Client(1, name, domicilio, phoneNumber);
     Order clientOrder = new Order(userClient, isDelivery);
     
@@ -311,76 +308,76 @@ class Main
 
 
   // ---------------------- ]   UTILS   [ ---------------------- //  
+  
   public static int askUserInt(String message) 
   {
-    try (Scanner scanner_ = new Scanner(System.in)) {
-      int answer = 0; boolean valid = false;
-      
-      try {
-        sysout(message);
-        answer = scanner_.nextInt();
-        valid = true;
-      }
-      catch(Exception e) {
-        sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
-        valid = false;
-      }
-      if(!valid) return askUserInt(message);    
-      return answer;
+    Scanner scanner_ = new Scanner(System.in);
+    int answer = 0; boolean valid = false;
+    
+    try {
+      sysout(message);
+      answer = scanner_.nextInt();
+      valid = true;
     }
+    catch(Exception e) {
+      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      valid = false;
+    }
+
+    scanner_.close();
+
+    if(!valid) return askUserInt(message);    
+    return answer;
   }
   
   public static double askUserDouble(String message) 
   {
-    try (Scanner scanner_ = new Scanner(System.in)) {
-      double answer = 0; boolean valid = false;
-      try {
-        sysout(message);
-        answer = scanner_.nextDouble();
-      }
-      catch (Exception e) {
-        sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
-        valid = false;
-      }
-      if(!valid) return askUserDouble(message);    
-      return answer;
+    Scanner scanner_ = new Scanner(System.in);
+    double answer = 0; boolean valid = false;
+    try {
+      sysout(message);
+      answer = scanner_.nextDouble();
     }
+    catch (Exception e) {
+      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      valid = false;
+    }
+    if(!valid) return askUserDouble(message);    
+    return answer;
   }
   
   public static long askUserLong(String message) 
   {
-    try (Scanner scanner_ = new Scanner(System.in)) {
-      long answer = 0; boolean valid = false;
-      try {
-        sysout(message);
-        answer = scanner_.nextLong();
-      }
-      catch (Exception e) {
-        sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
-        valid = false;
-      }
-      if(!valid) return askUserLong(message);    
-      return answer;
+    Scanner scanner_ = new Scanner(System.in);
+    long answer = 0; boolean valid = false;
+    try {
+      sysout(message);
+      answer = scanner_.nextLong();
     }
+    catch (Exception e) {
+      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      valid = false;
+    }
+    if(!valid) return askUserLong(message);    
+    return answer;
   }
   
   public static String askUserStr(String message) 
   {
-    try (Scanner scanner_ = new Scanner(System.in)) {
-      String answer = ""; boolean valid = false;
+    Scanner scanner_ = new Scanner(System.in);
+    String answer = ""; boolean valid = false;
 
-      try {
-        sysout(message);
-        answer = scanner_.nextLine(); 
-        valid = true;
-      }
-      catch (Exception e) {
-        sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
-        valid = false;
-      }
-      if(!valid) return askUserStr(message);    
-      return answer;
+    try {
+      sysout(message);
+      answer = scanner_.nextLine(); 
+      valid = true;
     }
+    catch (Exception e) {
+      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      valid = false;
+    }
+    if(!valid) return askUserStr(message);    
+    return answer;
   }
 
   public static boolean isInList(int value, ArrayList<Integer> list) 
