@@ -39,19 +39,22 @@ class Admin extends Employee {
   // METODO PARA CAMBIAR EL PRECIO UN PRODUCTO
   public void changePrice(int productID) {
     Product productChange = Product.getProductElementByID(productID);
-    productChange.price = Main.askUserDouble("Ingresa el nuevo precio del plato "+productChange.name+":");
+    productChange.price = Main.askUserDouble("Ingresa el nuevo precio del plato '"+productChange.name+"':");
+    Main.sysout("¡Cambio de precio exitoso!");
   }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
   public void changeStock(int productID) {
     Product productChange = Product.getProductElementByID(productID);
-    productChange.stock = Main.askUserInt("\nIngresa la disponibilidad del plato "+productChange.name+": ");
+    productChange.stock = Main.askUserInt("\nIngresa la disponibilidad del plato '"+productChange.name+"': ");
+    Main.sysout("¡Cambio de stock exitoso!");
     }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
   public void changeDesc(int productID) {
     Product productChange = Product.getProductElementByID(productID);
-    productChange.description = Main.askUserStr("\nIngresa la nueva descripcion del plato "+productChange.name+": ");
+    productChange.description = Main.askUserStr("\nIngresa la nueva descripcion del plato '"+productChange.name+"': ");
+    Main.sysout("¡Cambio de descripcion exitosa!");
     }
   
   //---- / Other methods

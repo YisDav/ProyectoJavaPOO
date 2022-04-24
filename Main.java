@@ -24,19 +24,21 @@ class Main
       if(opcionMenu_inicio == 0) continue; // exit
 
 
-      String name = "", password = "";
+      String name = "", password = ""; boolean valid_credential = true;
       if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2)   // Si es administrador o empleado se piden credenciales
       {
-        while( (name.equals("123")) && (password.equals("123")) ) {
+        do {
+          if(!valid_credential) sysout("Lo sentimos, credenciales inválida");
           name = askUserStr("Usuario: ");
-          password = askUserStr("Contraseña : ");
-        }
-        sysout("Usuario incorrecto");
+          password = askUserStr("Contraseña : ");  
+          if( !(name.equals("123")) || !(password.equals("123")) ) valid_credential = false;
+          else valid_credential = true;
+        } while(!valid_credential);
       } 
       else // De lo contrario, pide nombre completo
         name = askUserStr("Ingrese su nombre completo: ");
 
-
+boolean datosAdecuados = true;
       switch(opcionMenu_inicio) 
       {
         // Caso administrador
@@ -47,50 +49,64 @@ class Main
           // Está re tapado en plata el David
           Admin adm1 = new Admin(12345, "David", birth, join, 3000000);
           
-          int optionx = askUserInt("\n1. Productos\n2. Empleados\n 0. Salir");
+          int optionx = askUserInt("\n1. Productos \n2. Empleados \n0. Salir");
           switch(optionx)
           {
             case 1: 
-              int option1 = askUserInt("\n1. Modificar producto\n2.Agregar producto\n3. Eliminar producto");
+              int option1 = askUserInt("\n1. Modificar producto\n2. Agregar producto\n3. Eliminar producto");
               switch(option1) 
               {
                 case 1:
                   int option2 = askUserInt("\n1. Modificar precio\n2. Modificar stock\n3. Modificar descripcion");
                   switch(option2) {
                     case 1:
-                      adm1.changePrice(1);
-                      sysout("¡Cambio de precio exitoso!");
+                      int idProduct1 = askUserInt("\nIngresa el codigo del producto a modificar el precio: ");
+                      adm1.changePrice(idProduct1);
                     break;
                     case 2:
-                      adm1.changeStock(1);
-                      sysout("¡Cambio de stock exitoso!");
+                      int idProduct2 = askUserInt("\nIngresa el codigo del producto a modificar el stock: ");
+                      adm1.changeStock(idProduct2);
                     break;
                     case 3:
-                      adm1.changeDesc(1);
-                      sysout("¡Cambio de descripcion exitosa!");
+                      int idProduct3 = askUserInt("\nIngresa el codigo del producto a modificar la descripcion: ");
+                      adm1.changeDesc(idProduct3);
                     break;
                     default:
                       sysout("Opcion invalida");
                     break;
                   }
-
+                    break;
                 case 2:
                   adm1.createProduct();
-                  sysout("Producto creado exitosamente!");
+                  sysout("¡Producto creado exitosamente!");
                 break;
                 
                 case 3:
                   adm1.deleteProduct(1);
-                  sysout("Producto eliminado exitosamente!");
+                  sysout("¡Producto eliminado exitosamente!");
                 break;
-                
                 default:
                   sysout("Opcion invalida");
                 break;
               }
             break;
+
+              
             case 2: 
-              sysout("Menu para empleados");
+              /*
+            int optionEmp1 = askUserInt("\n1. Modificar empleado \n2. Agregar empleado \n3. Eliminar empleado");
+              switch(optionEmp1){
+              case 1: 
+            int optionEmp2 =   askUserInt("\n1. \n2. Agregar empleado \n3. Eliminar empleado");
+              switch(optionEmp2){
+              case 1: 
+              }
+              case 2: 
+
+              case 3: 
+
+              }
+            */
             break;
           }
           //
@@ -98,30 +114,30 @@ class Main
 
         // Caso empleado
         case 2:
-          /* do {
-            name = askUserStr("Usuario: ");
-            password = askUserStr("Contraseña: ");    
+         
+      
+    sysout("******************* DATOS DEL EMPLEADO *******************");
+          //Sysout("ID: + Waiter.getID ");
+          //Sysout("Fecha de ingreso: "+Waiter.getJoinDate());
+          //Sysout("Propina:"+Waiter.getBaksheesh());
+          //Sysout("Salario: "+Waiter.getSalary()); 
+    sysout("**********************************************************");
+         
+       
+           
 
-            if((name.equals("123")) && (password.equals("123")))
-            {
-              sysout("siuuu");
-
-              int ID = askUserInt("Ingrese su ID: ");
-              //Sysout("Fecha de ingreso: "+getJoinDate());
-              //Sysout("Propina:"+getBaksheesh());
-              //Sysout("Salario: "+getSalary()); 
-              datosAdecuados = true;
-            }
-            else{
-              datosAdecuados = false;
-              sysout("Usuario o contraseña incorrectos");
-            }
-          } while(datosAdecuados == false); */
+              
+             
+        
         break;
         
+          
         // Caso cliente
         case 3:
           executeClientMenu(name);
+          int[] fecha_lista = Date_ex.askUserDate("Ingrese la fecha de nacimiento: ");
+          Client client1 = new Client(999, "YisDav", "Calle lejos", 988644);
+          sysout(client1.calculateAge(fecha_lista));
         break;
       }
     }

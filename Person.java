@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.Period;
+
 class Person {
   private int ID;
   public String fullName;
@@ -19,4 +22,23 @@ class Person {
     return this.ID;
   }
   //---- / Setters
+
+    //---- Other methods
+
+  public String calculateAge(int[] born){
+    
+    LocalDate fechaNow = LocalDate.now();
+
+    int 
+    day = born[0],
+    month = born[1],
+    year = born[2];
+    
+    Period edad = Period.between(LocalDate.of(year, month, day), fechaNow);
+
+    return String.format("%d años, %d meses y %d días",edad.getYears(), edad.getMonths(), edad.getDays());
+  }
+
+  //---- / Other methods
+
 }

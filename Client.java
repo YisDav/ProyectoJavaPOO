@@ -1,3 +1,4 @@
+
 class Client extends Person {
   //---- Attributes
   private String address;
@@ -35,4 +36,5 @@ class Client extends Person {
     this.phoneNumber = phoneNumber;
   }
   //---- / Setter methods
+  
 }

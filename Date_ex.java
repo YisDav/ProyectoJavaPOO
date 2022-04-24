@@ -9,13 +9,13 @@ class Date_ex {
   
   //---- Constructor
   Date_ex(int year, int month, int day) {
-    boolean isValidDate = validateDate(year, month, day);
+    /* boolean isValidDate = validateDate(year, month, day);
     if(!isValidDate) {
       int[] validDate = askUserDate("Lo sentimos, fecha inválida");
       day = validDate[0];
       month = validDate[1];
       year = validDate[2];
-    }
+    } */
     
     this.day = day;
     this.month = month;
@@ -71,6 +71,8 @@ class Date_ex {
       day = Main.askUserInt("Día: ");
       month = Main.askUserInt("Mes: ");
       year = Main.askUserInt("Año: ");
+
+      validDate = validateDate(year, month, day);
     }
     while(!validDate);
 
