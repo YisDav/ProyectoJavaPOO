@@ -22,13 +22,19 @@ class Main
     {
       opcionMenu_inicio = askUserInt("Por favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
   
-      String name = "", password = "";
 
-      //
+      String name = "", password = "";
+      // Si es administrador/empleado se piden credenciales
       if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2) {
-        name = askUserStr("Usuario: ");
-        password = askUserStr("Contraseña : ");
+        while( (name.equals("123")) && (password.equals("123")) ) {
+          name = askUserStr("Usuario: ");
+          password = askUserStr("Contraseña : ");
+        }
+        sysout("Usuario incorrecto");
       }
+      // De lo contrario, pide nombre completo
+      else name = askUserStr("Ingrese su nombre completo: ");
+
 
       switch(opcionMenu_inicio) 
       {
@@ -113,8 +119,7 @@ class Main
         break;
         
         // Caso cliente
-        case 3: 
-          name = askUserStr("Ingrese su nombre completo: ");
+        case 3:
           executeClientMenu(name);
         break;
         
