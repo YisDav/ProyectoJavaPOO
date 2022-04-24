@@ -1,6 +1,4 @@
-import java.time.*;
 import java.time.LocalDate;
-import java.time.format.*;
 
 class Date_ex {
   //---- Attributes

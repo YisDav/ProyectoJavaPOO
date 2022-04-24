@@ -17,71 +17,81 @@ class Main
     // Obtener nombre del usuario
     sysout("******************* Bienvenido *******************");
     int opcionMenu_inicio = 0;
-    boolean datosAdecuados = true;
+
     do 
     {
       opcionMenu_inicio = askUserInt("Por favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
   
       String name = "", password = "";
+
+      //
+      if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2) {
+        name = askUserStr("Usuario: ");
+        password = askUserStr("Contraseña : ");
+      }
+
       switch(opcionMenu_inicio) 
       {
         // Caso administrador
         case 1:
-          name = askUserStr("Usuario: ");
-          password = askUserStr("Contraseña : ");
-
           Date_ex birth = new Date_ex(2001,10,12);
           Date_ex join = new Date_ex(2018,10,12);
+
+          // Está re tapado en plata el David
           Admin adm1 = new Admin(12345, "David", birth, join, 3000000);
-            
-          if((name.equals("123")) && (password.equals("123")))
+          
+          int optionx = askUserInt("\n1. Productos\n2. Empleados\n 0. Salir");
+          switch(optionx)
           {
-
-            int optionx = askUserInt("\n1. Productos\n2. Empleados\n 0. Salir");
-            switch(optionx)
-            {
-              case 1: 
-                int option1 = askUserInt("\n1. Modificar producto\n2.Agregar producto\n3. Eliminar producto");
-                switch(option1) {
-                  case 1:
+            case 1: 
+              int option1 = askUserInt("\n1. Modificar producto\n2.Agregar producto\n3. Eliminar producto");
+              switch(option1) 
+              {
+                case 1:
                   int option2 = askUserInt("\n1. Modificar precio\n2. Modificar stock\n3. Modificar descripcion");
-
-                    switch(option2) {
-                      case 1:
+                  switch(option2) {
+                    case 1:
                       adm1.changePrice(1);
                       sysout("¡Cambio de precio exitoso!");
-                      case 2:
+                    break;
+                    case 2:
                       adm1.changeStock(1);
                       sysout("¡Cambio de stock exitoso!");
-                      case 3:
+                    break;
+                    case 3:
                       adm1.changeDesc(1);
                       sysout("¡Cambio de descripcion exitosa!");
-                      default:
-            sysout("Opcion invalida");
-                    }
-
-                  case 2:
-                    adm1.createProduct();
-                    sysout("Producto creado exitosamente!");
-                  
-                  case 3:
-                    adm1.deleteProduct(1);
-                    sysout("Producto eliminado exitosamente!");
-                  
-                  default:
+                    break;
+                    default:
                       sysout("Opcion invalida");
-                }
-              case 2: sysout("Menu para empleados");
-            }
+                    break;
+                  }
+
+                case 2:
+                  adm1.createProduct();
+                  sysout("Producto creado exitosamente!");
+                break;
+                
+                case 3:
+                  adm1.deleteProduct(1);
+                  sysout("Producto eliminado exitosamente!");
+                break;
+                
+                default:
+                  sysout("Opcion invalida");
+                break;
+              }
+            break;
+            case 2: 
+              sysout("Menu para empleados");
+            break;
           }
-          else{
-            sysout("Usuario o contraseña incorrecto/a");
-          }
+          //
         break;
 
         // Caso empleado
         case 2:
-          do {
+          /* do {
             name = askUserStr("Usuario: ");
             password = askUserStr("Contraseña: ");    
 
@@ -94,12 +104,12 @@ class Main
               //Sysout("Propina:"+getBaksheesh());
               //Sysout("Salario: "+getSalary()); 
               datosAdecuados = true;
-              }
-              else{
+            }
+            else{
               datosAdecuados = false;
               sysout("Usuario o contraseña incorrectos");
             }
-          } while(datosAdecuados == false);
+          } while(datosAdecuados == false); */
         break;
         
         // Caso cliente
@@ -110,12 +120,13 @@ class Main
         
         // Salida
         default:
-          sysout("Saliendo...");
+          sysout("\n\nSaliendo...");
         break;
       }
-    } while(opcionMenu_inicio != 0);
+    }
+    while(opcionMenu_inicio != 0);
 
-    
+
     // Imprimir mensaje de despedida
     sysout(mensajesDefault.get(1));
   }
@@ -297,70 +308,74 @@ class Main
   // ---------------------- ]   UTILS   [ ---------------------- //  
   public static int askUserInt(String message) 
   {
-    Scanner scanner_ = new Scanner(System.in);
-    int answer = 0; boolean valid = false;
-    
-    try {
-      sysout(message);
-      answer = scanner_.nextInt();
-      valid = true;
+    try (Scanner scanner_ = new Scanner(System.in)) {
+      int answer = 0; boolean valid = false;
+      
+      try {
+        sysout(message);
+        answer = scanner_.nextInt();
+        valid = true;
+      }
+      catch(Exception e) {
+        sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+        valid = false;
+      }
+      if(!valid) return askUserInt(message);    
+      return answer;
     }
-    catch(Exception e) {
-      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
-      valid = false;
-    }
-    if(!valid) return askUserInt(message);    
-    return answer;
   }
   
   public static double askUserDouble(String message) 
   {
-    Scanner scanner_ = new Scanner(System.in);
-    double answer = 0; boolean valid = false;
-    try {
-      sysout(message);
-      answer = scanner_.nextDouble();
+    try (Scanner scanner_ = new Scanner(System.in)) {
+      double answer = 0; boolean valid = false;
+      try {
+        sysout(message);
+        answer = scanner_.nextDouble();
+      }
+      catch (Exception e) {
+        sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+        valid = false;
+      }
+      if(!valid) return askUserDouble(message);    
+      return answer;
     }
-    catch (Exception e) {
-      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
-      valid = false;
-    }
-    if(!valid) return askUserDouble(message);    
-    return answer;
   }
   
   public static long askUserLong(String message) 
   {
-    Scanner scanner_ = new Scanner(System.in);
-    long answer = 0; boolean valid = false;
-    try {
-      sysout(message);
-      answer = scanner_.nextLong();
+    try (Scanner scanner_ = new Scanner(System.in)) {
+      long answer = 0; boolean valid = false;
+      try {
+        sysout(message);
+        answer = scanner_.nextLong();
+      }
+      catch (Exception e) {
+        sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+        valid = false;
+      }
+      if(!valid) return askUserLong(message);    
+      return answer;
     }
-    catch (Exception e) {
-      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
-      valid = false;
-    }
-    if(!valid) return askUserLong(message);    
-    return answer;
   }
   
   public static String askUserStr(String message) 
   {
-    Scanner scanner_ = new Scanner(System.in);
-    String answer = ""; boolean valid = false;
+    try (Scanner scanner_ = new Scanner(System.in)) {
+      String answer = ""; boolean valid = false;
 
-    try {
-      sysout(message);
-      answer = scanner_.nextLine(); 
-      valid = true;
+      try {
+        sysout(message);
+        answer = scanner_.nextLine(); 
+        valid = true;
+      }
+      catch (Exception e) {
+        sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+        valid = false;
+      }
+      if(!valid) return askUserStr(message);    
+      return answer;
     }
-    catch (Exception e) {
-      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
-      valid = false;
-    }
-    if(!valid) return askUserStr(message);    
-    return answer;
   }
 
   public static boolean isInList(int value, ArrayList<Integer> list) 

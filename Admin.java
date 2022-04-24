@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Admin extends Employee {
   //---- Attributes
   //---- / Attributes
