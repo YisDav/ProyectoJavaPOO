@@ -2,12 +2,7 @@ import java.util.*;
 import java.text.DecimalFormat;
 
 class Main 
-{
-  // ---------------------- ]     READERS     [ ---------------------- //
-  public static Scanner stringReader = new Scanner(System.in);
-  public static Scanner numbsReader = new Scanner(System.in);
-
-  
+{  
   // ---------------------- ]   CONFIG    [ ----------------------//
   public static ArrayList<String> firstMenu_Options = new ArrayList<String>(), secondMenu_Options = new ArrayList<String>(), mensajesDefault = new ArrayList<String>();
   public static ArrayList<Integer> primerMenu_exit = new ArrayList<Integer>(), segundoMenu_exit = new ArrayList<Integer>();
@@ -16,22 +11,45 @@ class Main
   // ---------------------- ]    MAIN    [ ---------------------- //
   public static void main(String[] args) 
   {
+    
     // Creación de objetos y configuración de inicio (productos, menus, mensajes, etc.)
     defaultConfig();
 
     // Obtener nombre del usuario
-    String name = askUserStr("¿Cómo te llamas?");
-
-    // Ejecutar menús
-    executeMenus(name);
-
+    sysout("******************* Bienvenido *******************");
+    int opcionMenu_inicio = 0;
+    
+    do 
+    {
+      opcionMenu_inicio = askUserInt("Por favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
+  
+      switch(opcionMenu_inicio) {
+        case 1: 
+          sysout("caso 1");
+        break;
+          
+        case 2:
+          sysout("caso 2");
+        break;
+          
+        case 3: 
+          String name = askUserStr("¿Cómo te llamas?");
+          executeClientMenu(name);
+        break;
+          
+        default:
+          sysout("Hasta pronto....");
+        break;
+      }
+    }
+    while(opcionMenu_inicio != 0);
     // Imprimir mensaje de despedida
     sysout(mensajesDefault.get(1));
   }
 
 
   // ----------------- ]   MENU FUNCTIONS   [ ----------------- //
-  public static void executeMenus(String name) 
+  public static void executeClientMenu(String name) 
   {
     // Preguntar al usuario por la primera lista de opciones
     int opcionElegida_primerMenu = mostrarOpciones_primerMenu(name);
@@ -202,20 +220,54 @@ class Main
   // ---------------------- ]   UTILS   [ ---------------------- //  
   public static int askUserInt(String message) 
   {
-    sysout(message);
-    return numbsReader.nextInt();
+    Scanner scanner_ = new Scanner(System.in);
+    int answer = 0; boolean valid = false;
+    
+    try {
+      sysout(message);
+      answer = scanner_.nextInt();
+      valid = true;
+    }
+    catch(Exception e) {
+      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      valid = false;
+    }
+    if(!valid) return askUserInt(message);    
+    return answer;
   }
   
   public static double askUserDouble(String message) 
   {
-    sysout(message);
-    return numbsReader.nextDouble();
+    Scanner scanner_ = new Scanner(System.in);
+    double answer = 0; boolean valid = false;
+    try {
+      sysout(message);
+      answer = scanner_.nextDouble();
+    }
+    catch (Exception e) {
+      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      valid = false;
+    }
+    if(!valid) return askUserDouble(message);    
+    return answer;
   }
   
   public static String askUserStr(String message) 
   {
-    sysout(message);
-    return stringReader.nextLine();
+    Scanner scanner_ = new Scanner(System.in);
+    String answer = ""; boolean valid = false;
+
+    try {
+      sysout(message);
+      answer = scanner_.nextLine(); 
+      valid = true;
+    }
+    catch (Exception e) {
+      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      valid = false;
+    }
+    if(!valid) return askUserStr(message);    
+    return answer;
   }
 
   public static boolean isInList(int value, ArrayList<Integer> list) 
