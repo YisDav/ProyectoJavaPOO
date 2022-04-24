@@ -6,7 +6,6 @@ class Main
   // ---------------------- ]   CONFIG    [ ----------------------//
   public static ArrayList<String> firstMenu_Options = new ArrayList<String>(), secondMenu_Options = new ArrayList<String>(), mensajesDefault = new ArrayList<String>();
   public static ArrayList<Integer> primerMenu_exit = new ArrayList<Integer>(), segundoMenu_exit = new ArrayList<Integer>();
-  public static Order pedidoUsuario = new Order();
 
   // ---------------------- ]    MAIN    [ ---------------------- //
   public static void main(String[] args) 
@@ -129,14 +128,18 @@ class Main
     int opcionElegida_primerMenu = mostrarOpciones_primerMenu(name);
 
     // Opción 2 - pedido a domicilio
-    String domicilio = ""; int phoneNumber = 0;
+    boolean isDelivery = false; String domicilio = ""; long phoneNumber = 0;
     if(opcionElegida_primerMenu == 2){
+      isDelivery = true;
       domicilio = askUserStr("Ingresa la dirección del domicilio: ");
-      phoneNumber = askUserInt("Ingresa el número de teléfono: ");
+      phoneNumber = askUserLong("Ingresa el número de teléfono: ");
     }
+
+    // Creación del objeto cliente y orden
+    Client userClient = new Client(1, name, domicilio, phoneNumber);
+    Order clientOrder = new Order(userClient, isDelivery);
     
     
-    // Ejecutar ciclo (repetir menú) hasta que se rompa manualmente
     while (true) 
     {
       // Romper ciclo si el usuario elige la opción de salirse del menú
@@ -158,10 +161,10 @@ class Main
         }
         
         // Sí se debe facturar y finalizar pedido
-        if(pedidoUsuario.getListaProductos().size() == 0)
+        if(clientOrder.getListaProductos().size() == 0)
           sysout("Lo sentimos, no has seleccionado ningun producto aún.");
         else {
-          imprimirFactura();
+          imprimirFactura(clientOrder);
           break;
         }
         
@@ -175,7 +178,7 @@ class Main
         // Obtenemos el objeto del producto que el usuario eligió
         Product productoElegido = getProductByID(opcionElegida_tercerMenu-1);
         sysout("\n ** Se ha añadido "+productoElegido.name+" a tu carrito. ¡Sigue satisfaciendo tus antojos! ** ");
-        pedidoUsuario.addProduct(productoElegido);
+        clientOrder.addProduct(productoElegido);
         productoElegido.stock -= 1;
       }
       
@@ -250,14 +253,14 @@ class Main
     return choosenOption;
   }
 
-  public static void imprimirFactura() {
+  public static void imprimirFactura(Order clientOrder) {
     sysout(mensajesDefault.get(2)); // Mensaje de facturando...
     sysout("\n\n|---------------------------------------------------------------------|");
     sysout("|----------------------------- FACTURA -------------------------------|");
     sysout("|---------------------------------------------------------------------|");
-    pedidoUsuario.Facturar();
+    clientOrder.Facturar();
     sysout("|---------------------------------------------------------------------|");
-    sysout("| Precio total: "+ darFormatoDinero(pedidoUsuario.get_preciototal()));
+    sysout("| Precio total: "+ darFormatoDinero(clientOrder.get_preciototal()));
     sysout("|---------------------------------------------------------------------|");
   }
 
@@ -323,6 +326,22 @@ class Main
       valid = false;
     }
     if(!valid) return askUserDouble(message);    
+    return answer;
+  }
+  
+  public static long askUserLong(String message) 
+  {
+    Scanner scanner_ = new Scanner(System.in);
+    long answer = 0; boolean valid = false;
+    try {
+      sysout(message);
+      answer = scanner_.nextLong();
+    }
+    catch (Exception e) {
+      sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      valid = false;
+    }
+    if(!valid) return askUserLong(message);    
     return answer;
   }
   

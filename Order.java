@@ -4,13 +4,13 @@ public class Order {
 
   private ArrayList<Product> ListaProductos = new ArrayList<Product>();
   private double total_price = 0;
-  private boolean isDelivery = false;
-  private String deliveryAddress = "";
-  private String phoneNumber = "0";
+  private Client client;
+  public boolean isDelivery = false;
   
 
-  Order() {
-    super();
+  Order(Client client, boolean isDelivery) {
+    this.client = client;
+    this.isDelivery = isDelivery;
   }
 
   public ArrayList<Product> getListaProductos() {
@@ -19,20 +19,6 @@ public class Order {
   
   public double get_preciototal(){
     return this.total_price;
-  }
-
-  public boolean isDelivery() {
-    return this.isDelivery;
-  }
-
-  public String getDeliveryAddress() {
-    if(this.isDelivery) return this.deliveryAddress;
-    else return null;
-  }
-
-  public String getPhoneNumber() {
-    if(this.isDelivery) return this.phoneNumber;
-    else return null;
   }
   
   public ArrayList<Product> addProduct (Product producto){
@@ -43,13 +29,13 @@ public class Order {
   
   public void Facturar()
   {
-    for(int indice = 0;indice<ListaProductos.size();indice++) {
+    for(int indice = 0; indice < ListaProductos.size(); indice++) {
         Product myProduct = ListaProductos.get(indice);
         System.out.println(" * " + myProduct.name + " - " + Main.darFormatoDinero(myProduct.price));
     }
     if(this.isDelivery) 
     {
-      String message = String.format("\tEstamos enviando tu pedido a la dirección: %s\n\tNúmero de teléfono al cual notificaremos: %s", this.deliveryAddress, this.phoneNumber);
+      String message = String.format("\tEstamos enviando tu pedido a la dirección: %s\n\tNúmero de teléfono al cual notificaremos: %s", client.getAddress(), client.getPhoneNumber());
       System.out.println(message);
     }
   }

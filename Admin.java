@@ -53,7 +53,7 @@ class Admin extends Employee {
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
   public void changeDesc(int productID) {
     Product productChange = Product.getProductElementByID(productID);
-    productChange.description = Main.askUserStr("\Ingresa la nueva descripcion del plato "+productChange.name+": ");
+    productChange.description = Main.askUserStr("\nIngresa la nueva descripcion del plato "+productChange.name+": ");
     }
   
   //---- / Other methods
