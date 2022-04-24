@@ -6,8 +6,8 @@ class Employee extends Person {
   
 
   //---- Constructor
-  Employee(int ID, String name, String lastName, Date_ex birth_date, Date_ex join_date, double salary) {
-    super(ID, name, lastName);
+  Employee(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary) {
+    super(ID, fullName);
     this.birth_date = birth_date;
     this.join_date = join_date;
     this.salary = salary;

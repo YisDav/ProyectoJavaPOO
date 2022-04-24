@@ -5,8 +5,8 @@ class Waiter extends Employee {
   
 
   //---- Constructor
-  Waiter(int ID, String name, String lastName, Date_ex birth_date, Date_ex join_date, double salary, double baksheesh) {
-    super(ID, name, lastName, birth_date, join_date, salary);
+  Waiter(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary, double baksheesh) {
+    super(ID, fullName, birth_date, join_date, salary);
     this.baksheesh = baksheesh;
   }
   //---- / Constructor

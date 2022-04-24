@@ -3,7 +3,7 @@ import java.util.*;
 public class Order {
 
   private ArrayList<Product> ListaProductos = new ArrayList<Product>();
-  private double precio_total=0;
+  private double total_price = 0;
   private boolean isDelivery = false;
   private String deliveryAddress = "";
   private String phoneNumber = "0";
@@ -18,7 +18,7 @@ public class Order {
   }
   
   public double get_preciototal(){
-    return this.precio_total;
+    return this.total_price;
   }
 
   public boolean isDelivery() {
@@ -37,20 +37,8 @@ public class Order {
   
   public ArrayList<Product> addProduct (Product producto){
     ListaProductos.add(producto);
-    this.precio_total += producto.price;
+    this.total_price += producto.price;
     return ListaProductos;  
-  }
-
-  public void setDelivery(String address, String phoneNumber) {
-    this.isDelivery = true;
-    this.deliveryAddress = address;
-    this.phoneNumber = phoneNumber;
-  }
-
-  public void unsetDelivery() {
-    this.isDelivery = false;
-    this.deliveryAddress = "";
-    this.phoneNumber = "0";
   }
   
   public void Facturar()

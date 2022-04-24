@@ -6,8 +6,8 @@ class Client extends Person {
   
 
   //---- Constructor
-  Client(int ID, String name, String lastName, String address, long phoneNumber) {
-    super(ID, name, lastName);
+  Client(int ID, String fullName, String address, long phoneNumber) {
+    super(ID, fullName);
     this.address = address;
     this.phoneNumber = phoneNumber;    
   }
@@ -22,9 +22,10 @@ class Client extends Person {
   public long getPhoneNumber() {
     return this.phoneNumber;
   }
+
+
   //---- / Getter methods
 
-  
   //---- Setter methods
   public void setAddress(String address) {
     this.address = address;

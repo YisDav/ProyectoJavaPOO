@@ -10,16 +10,20 @@ class Date_ex {
 
   
   //---- Constructor
-  Date_ex(int day, int month, int year) {
+  Date_ex(int year, int month, int day) {
+    boolean isValidDate = validateDate(year, month, day);
+    if(!isValidDate) {
+      int[] validDate = askUserDate("Lo sentimos, fecha inválida");
+      day = validDate[0];
+      month = validDate[1];
+      year = validDate[2];
+    }
+    
     this.day = day;
     this.month = month;
     this.year = year;
-
-    try{
-      fecha = LocalDate.of(this.getYear(), this.getMonth(), this.getDay());
-    }catch (DateTimeParseException e){ 
-      System.out.println("ERROR | FECHA INCORRECTA");
-    }
+    this.fecha = LocalDate.of(year, month, day);
+    
   }
   //---- / Constructor
   
@@ -52,4 +56,38 @@ class Date_ex {
     this.year = year;
   }
   //---- / Setter methods
+
+  
+  //---- Other methods
+  public static int[] askUserDate(String message) {
+
+    Main.sysout(message);
+    
+    int day = 0, month = 0, year = 0;
+    boolean validDate = true;
+
+    do {
+      if(!validDate)
+        Main.sysout("Lo sentimos, esta fecha es invalida");
+      
+      day = Main.askUserInt("Día: ");
+      month = Main.askUserInt("Mes: ");
+      year = Main.askUserInt("Año: ");
+    }
+    while(!validDate);
+
+    return new int[]{ day, month, year };
+  }
+  
+  public static boolean validateDate(int year, int month, int day) {
+    boolean isValid = true;
+    try {
+      LocalDate.of(year, month, day);
+    }
+    catch (Exception e) {
+      isValid = false;
+    }
+    return isValid;
+  }
+  
 }

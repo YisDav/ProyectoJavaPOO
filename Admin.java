@@ -6,8 +6,8 @@ class Admin extends Employee {
   
 
   //---- Constructor
-  Admin(int ID, String name, String lastName, Date_ex birth_date, Date_ex join_date, double salary) {
-    super(ID, name, lastName, birth_date, join_date, salary);
+  Admin(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary) {
+    super(ID, fullName, birth_date, join_date, salary);
   }
   //---- / Constructor
 
@@ -39,15 +39,21 @@ class Admin extends Employee {
   }
   
   // METODO PARA CAMBIAR EL PRECIO UN PRODUCTO
-  public void chancePrice(int productID) {
+  public void changePrice(int productID) {
     Product productChange = Product.getProductElementByID(productID);
     productChange.price = Main.askUserDouble("Ingresa el nuevo precio del plato "+productChange.name+":");
   }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
-  public void chanceStock(int productID) {
+  public void changeStock(int productID) {
     Product productChange = Product.getProductElementByID(productID);
-    productChange.stock = Main.askUserInt("\nIngresa la disponibilidad del plato "+productChange.name+":");
+    productChange.stock = Main.askUserInt("\nIngresa la disponibilidad del plato "+productChange.name+": ");
+    }
+
+  // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
+  public void changeDesc(int productID) {
+    Product productChange = Product.getProductElementByID(productID);
+    productChange.description = Main.askUserStr("\Ingresa la nueva descripcion del plato "+productChange.name+": ");
     }
   
   //---- / Other methods

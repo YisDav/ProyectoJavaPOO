@@ -1,11 +1,10 @@
 class Person {
   private int ID;
-  public String name, lastName;
+  public String fullName;
   
-  Person(int ID, String name, String lastName) {
+  Person(int ID, String fullName) {
     this.ID = ID;
-    this.name = name;
-    this.lastName = lastName;
+    this.fullName = fullName;
   }
 
   //---- Getters
