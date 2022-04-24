@@ -23,7 +23,9 @@ class Main
       opcionMenu_inicio = askUserInt("Por favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
   
       String name = "", password = "";
-      switch(opcionMenu_inicio) {
+      switch(opcionMenu_inicio) 
+      {
+        // Caso administrador
         case 1:
           name = askUserStr("Usuario: ");
           password = askUserStr("Contraseña : ");
@@ -32,90 +34,88 @@ class Main
           Date_ex join = new Date_ex(2018,10,12);
           Admin adm1 = new Admin(12345, "David", birth, join, 3000000);
             
-          if((name.equals("123")) && (password.equals("123"))){
+          if((name.equals("123")) && (password.equals("123")))
+          {
 
             int optionx = askUserInt("\n1. Productos\n2. Empleados\n 0. Salir");
-          switch(optionx){
-
-            case 1: 
-
+            switch(optionx)
+            {
+              case 1: 
                 int option1 = askUserInt("\n1. Modificar producto\n2.Agregar producto\n3. Eliminar producto");
-
-    
-            
-            switch(option1) {
-              case 1:
-                int option2 = askUserInt("\n1. Modificar precio\n2. Modificar stock\n3. Modificar descripcion");
-                
-                switch(option2) {
+                switch(option1) {
                   case 1:
-                    adm1.changePrice(1);
-                    sysout("¡Cambio de precio exitoso!");
+                  int option2 = askUserInt("\n1. Modificar precio\n2. Modificar stock\n3. Modificar descripcion");
+
+                    switch(option2) {
+                      case 1:
+                      adm1.changePrice(1);
+                      sysout("¡Cambio de precio exitoso!");
+                      case 2:
+                      adm1.changeStock(1);
+                      sysout("¡Cambio de stock exitoso!");
+                      case 3:
+                      adm1.changeDesc(1);
+                      sysout("¡Cambio de descripcion exitosa!");
+                      default:
+            sysout("Opcion invalida");
+                    }
+
                   case 2:
-                    adm1.changeStock(1);
-                    sysout("¡Cambio de stock exitoso!");
+                    adm1.createProduct();
+                    sysout("Producto creado exitosamente!");
+                  
                   case 3:
-                    adm1.changeDesc(1);
-                    sysout("¡Cambio de descripcion exitosa!");
+                    adm1.deleteProduct(1);
+                    sysout("Producto eliminado exitosamente!");
+                  
                   default:
-                    sysout("Opcion invalida");
+                      sysout("Opcion invalida");
                 }
-              case 2:
-                adm1.createProduct();
-                sysout("Producto creado exitosamente!");
-              case 3:
-                adm1.deleteProduct(1);
-                sysout("Producto eliminado exitosamente!");
-              default:
-                sysout("Opcion invalida");
+              case 2: sysout("Menu para empleados");
             }
-            case 2: sysout("Menu para empleados");
-          }
-
-  
-            
-          }else{
-            sysout("Usuario o contraseña incorrecto/a");
-          }
-
-        break;
-
-
-          
-          
-        case 2:
-
-          do {
-          name = askUserStr("Usuario: ");
-          password = askUserStr("Contraseña: ");    
-          
-          if((name.equals("123")) && (password.equals("123"))){
-            sysout("siuuu");
-            
-          int ID = askUserInt("Ingrese su ID: ");
-          //Sysout("Fecha de ingreso: "+getJoinDate());
-          //Sysout("Propina:"+getBaksheesh());
-          //Sysout("Salario: "+getSalary()); 
-          datosAdecuados = true;
           }
           else{
-            datosAdecuados = false;
-            sysout("Usuario o contraseña incorrectos");
+            sysout("Usuario o contraseña incorrecto/a");
           }
-         } while(datosAdecuados == false);
         break;
-          
+
+        // Caso empleado
+        case 2:
+          do {
+            name = askUserStr("Usuario: ");
+            password = askUserStr("Contraseña: ");    
+
+            if((name.equals("123")) && (password.equals("123")))
+            {
+              sysout("siuuu");
+
+              int ID = askUserInt("Ingrese su ID: ");
+              //Sysout("Fecha de ingreso: "+getJoinDate());
+              //Sysout("Propina:"+getBaksheesh());
+              //Sysout("Salario: "+getSalary()); 
+              datosAdecuados = true;
+              }
+              else{
+              datosAdecuados = false;
+              sysout("Usuario o contraseña incorrectos");
+            }
+          } while(datosAdecuados == false);
+        break;
+        
+        // Caso cliente
         case 3: 
           name = askUserStr("Ingrese su nombre completo: ");
           executeClientMenu(name);
         break;
-          
+        
+        // Salida
         default:
-          sysout("Hasta pronto....");
+          sysout("Saliendo...");
         break;
       }
-    }
-    while(opcionMenu_inicio != 0);
+    } while(opcionMenu_inicio != 0);
+
+    
     // Imprimir mensaje de despedida
     sysout(mensajesDefault.get(1));
   }
