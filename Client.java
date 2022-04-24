@@ -1,8 +1,8 @@
 class Client extends Person {
-  //---- Atributes
+  //---- Attributes
   private String address;
   private long phoneNumber;
-  //---- / Atributes
+  //---- / Attributes
   
 
   //---- Constructor

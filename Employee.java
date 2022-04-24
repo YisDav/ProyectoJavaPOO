@@ -1,8 +1,8 @@
 class Employee extends Person {
-  //---- Atributes
+  //---- Attributes
   private Date_ex birth_date, join_date;
   double salary;
-  //---- / Atributes
+  //---- / Attributes
   
 
   //---- Constructor

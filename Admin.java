@@ -1,8 +1,8 @@
 import java.util.*;
 
 class Admin extends Employee {
-  //---- Atributes
-  //---- / Atributes
+  //---- Attributes
+  //---- / Attributes
   
 
   //---- Constructor

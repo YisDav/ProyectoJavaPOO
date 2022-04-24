@@ -3,10 +3,10 @@ import java.time.LocalDate;
 import java.time.format.*;
 
 class Date_ex {
-  //---- Atributes
+  //---- Attributes
   private int day, month, year;
   protected LocalDate fecha;
-  //---- / Atributes
+  //---- / Attributes
 
   
   //---- Constructor

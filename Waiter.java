@@ -1,7 +1,7 @@
 class Waiter extends Employee {
-  //---- Atributes
+  //---- Attributes
   private double baksheesh;
-  //---- / Atributes
+  //---- / Attributes
   
 
   //---- Constructor
