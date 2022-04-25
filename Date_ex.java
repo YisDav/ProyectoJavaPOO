@@ -57,7 +57,7 @@ class Date_ex {
 
   
   //---- Other methods
-  public static int[] askUserDate(String message) {
+  public static Date_ex askUserDate(String message) {
 
     Main.sysout(message);
     
@@ -76,7 +76,7 @@ class Date_ex {
     }
     while(!validDate);
 
-    return new int[]{ day, month, year };
+    return new Date_ex(year, month, day);
   }
   
   public static boolean validateDate(int year, int month, int day) {

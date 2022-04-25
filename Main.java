@@ -110,12 +110,16 @@ boolean datosAdecuados = true;
                 int 
                   ID = askUserInt("Ingrese el ID del nuevo empleado: ");
                 
-                int[] 
+                Date_ex
                   fecha_cumple = Date_ex.askUserDate("Ingrese la fecha de nacimiento: "),
                   fecha_ingreso = Date_ex.askUserDate("Ingrese la fecha de ingreso: ");
                   
                 double 
                   salary = askUserDouble("Ingrese el salario del nuevo empleado");
+
+
+                
+                  Waiter waiter1 = new Waiter(ID, new_name, fecha_cumple, fecha_ingreso, salary, 0.0);
 
               case 3: 
               //Eliminar empleado
@@ -150,9 +154,6 @@ boolean datosAdecuados = true;
         // Caso cliente
         case 3:
           executeClientMenu(name);
-          int[] fecha_lista = Date_ex.askUserDate("Ingrese la fecha de nacimiento: ");
-          Client client1 = new Client(999, "YisDav", "Calle lejos", 988644);
-          sysout(client1.calculateAge(fecha_lista));
         break;
       }
     }
