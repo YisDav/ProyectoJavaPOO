@@ -16,7 +16,7 @@ class Admin extends Employee {
   // METODO PARA CREAR UN PRODUCTO
   public Product createProduct()
   {
-    Main.sysout("Por favor, ingresa los datos del producto que deseas crear");
+    Main.sysout("\nPor favor, ingresa los datos del producto que deseas crear");
     
     String 
       name = Main.askUserStr("Nombre del producto: "),

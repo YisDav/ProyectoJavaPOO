@@ -85,6 +85,7 @@ boolean datosAdecuados = true;
                   adm1.deleteProduct(1);
                   sysout("¡Producto eliminado exitosamente!");
                 break;
+                  
                 default:
                   sysout("Opcion invalida");
                 break;
@@ -93,7 +94,7 @@ boolean datosAdecuados = true;
 
               
             case 2: 
-              /*
+              
             int optionEmp1 = askUserInt("\n1. Modificar empleado \n2. Agregar empleado \n3. Eliminar empleado");
               switch(optionEmp1){
               case 1: 
@@ -103,16 +104,23 @@ boolean datosAdecuados = true;
               case 2: //"Se edita el nombre"
               }
               case 2: 
-            name = askUserStr("Ingrese el nombre completo del nuevo empleado: ");
-            ID = askUserInt("Ingrese el ID del nuevo empleado: ");
-            //birth_date =  
-            //join_date =
-            salary = askUserDouble("Ingrese el salario del nuevo empleado");
+                String
+                  new_name = askUserStr("Ingrese el nombre completo del nuevo empleado: ");
+
+                int 
+                  ID = askUserInt("Ingrese el ID del nuevo empleado: ");
+                
+                int[] 
+                  fecha_cumple = Date_ex.askUserDate("Ingrese la fecha de nacimiento: "),
+                  fecha_ingreso = Date_ex.askUserDate("Ingrese la fecha de ingreso: ");
+                  
+                double 
+                  salary = askUserDouble("Ingrese el salario del nuevo empleado");
 
               case 3: 
-
+              //Eliminar empleado
               }
-            */
+            
             break;
           }
           //

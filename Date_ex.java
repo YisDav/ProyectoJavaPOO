@@ -89,5 +89,9 @@ class Date_ex {
     }
     return isValid;
   }
+
+  /*pubic static LocalDate dateNow() {
+    return LocalDate.now();
+  }*/
   
 }

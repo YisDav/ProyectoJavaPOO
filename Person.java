@@ -25,8 +25,7 @@ class Person {
 
     //---- Other methods
 
-  public String calculateAge(int[] born){
-    
+  public String calculateAge(int[] born) {    
     LocalDate fechaNow = LocalDate.now();
 
     int 
