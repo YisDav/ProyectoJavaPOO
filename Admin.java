@@ -67,8 +67,8 @@ class Admin extends Employee {
     int 
       ID = Main.askUserInt("Ingrese el ID del nuevo empleado: ");
     Date_ex
-      fecha_cumple = Date_ex.askUserDate("Ingrese la fecha de nacimiento: "),
-      fecha_ingreso = Date_ex.askUserDate("Ingrese la fecha de ingreso: ");
+      fecha_cumple = Date_ex.askUserDate_ex("Ingrese la fecha de nacimiento: "),
+      fecha_ingreso = Date_ex.askUserDate_ex("Ingrese la fecha de ingreso: ");
     double 
       salary = Main.askUserDouble("Ingrese el salario del nuevo empleado");
     

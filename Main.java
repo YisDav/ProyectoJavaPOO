@@ -54,7 +54,7 @@ class Main
       else // De lo contrario, pide nombre completo
         name = askUserStr("Ingrese su nombre completo: ");
 
-boolean datosAdecuados = true;
+      
       switch(opcionMenu_inicio) 
       {
         // Caso administrador

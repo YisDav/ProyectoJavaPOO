@@ -1,3 +1,5 @@
+import java.time.*;
+
 class Employee extends Person {
   //---- Attributes
   private Date_ex birth_date, join_date;
@@ -43,5 +45,14 @@ class Employee extends Person {
     this.salary = salary;
   }
   //---- / Setter methods
+
+
+  //---- Other non-static methods
+  // translated from Person class
+  public String getAgeString(int[] born) {
+    Period edad = this.birth_date.getPeriodTillNow();
+    return String.format("%d años, %d meses y %d días",edad.getYears(), edad.getMonths(), edad.getDays());
+  }
+  //---- / Other non-static methods
   
 }

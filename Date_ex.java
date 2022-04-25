@@ -1,4 +1,4 @@
-import java.time.LocalDate;
+import java.time.*;
 
 class Date_ex {
   //---- Attributes
@@ -8,20 +8,11 @@ class Date_ex {
 
   
   //---- Constructor
-  Date_ex(int year, int month, int day) {
-    /* boolean isValidDate = validateDate(year, month, day);
-    if(!isValidDate) {
-      int[] validDate = askUserDate("Lo sentimos, fecha inválida");
-      day = validDate[0];
-      month = validDate[1];
-      year = validDate[2];
-    } */
-    
+  Date_ex(int year, int month, int day) {    
     this.day = day;
     this.month = month;
     this.year = year;
     this.fecha = LocalDate.of(year, month, day);
-    
   }
   //---- / Constructor
   
@@ -55,9 +46,16 @@ class Date_ex {
   }
   //---- / Setter methods
 
+
+  //---- Other non-static methods
+  public Period getPeriodTillNow() {
+    return Period.between(this.fecha, dateNow());
+  }
+  //---- / Other non-static methods
+
   
-  //---- Other methods
-  public static Date_ex askUserDate(String message) {
+  //---- Other static methods
+  public static Date_ex askUserDate_ex(String message) {
 
     Main.sysout(message);
     
@@ -90,8 +88,8 @@ class Date_ex {
     return isValid;
   }
 
-  /*pubic static LocalDate dateNow() {
+  public static LocalDate dateNow() {
     return LocalDate.now();
-  }*/
+  }
   
 }
