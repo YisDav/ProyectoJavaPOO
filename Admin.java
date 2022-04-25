@@ -80,10 +80,10 @@ class Admin extends Employee {
 
   // METODO PARA ELIMINAR UN EMPLEADO
   public void deleteWaiter(int waiterID) {
-    Product WaiterToDelete = Product.getWaiterElementByID(waiterID);
+    Waiter WaiterToDelete = Waiter.getWaiterByID(waiterID);
     WaiterToDelete = null;
     Main.sysout("¡Empleado eliminado exitosamente!");
-    }
+  }
 
   
   

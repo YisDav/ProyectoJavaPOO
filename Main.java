@@ -1,5 +1,21 @@
+/*
+El cliente pueda dar propina
+Testeo general
+Actualizar el diagrama de clases
+Completar edicion de empleados
+
+
+
+JESUS:
+Sistema de validacion (nombre y contraseña)
+Normalizar fechas
+*/
+
+
 import java.util.*;
 import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 class Main 
 {  
@@ -106,7 +122,7 @@ boolean datosAdecuados = true;
               case 2:
                   Waiter waiter1 = adm1.createWaiter();
               case 3: 
-              //Eliminar empleado
+              adm1.deleteWaiter(1);
               }
             
             break;
@@ -116,17 +132,22 @@ boolean datosAdecuados = true;
 
         // Caso empleado
         case 2:
-    
-    int 
-      waiterID = askUserInt("Ingrese el ID del empleado");
-    Waiter waiter1 = Waiter.getWaiterByID(waiterID);
-    sysout("******************* DATOS DEL EMPLEADO *******************");
+          DateTimeFormatter fechaFormato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+          
+          int 
+            waiterID = askUserInt("Ingrese el ID del empleado");
+          Waiter waiter1 = Waiter.getWaiterByID(waiterID);
+          LocalDate fecha_nacimiento = waiter1.getBirthDate().fecha;
+          LocalDate fecha_ingreso = waiter1.getJoinDate().fecha;
+          
+          sysout("******************* DATOS DEL EMPLEADO *******************");
           sysout("Nombre: " + waiter1.fullName);
           sysout("ID: " + waiter1.getID());
-          sysout("Fecha de ingreso: "+waiter1.getJoinDate());
-          sysout("Propina:"+waiter1.getBaksheesh());
+          sysout("Fecha de nacimiento: "+fecha_nacimiento.format(fechaFormato));
+          sysout("Fecha de ingreso: "+fecha_ingreso.format(fechaFormato));
+          sysout("Propina: "+waiter1.getBaksheesh());
           sysout("Salario: "+waiter1.getSalary()); 
-    sysout("**********************************************************");
+          sysout("**********************************************************");
           
         break;
         
