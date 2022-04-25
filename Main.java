@@ -104,7 +104,7 @@ boolean datosAdecuados = true;
               case 2: //"Se edita el nombre"
               }
               case 2:
-                  adm1.createWaiter();
+                  Waiter waiter1 = adm1.createWaiter();
               case 3: 
               //Eliminar empleado
               }
@@ -116,14 +116,13 @@ boolean datosAdecuados = true;
 
         // Caso empleado
         case 2:
-         
       
     sysout("******************* DATOS DEL EMPLEADO *******************");
           Sysout("Nombre: " + waiter1.getFullName());
-          Sysout("ID: " + Waiter1.getID());
-          Sysout("Fecha de ingreso: "+Waiter1.getJoinDate());
-          Sysout("Propina:"+Waiter1.getBaksheesh());
-          Sysout("Salario: "+Waiter1.getSalary()); 
+          Sysout("ID: " + waiter1.getID());
+          Sysout("Fecha de ingreso: "+waiter1.getJoinDate());
+          Sysout("Propina:"+waiter1.getBaksheesh());
+          Sysout("Salario: "+waiter1.getSalary()); 
     sysout("**********************************************************");
           
         break;

@@ -61,7 +61,7 @@ class Admin extends Employee {
     }
 
   // METODO PARA CREAR UN EMPREADO
-  public void createWaiter() {
+  public Waiter createWaiter() {
     String
       new_name = Main.askUserStr("Ingrese el nombre completo del nuevo empleado: ");
     int 
@@ -74,13 +74,15 @@ class Admin extends Employee {
     
     Waiter waiter1 = new Waiter(ID, new_name, fecha_cumple, fecha_ingreso, salary, 0.0);
     Main.sysout("¡Waiter creado exitosamente!");
+
+    return waiter1;
     }
 
   // METODO PARA ELIMINAR UN EMPLEADO
-  public void waiterToDelete(int productID) {
-    Product productChange = Product.getProductElementByID(productID);
-    productChange.description = Main.askUserStr("\nIngresa la nueva descripcion del plato '"+productChange.name+"': ");
-    Main.sysout("¡Cambio de descripcion exitosa!");
+  public void deleteWaiter(int waiterID) {
+    Product WaiterToDelete = Product.getWaiterElementByID(waiterID);
+    WaiterToDelete = null;
+    Main.sysout("¡Empleado eliminado exitosamente!");
     }
 
   
