@@ -5,7 +5,7 @@ import java.util.ArrayList;
 class Waiter extends Employee {
   //---- Attributes
   private double baksheesh;
-  static ArrayList<Waiter> waiterList = ArrayList<Waiter>();
+  static ArrayList<Waiter> waiterList = new ArrayList<Waiter>();
   //---- / Attributes
   
 
@@ -35,7 +35,7 @@ class Waiter extends Employee {
 
   public static Waiter getWaiterByID(int ID) {
     Waiter actual;
-    for(int i = 0; i < waiterList.size; i++) {
+    for(int i = 0; i < waiterList.size(); i++) {
       actual = waiterList.get(i);
       if(actual.getID() == ID) {
         return actual;

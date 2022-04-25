@@ -116,13 +116,16 @@ boolean datosAdecuados = true;
 
         // Caso empleado
         case 2:
-      
+    
+    int 
+      waiterID = askUserInt("Ingrese el ID del empleado");
+    Waiter waiter1 = Waiter.getWaiterByID(waiterID);
     sysout("******************* DATOS DEL EMPLEADO *******************");
-          Sysout("Nombre: " + waiter1.getFullName());
-          Sysout("ID: " + waiter1.getID());
-          Sysout("Fecha de ingreso: "+waiter1.getJoinDate());
-          Sysout("Propina:"+waiter1.getBaksheesh());
-          Sysout("Salario: "+waiter1.getSalary()); 
+          sysout("Nombre: " + waiter1.fullName);
+          sysout("ID: " + waiter1.getID());
+          sysout("Fecha de ingreso: "+waiter1.getJoinDate());
+          sysout("Propina:"+waiter1.getBaksheesh());
+          sysout("Salario: "+waiter1.getSalary()); 
     sysout("**********************************************************");
           
         break;
