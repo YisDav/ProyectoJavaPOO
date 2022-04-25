@@ -33,32 +33,27 @@ class Admin extends Employee {
   }
   
   // METODO PARA ELIMINAR UN PRODUCTO
-  public void deleteProduct(int productID) {
-    Product productToDelete = Product.getProductElementByID(productID);
-    productToDelete = null;
+  public void deleteProduct(Product product) {
+    product = null;
   }
   
   // METODO PARA CAMBIAR EL PRECIO UN PRODUCTO
-  public void changePrice(int productID) {
-    Scanner readerDouble = new Scanner(System.in);
-    Product productChange = Product.getProductElementByID(productID);
-    productChange.price = Main.askUserDouble("Ingresa el nuevo precio del plato '"+productChange.name+"':");
+  public void changePrice(Product product) {
+    product.price = Main.askUserDouble("Ingresa el nuevo precio del plato '"+product.name+"':");
     Main.sysout("¡Cambio de precio exitoso!");
   }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
-  public void changeStock(int productID) {
-    Product productChange = Product.getProductElementByID(productID);
-    productChange.stock = Main.askUserInt("\nIngresa la disponibilidad del plato '"+productChange.name+"': ");
+  public void changeStock(Product product) {
+    product.stock = Main.askUserInt("\nIngresa la disponibilidad del plato '"+product.name+"': ");
     Main.sysout("¡Cambio de stock exitoso!");
     }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
-  public void changeDesc(int productID) {
-    Product productChange = Product.getProductElementByID(productID);
-    productChange.description = Main.askUserStr("\nIngresa la nueva descripcion del plato '"+productChange.name+"': ");
+  public void changeDesc(Product product) {
+    product.description = Main.askUserStr("\nIngresa la nueva descripcion del plato '"+product.name+"': ");
     Main.sysout("¡Cambio de descripcion exitosa!");
-    }
+  }
 
   // METODO PARA CREAR UN EMPREADO
   public Waiter createWaiter() {

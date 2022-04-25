@@ -14,13 +14,13 @@ public class Product {
   * @ Constructor Product
   */
   Product(String name, int type, String description, double price, int stock) {
+    this.ID = productList2.size();
     this.name = name;
     this.type = type;
     this.description = description;
     this.price = price;
     this.stock = stock;
-    setLastID();
-    setDefaultReference();
+    this.reference = String.format("00%d0%d", this.ID, this.type);
     productList2.add(this);
   }
 
@@ -39,32 +39,18 @@ public class Product {
   /*
   * @ Métodos setter
   */
-  private int setLastID(){
-    lastCreatedID += 1;
-    this.ID = lastCreatedID;
-    return this.ID;
-  }
 
   public String setReference(String reference) {
     this.reference = reference;
     return this.reference;
   }
 
-  public String setDefaultReference() {
-    String reference = String.format("00%d0%d", this.ID, this.type);
-    return setReference(reference);
-  }
-
   
   /*
   * STATIC
   */
-
-  private static int lastCreatedID = -1;
   private static ArrayList<Product> productList2 = new ArrayList<Product>();
-  public static int getLastCreatedID() {
-    return lastCreatedID;
-  }
+
   public static Product getProductElementByID(int ID) {
     Product producto_actual;
     for(int i = 0 ; i < productList2.size() ; i++) {
@@ -73,6 +59,26 @@ public class Product {
         return producto_actual;
     }
     return null;
+  }
+
+  public static Product getProductElementByInputID(String message) {
+    int productID; Product productElement = null; boolean validID = true;
+    
+    do {
+      productID = Main.askUserInt(message);
+      try {
+        productElement = getProductElementByID(productID-1);
+        String name = productElement.name; // only for test
+        validID = true;
+      }
+      catch(Exception e) {
+        validID = false;
+        Main.sysout("Lo sentimos, el producto con el ID "+productID+" no pudo ser encontrado");
+      }
+
+    } while(!validID);
+
+    return productElement;
   }
 
   public static int getProductsCount(){

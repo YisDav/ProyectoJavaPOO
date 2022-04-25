@@ -33,6 +33,7 @@ class Main
     // Obtener nombre del usuario
     sysout("******************* Bienvenido *******************");
     int opcionMenu_inicio = 0; String name = "", password = "";
+    boolean validInput = true; 
 
     do 
     {
@@ -40,24 +41,25 @@ class Main
       if(opcionMenu_inicio == 0) continue; // exit
 
       if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2) {
-        int attempts = 0; boolean validCredential = true; 
+        int attempts = 0; 
         do {
-          if(!validCredential) sysout("Credenciales inválidas, intentalo de nuevo");
+          if(!validInput) sysout("Credenciales inválidas, intentalo de nuevo");
 
           name = askUserStr("Usuario:");
           password = askUserStr("Contraseña");
 
           attempts++;
-          validCredential = validateCredentials(name, password, opcionMenu_inicio);
+          validInput = validateCredentials(name, password, opcionMenu_inicio);
         }
-        while (attempts <= 3 && !validCredential );
-        
-        if(attempts > 3) {
+        while (attempts < 3 && !validInput );
+
+        if(attempts >= 3) {
           sysout("Demasiados intentos.");
           return;
         }
+        
+        if(validInput) sysout("Acceso permitido");
       }
-
       else name = askUserStr("Ingrese su nombre completo: ");
 
       switch(opcionMenu_inicio) 
@@ -73,46 +75,29 @@ class Main
           int optionx = askUserInt("\n1. Productos \n2. Empleados \n0. Salir");
           switch(optionx)
           {
-            case 1: 
-              /*Product editProduct;
-              int productID;
-
-              try {
-                editProduct = Product.getProductElementByID(productID);
-              }
-              catch (Exception e) {
-
-              }*/
+            case 1: // Productos
               int option1 = askUserInt("\n1. Modificar producto\n2. Agregar producto\n3. Eliminar producto");
               switch(option1) 
               {
-                case 1:
+                case 1: // Modificar
+                  Product productToModify = Product.getProductElementByInputID("Ingrese el ID del producto a modificar:");
                   int option2 = askUserInt("\n1. Modificar precio\n2. Modificar stock\n3. Modificar descripcion");
                   switch(option2) {
-                    case 1:
-                      int idProduct1 = askUserInt("\nIngresa el codigo del producto a modificar el precio: ");
-                      adm1.changePrice(idProduct1);
-                    break;
-                    case 2:
-                      int idProduct2 = askUserInt("\nIngresa el codigo del producto a modificar el stock: ");
-                      adm1.changeStock(idProduct2);
-                    break;
-                    case 3:
-                      int idProduct3 = askUserInt("\nIngresa el codigo del producto a modificar la descripcion: ");
-                      adm1.changeDesc(idProduct3);
-                    break;
-                    default:
-                      sysout("Opcion invalida");
-                    break;
+                    case 1:   adm1.changePrice(productToModify);    break;
+                    case 2:   adm1.changeStock(productToModify);    break;
+                    case 3:   adm1.changeDesc(productToModify);     break;
+                    default:  sysout("Opcion invalida");   break;
                   }
-                    break;
-                case 2:
+                break;
+
+                case 2: // Agregar
                   adm1.createProduct();
                   sysout("¡Producto creado exitosamente!");
                 break;
                 
-                case 3:
-                  adm1.deleteProduct(1);
+                case 3: // Eliminar
+                  Product productToDelete = Product.getProductElementByInputID("Ingrese el ID del producto a eliminar:");
+                  adm1.deleteProduct(productToDelete);
                   sysout("¡Producto eliminado exitosamente!");
                 break;
                   
@@ -123,22 +108,20 @@ class Main
             break;
 
               
-            case 2: 
-              
-            int optionEmp1 = askUserInt("\n1. Modificar empleado \n2. Agregar empleado \n3. Eliminar empleado");
+            case 2:  
+              int optionEmp1 = askUserInt("\n1. Modificar empleado \n2. Agregar empleado \n3. Eliminar empleado");
               switch(optionEmp1){
-              case 1: 
-            int optionEmp2 =   askUserInt("\n1. Editar sueldo \n2. Editar nombre");
-              switch(optionEmp2){
-              case 1: //"Se edita el sueldo"
-              case 2: //"Se edita el nombre"
-              }
-              case 2:
+                case 1: 
+                  int optionEmp2 =   askUserInt("\n1. Editar sueldo \n2. Editar nombre");
+                  switch(optionEmp2){
+                    case 1: //"Se edita el sueldo"
+                    case 2: //"Se edita el nombre"
+                }
+                case 2:
                   Waiter waiter1 = adm1.createWaiter();
-              case 3: 
-              adm1.deleteWaiter(1);//revisar la parte de elimar por optención del                 ID del empleado
+                case 3: 
+                  adm1.deleteWaiter(1);//revisar la parte de elimar por optención del                 ID del empleado
               }
-            
             break;
           }
           //
