@@ -59,6 +59,31 @@ class Admin extends Employee {
     productChange.description = Main.askUserStr("\nIngresa la nueva descripcion del plato '"+productChange.name+"': ");
     Main.sysout("¡Cambio de descripcion exitosa!");
     }
+
+  // METODO PARA CREAR UN EMPREADO
+  public void createWaiter() {
+    String
+      new_name = Main.askUserStr("Ingrese el nombre completo del nuevo empleado: ");
+    int 
+      ID = Main.askUserInt("Ingrese el ID del nuevo empleado: ");
+    Date_ex
+      fecha_cumple = Date_ex.askUserDate("Ingrese la fecha de nacimiento: "),
+      fecha_ingreso = Date_ex.askUserDate("Ingrese la fecha de ingreso: ");
+    double 
+      salary = Main.askUserDouble("Ingrese el salario del nuevo empleado");
+    
+    Waiter waiter1 = new Waiter(ID, new_name, fecha_cumple, fecha_ingreso, salary, 0.0);
+    Main.sysout("¡Waiter creado exitosamente!");
+    }
+
+  // METODO PARA ELIMINAR UN EMPLEADO
+  public void waiterToDelete(int productID) {
+    Product productChange = Product.getProductElementByID(productID);
+    productChange.description = Main.askUserStr("\nIngresa la nueva descripcion del plato '"+productChange.name+"': ");
+    Main.sysout("¡Cambio de descripcion exitosa!");
+    }
+
+  
   
   //---- / Other methods
 }

@@ -103,24 +103,8 @@ boolean datosAdecuados = true;
               case 1: //"Se edita el sueldo"
               case 2: //"Se edita el nombre"
               }
-              case 2: 
-                String
-                  new_name = askUserStr("Ingrese el nombre completo del nuevo empleado: ");
-
-                int 
-                  ID = askUserInt("Ingrese el ID del nuevo empleado: ");
-                
-                Date_ex
-                  fecha_cumple = Date_ex.askUserDate("Ingrese la fecha de nacimiento: "),
-                  fecha_ingreso = Date_ex.askUserDate("Ingrese la fecha de ingreso: ");
-                  
-                double 
-                  salary = askUserDouble("Ingrese el salario del nuevo empleado");
-
-
-                
-                  Waiter waiter1 = new Waiter(ID, new_name, fecha_cumple, fecha_ingreso, salary, 0.0);
-
+              case 2:
+                  adm1.createWaiter();
               case 3: 
               //Eliminar empleado
               }
@@ -135,19 +119,13 @@ boolean datosAdecuados = true;
          
       
     sysout("******************* DATOS DEL EMPLEADO *******************");
-          //Sysout("Nombre: + Pearson.getFullName ");
-          //Sysout("ID: + Pearson.getID ");
-          //Sysout("Fecha de ingreso: "+Waiter.getJoinDate());
-          //Sysout("Propina:"+Waiter.getBaksheesh());
-          //Sysout("Salario: "+Waiter.getSalary()); 
+          Sysout("Nombre: " + waiter1.getFullName());
+          Sysout("ID: " + Waiter1.getID());
+          Sysout("Fecha de ingreso: "+Waiter1.getJoinDate());
+          Sysout("Propina:"+Waiter1.getBaksheesh());
+          Sysout("Salario: "+Waiter1.getSalary()); 
     sysout("**********************************************************");
-         
-       
-           
-
-              
-             
-        
+          
         break;
         
           
