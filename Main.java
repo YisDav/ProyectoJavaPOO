@@ -122,7 +122,7 @@ boolean datosAdecuados = true;
               case 2:
                   Waiter waiter1 = adm1.createWaiter();
               case 3: 
-              adm1.deleteWaiter(1);
+              adm1.deleteWaiter(1);//revisar la parte de elimar por optención del                 ID del empleado
               }
             
             break;
