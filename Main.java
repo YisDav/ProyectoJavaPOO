@@ -32,29 +32,34 @@ class Main
 
     // Obtener nombre del usuario
     sysout("******************* Bienvenido *******************");
-    int opcionMenu_inicio = 0;
+    int opcionMenu_inicio = 0; String name = "", password = "";
 
     do 
     {
-      opcionMenu_inicio = askUserInt("Por favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
+      opcionMenu_inicio = askUserInt("\n\nPor favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
       if(opcionMenu_inicio == 0) continue; // exit
 
-
-      String name = "", password = ""; boolean valid_credential = true;
-      if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2)   // Si es administrador o empleado se piden credenciales
-      {
+      if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2) {
+        int attempts = 0; boolean validCredential = true; 
         do {
-          if(!valid_credential) sysout("Lo sentimos, credenciales inválida");
-          name = askUserStr("Usuario: ");
-          password = askUserStr("Contraseña : ");  
-          if( !(name.equals("123")) || !(password.equals("123")) ) valid_credential = false;
-          else valid_credential = true;
-        } while(!valid_credential);
-      } 
-      else // De lo contrario, pide nombre completo
-        name = askUserStr("Ingrese su nombre completo: ");
+          if(!validCredential) sysout("Credenciales inválidas, intentalo de nuevo");
 
-      
+          name = askUserStr("Usuario:");
+          password = askUserStr("Contraseña");
+
+          attempts++;
+          validCredential = validateCredentials(name, password, opcionMenu_inicio);
+        }
+        while (attempts <= 3 && !validCredential );
+        
+        if(attempts > 3) {
+          sysout("Demasiados intentos.");
+          return;
+        }
+      }
+
+      else name = askUserStr("Ingrese su nombre completo: ");
+
       switch(opcionMenu_inicio) 
       {
         // Caso administrador
@@ -69,6 +74,15 @@ class Main
           switch(optionx)
           {
             case 1: 
+              /*Product editProduct;
+              int productID;
+
+              try {
+                editProduct = Product.getProductElementByID(productID);
+              }
+              catch (Exception e) {
+
+              }*/
               int option1 = askUserInt("\n1. Modificar producto\n2. Agregar producto\n3. Eliminar producto");
               switch(option1) 
               {
@@ -222,7 +236,7 @@ class Main
         int opcionElegida_tercerMenu = mostrarOpciones_tercerMenu(opcionElegida_segundoMenu-1);
 
         // Obtenemos el objeto del producto que el usuario eligió
-        Product productoElegido = getProductByID(opcionElegida_tercerMenu-1);
+        Product productoElegido = Product.getProductElementByID(opcionElegida_tercerMenu-1);
         sysout("\n ** Se ha añadido "+productoElegido.name+" a tu carrito. ¡Sigue satisfaciendo tus antojos! ** ");
         clientOrder.addProduct(productoElegido);
         productoElegido.stock -= 1;
@@ -316,7 +330,7 @@ class Main
     String message = "";
     
     for(int i = 0; i < Product.getProductsCount(); i++) {
-      Product product = getProductByID(i);
+      Product product = Product.getProductElementByID(i);
       if(product.type == productType) {
         int Stock = product.stock;
         String price = darFormatoDinero(product.price);
@@ -339,6 +353,14 @@ class Main
     else return true;
   }
 
+  public static boolean validateCredentials(String name, String password, int userType) {
+    boolean valid_credential = true;
+    
+    if( !(name.equals("123")) || !(password.equals("123")) ) valid_credential = false;
+    else valid_credential = true;
+    
+    return valid_credential;
+  }
 
   // ---------------------- ]   UTILS   [ ---------------------- //  
   
@@ -437,11 +459,6 @@ class Main
       validOptions.add(count+1);
     }
     return validOptions;
-  }
-
-  public static Product getProductByID(int ID)  
-  {
-    return Product.getProductElementByID(ID);
   }
   
   public static void sysout(String message) 

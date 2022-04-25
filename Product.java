@@ -67,7 +67,7 @@ public class Product {
   }
   public static Product getProductElementByID(int ID) {
     Product producto_actual;
-    for(int i = 0 ; i <= productList2.size() ; i++) {
+    for(int i = 0 ; i < productList2.size() ; i++) {
       producto_actual = productList2.get(i);
       if(producto_actual.getID() == ID)
         return producto_actual;
