@@ -134,6 +134,7 @@ class Main
           
           int 
             waiterID = askUserInt("Ingrese el ID: ");
+          
           Waiter waiter1 = Waiter.getWaiterByID(waiterID);
           LocalDate fecha_nacimiento = waiter1.getBirthDate().fecha;
           LocalDate fecha_ingreso = waiter1.getJoinDate().fecha;

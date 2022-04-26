@@ -43,4 +43,24 @@ class Waiter extends Employee {
     }
     return null;
   }
+
+  public static Waiter getProductElementByInputID(String message) {
+    int waiterID; Waiter waiterElement = null; boolean validID = true;
+    
+    do {
+      waiterID = Main.askUserInt(message);
+      try {
+        waiterElement = getWaiterByID(waiterID);
+        String name = waiterElement.fullName; // only for test
+        validID = true;
+      }
+      catch(Exception e) {
+        validID = false;
+        Main.sysout("Lo sentimos, el producto con el ID "+waiterID+" no pudo ser encontrado");
+      }
+
+    } while(!validID);
+
+    return waiterElement;
+  }
 }
