@@ -1,6 +1,8 @@
 /*
 Mejorar sistema de propinas del cliente
 Que se puedan ingresar las fechas directamente en formato dd/MM/yyyy (ej: 21/10/2021)
+'Funcionarlizar' el codigo para brindar mejor estructura y comentar el código restante
+Método [validación] para comprobar que el ID de un mesero existe o no.
 
 
 Testeo general
