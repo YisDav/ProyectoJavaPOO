@@ -28,6 +28,7 @@ class Admin extends Employee {
     
     double 
       price = Main.askUserDouble("Precio:");
+      Main.sysout("¡Producto creado exitosamente!");
     
     return new Product(name, type, description, price, stock);
   }
@@ -73,6 +74,21 @@ class Admin extends Employee {
     return waiter1;
     }
 
+  // METODO PARA MODIFICAR NOMBRE DE EMPLEADO
+  public void changeNameWaiter(int waiterID) {
+    Waiter waiterName = Waiter.getWaiterByID(waiterID);
+    waiterName.fullName = Main.askUserStr("\nIngresa el nuevo nombre de "+waiterName.fullName+": ");
+    Main.sysout("¡Cambio de nombre exitoso!");
+  }
+
+  // METODO PARA MODIFICAR EL SALARIO DE UN EMPLEADO
+  public void changeSalaryWaiter(int waiterID) {
+    Waiter waiterSalary = Waiter.getWaiterByID(waiterID);
+    waiterSalary.salary = Main.askUserDouble("\nIngresa el nuevo salario de "+waiterSalary.salary+": ");
+    Main.sysout("¡Cambio de salario exitoso!");
+  }
+  
+  
   // METODO PARA ELIMINAR UN EMPLEADO
   public void deleteWaiter(int waiterID) {
     Waiter WaiterToDelete = Waiter.getWaiterByID(waiterID);

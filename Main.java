@@ -1,9 +1,9 @@
 /*
 El cliente pueda dar propina
+
+
 Testeo general
 Actualizar el diagrama de clases
-Completar edicion de empleados
-
 
 
 JESUS:
@@ -92,7 +92,6 @@ class Main
 
                 case 2: // Agregar
                   adm1.createProduct();
-                  sysout("¡Producto creado exitosamente!");
                 break;
                 
                 case 3: // Eliminar
@@ -106,8 +105,6 @@ class Main
                 break;
               }
             break;
-
-              
             case 2:  
               int optionEmp1 = askUserInt("\n1. Modificar empleado \n2. Agregar empleado \n3. Eliminar empleado");
               switch(optionEmp1){
@@ -115,12 +112,19 @@ class Main
                   int optionEmp2 =   askUserInt("\n1. Editar sueldo \n2. Editar nombre");
                   switch(optionEmp2){
                     case 1: //"Se edita el sueldo"
+                      int idWaiterSalary = askUserInt("\nIngresa el ID del empleado:");
+                      adm1.changeSalaryWaiter(idWaiterSalary);
+                      break;
                     case 2: //"Se edita el nombre"
+                      int idWaiterName = askUserInt("\nIngresa el ID del empleado:");
+                      adm1.changeNameWaiter(idWaiterName);
+                      break;
                 }
                 case 2:
                   Waiter waiter1 = adm1.createWaiter();
                 case 3: 
-                  adm1.deleteWaiter(1);//revisar la parte de elimar por optención del                 ID del empleado
+                  int waiterID = askUserInt("Ingrese el ID del empleado");
+                  adm1.deleteWaiter(waiterID);
               }
             break;
           }
@@ -132,7 +136,7 @@ class Main
           DateTimeFormatter fechaFormato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
           
           int 
-            waiterID = askUserInt("Ingrese el ID del empleado");
+            waiterID = askUserInt("Ingrese el ID: ");
           Waiter waiter1 = Waiter.getWaiterByID(waiterID);
           LocalDate fecha_nacimiento = waiter1.getBirthDate().fecha;
           LocalDate fecha_ingreso = waiter1.getJoinDate().fecha;
