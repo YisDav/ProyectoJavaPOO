@@ -28,17 +28,11 @@ class Main
   // ---------------------- ]    MAIN    [ ---------------------- //
   public static void main(String[] args) 
   {
-    
     // Creación de objetos y configuración de inicio (productos, menus, mensajes, etc.)
     defaultConfig();
 
-    // Obtener nombre del usuario
 
-        
-    // Admins por defecto
-    
-    Admin adm1 = new Admin(12345, "David", new Date_ex(2001,10,12), new Date_ex(2018,10,12), 3000000, "123", "123");
-    
+
     sysout("******************* Bienvenido *******************");
     int opcionMenu_inicio = 0; String name = "", password = "";
     boolean validInput = true; 
@@ -48,18 +42,19 @@ class Main
       opcionMenu_inicio = askUserInt("\n\nPor favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
       if(opcionMenu_inicio == 0) continue; // exit
 
+      Admin adm1 = null;
       if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2) {
         int attempts = 0; 
         do {
-          if(!validInput) sysout("Credenciales inválidas, intentalo de nuevo");
-
           name = askUserStr("Usuario:");
           password = askUserStr("Contraseña");
 
           attempts++;
-          validInput = validateCredentials(name, password, opcionMenu_inicio);
+          adm1 = Admin.getAdminByNameAndPassword(name, password);
+
+          if(adm1 == null) sysout("Credenciales inválidas, intentalo de nuevo");
         }
-        while (attempts < 3 && !validInput );
+        while (attempts < 3 && adm1 != null );
 
         if(attempts >= 3) {
           sysout("Demasiados intentos.");
@@ -73,8 +68,6 @@ class Main
       switch(opcionMenu_inicio) 
       {
         // Caso administrador
-
-        
         case 1:          
           int optionx = askUserInt("\n1. Productos \n2. Empleados \n0. Salir");
           switch(optionx)
@@ -355,15 +348,6 @@ class Main
     if(choosedElement.type != type)
       return false;
     else return true;
-  }
-
-  public static boolean validateCredentials(String name, String password, int userType) {
-    boolean valid_credential = true;
-    
-    if( !(name.equals("123")) || !(password.equals("123")) ) valid_credential = false;
-    else valid_credential = true;
-    
-    return valid_credential;
   }
 
   // ---------------------- ]   UTILS   [ ---------------------- //  

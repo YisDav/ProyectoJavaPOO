@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 //import com.sun.org.apache.xpath.internal.operations.String;
 
 class Admin extends Employee {
@@ -8,6 +10,7 @@ class Admin extends Employee {
   //---- Constructor
   Admin(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary, String login_userName, String login_password) {
     super(ID, fullName, birth_date, join_date, salary, login_userName, login_password);
+    adminList.add(this);
   }
   //---- / Constructor
 
@@ -75,7 +78,7 @@ class Admin extends Employee {
     Main.sysout("¡Waiter creado exitosamente!");
 
     return waiter1;
-    }
+  }
 
   // METODO PARA MODIFICAR NOMBRE DE EMPLEADO
   public void changeNameWaiter(Waiter waiter) {
@@ -97,6 +100,19 @@ class Admin extends Employee {
   }
 
   
+  private static ArrayList<Admin> adminList = new ArrayList<>();
+  public static Admin getAdminByNameAndPassword(String username, String password) {
+    Admin currentAdmin = null, findedAdmin = null;
+
+    for(int i = 0; i < adminList.size(); i++) {
+      currentAdmin = adminList.get(i);
+      if( currentAdmin.login_userName == username && currentAdmin.login_userName == password ) {
+        findedAdmin = currentAdmin;
+      }
+    }
+
+    return findedAdmin;
+  }
   
   //---- / Other methods
 }
