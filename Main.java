@@ -71,7 +71,7 @@ class Main
           Date_ex birth = new Date_ex(2001,10,12);
           Date_ex join = new Date_ex(2018,10,12);
 
-          // Está re tapado en plata el David
+          // Admins por defecto
           Admin adm1 = new Admin(12345, "David", birth, join, 3000000);
           
           int optionx = askUserInt("\n1. Productos \n2. Empleados \n0. Salir");
