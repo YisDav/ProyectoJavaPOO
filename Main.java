@@ -497,8 +497,15 @@ class Main
     new Product("Torta de chocolate",1, "Con relleno de arequipe", 12000, 20);
     new Product("Fresas con crema",1, "Frescas y deliciosas", 12000, 20);
 
-  
-          // Empleados por defecto
+    
+    //Admins por defecto
+    Admin admin1 = new Admin(123, "Benito" , new Date_ex(1990,10,12), new Date_ex(2010,10,12), 4000000, "AdminBen", "1234");
+
+
+    
+    
+    // Empleados por defecto
     Waiter waiter1 = new Waiter(4848, "Paco",new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123");
+    
   }
 }
