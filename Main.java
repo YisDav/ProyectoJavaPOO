@@ -1,14 +1,4 @@
 /*
-Mejorar sistema de propinas del cliente
-Que se puedan ingresar las fechas directamente en formato dd/MM/yyyy (ej: 21/10/2021)
-'Funcionarlizar' el codigo para brindar mejor estructura y comentar el código restante
-Método [validación] para comprobar que el ID de un mesero existe o no.
-
-Para clase empleado (Employee) agregar atributo nombre y contraseña con los cuales se pueda autenticar el usuario
-Setear algunos administradores y empleados por defecto
-
-
-
 Testeo general
 Actualizar el diagrama de clases
 */
