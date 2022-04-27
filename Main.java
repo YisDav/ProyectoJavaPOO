@@ -34,45 +34,22 @@ class Main
 
 
     sysout("******************* Bienvenido *******************");
-    int opcionMenu_inicio = 0; String name = "", password = "";
-    boolean validInput = true; 
-
+    int opcionMenu_inicio = 0;
     do 
     {
       opcionMenu_inicio = askUserInt("\n\nPor favor ingrese una opción: \n 1) Administrador \n 2) Empleado \n 3) Cliente \n 0) Salir \n");
       if(opcionMenu_inicio == 0) continue; // exit
 
-      Admin adm1 = null;
-      if(opcionMenu_inicio == 1 || opcionMenu_inicio == 2) {
-        int attempts = 0; 
-        do {
-          name = askUserStr("Usuario:");
-          password = askUserStr("Contraseña");
-
-          attempts++;
-          adm1 = Admin.getAdminByNameAndPassword(name, password);
-
-          if(adm1 == null) sysout("Credenciales inválidas, intentalo de nuevo");
-        }
-        while (attempts < 3 && adm1 != null );
-
-        if(attempts >= 3) {
-          sysout("Demasiados intentos.");
-          return;
-        }
-        
-        if(validInput) sysout("Acceso permitido");
-      }
-      else name = askUserStr("Ingrese su nombre completo: ");
-
       switch(opcionMenu_inicio) 
       {
         // Caso administrador
-        case 1:          
+        case 1:     
+          Admin adm1 = Admin.askUserCredentials();
+          if(adm1 == null) return;
+
           int optionx = askUserInt("\n1. Productos \n2. Empleados \n0. Salir");
           switch(optionx)
           {
-              
             case 1: // Productos
               int option1 = askUserInt("\n1. Modificar producto\n2. Agregar producto\n3. Eliminar producto");
               switch(option1) 
@@ -80,7 +57,8 @@ class Main
                 case 1: // Modificar
                   Product productToModify = Product.getProductElementByInputID("Ingrese el ID del producto a modificar:");
                   int option2 = askUserInt("\n1. Modificar precio\n2. Modificar stock\n3. Modificar descripcion");
-                  switch(option2) {
+                  switch(option2) 
+                  {
                     case 1:   adm1.changePrice(productToModify);    break;
                     case 2:   adm1.changeStock(productToModify);    break;
                     case 3:   adm1.changeDesc(productToModify);     break;
@@ -129,13 +107,14 @@ class Main
 
         // Caso empleado
         case 2:
+          Waiter waiter1 = Waiter.askUserCredentials();
+          if(waiter1 == null) return;
+
           DateTimeFormatter fechaFormato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-          
-          Waiter waiter1 = Waiter.getWaiterElementByInputID("Id del empleado: ");
           LocalDate fecha_nacimiento = waiter1.getBirthDate().fecha;
           LocalDate fecha_ingreso = waiter1.getJoinDate().fecha;
           
-          sysout("******************* DATOS DEL EMPLEADO *******************");
+          sysout("\n\n******************* DATOS DEL EMPLEADO *******************");
           sysout("Nombre: " + waiter1.fullName);
           sysout("ID: " + waiter1.getID());
           sysout("Fecha de nacimiento: "+fecha_nacimiento.format(fechaFormato));
@@ -149,6 +128,7 @@ class Main
           
         // Caso cliente
         case 3:
+          String name = askUserStr("Ingrese su nombre completo: ");
           executeClientMenu(name);
         break;
       }
@@ -499,13 +479,9 @@ class Main
 
     
     //Admins por defecto
-    Admin admin1 = new Admin(123, "Benito" , new Date_ex(1990,10,12), new Date_ex(2010,10,12), 4000000, "AdminBen", "1234");
-
-
-    
-    
+    new Admin(1, "Benito" , new Date_ex(1990,10,12), new Date_ex(2010,10,12), 4000000, "AdminBen", "1234");
     // Empleados por defecto
-    Waiter waiter1 = new Waiter(4848, "Paco",new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123");
+    new Waiter(2, "Paco", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123");
     
   }
 }

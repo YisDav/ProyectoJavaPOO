@@ -4,7 +4,7 @@ class Employee extends Person {
   //---- Attributes
   private Date_ex birth_date, join_date;
   double salary;
-  protected String login_userName, login_password;
+  private String login_userName, login_password;
   //---- / Attributes
   
 
@@ -33,6 +33,14 @@ class Employee extends Person {
     return this.salary;
   }
 
+  public String get_login_userName() {
+    return this.login_userName;
+  }
+
+  public String get_login_password() {
+    return this.login_password;
+  }
+
   //---- / Getter methods
 
   
@@ -47,6 +55,14 @@ class Employee extends Person {
 
   public void setSalary(double salary) {
     this.salary = salary;
+  }
+
+  public void set_login_userName(String login_userName) {
+    this.login_userName = login_userName;
+  }
+
+  public void set_login_password(String login_password) {
+    this.login_password = login_password;
   }
   //---- / Setter methods
 

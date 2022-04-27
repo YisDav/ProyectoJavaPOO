@@ -63,4 +63,41 @@ class Waiter extends Employee {
 
     return waiterElement;
   }
+
+  public static Waiter getAdminByNameAndPassword(String username, String password) {
+    Waiter currentWaiter = null, findedWaiter = null;
+    for(int i = 0; i < waiterList.size(); i++) {
+      currentWaiter = waiterList.get(i);
+
+      String 
+        login_userName = currentWaiter.get_login_userName(),
+        login_password = currentWaiter.get_login_password();
+
+      if( username.equals(login_userName) && password.equals(login_password) ) findedWaiter = currentWaiter;
+    }
+    return findedWaiter;
+  }
+
+  public static Waiter askUserCredentials(){
+    Waiter waiter = null;
+    int attempts = 0;
+    do {
+      attempts++;
+      String 
+        name = Main.askUserStr("Usuario:"),
+        password = Main.askUserStr("Contraseña:");
+
+      waiter = Waiter.getAdminByNameAndPassword(name, password);
+
+      if(waiter == null) Main.sysout("Credenciales inválidas, intentalo de nuevo");
+    }
+    while (attempts < 3 && waiter == null );
+
+    if(attempts >= 3) {
+      Main.sysout("Demasiados intentos.");
+      return null;
+    }
+    else Main.sysout("Acceso permitido"); 
+    return waiter; 
+  }
 }

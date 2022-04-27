@@ -100,18 +100,42 @@ class Admin extends Employee {
   }
 
   
-  private static ArrayList<Admin> adminList = new ArrayList<>();
+  private static ArrayList<Admin> adminList = new ArrayList<Admin>();
   public static Admin getAdminByNameAndPassword(String username, String password) {
     Admin currentAdmin = null, findedAdmin = null;
-
     for(int i = 0; i < adminList.size(); i++) {
       currentAdmin = adminList.get(i);
-      if( currentAdmin.login_userName == username && currentAdmin.login_userName == password ) {
-        findedAdmin = currentAdmin;
-      }
-    }
 
+      String 
+        login_userName = currentAdmin.get_login_userName(),
+        login_password = currentAdmin.get_login_password();
+
+      if( username.equals(login_userName) && password.equals(login_password) ) findedAdmin = currentAdmin;
+    }
     return findedAdmin;
+  }
+
+  public static Admin askUserCredentials(){
+    Admin adm1 = null;
+    int attempts = 0;
+    do {
+      attempts++;
+      String 
+        name = Main.askUserStr("Usuario:"),
+        password = Main.askUserStr("Contraseña:");
+
+      adm1 = Admin.getAdminByNameAndPassword(name, password);
+
+      if(adm1 == null) Main.sysout("Credenciales inválidas, intentalo de nuevo");
+    }
+    while (attempts < 3 && adm1 == null );
+
+    if(attempts >= 3) {
+      Main.sysout("Demasiados intentos.");
+      return null;
+    }
+    else Main.sysout("Acceso permitido"); 
+    return adm1; 
   }
   
   //---- / Other methods
