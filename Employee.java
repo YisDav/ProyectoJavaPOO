@@ -4,15 +4,18 @@ class Employee extends Person {
   //---- Attributes
   private Date_ex birth_date, join_date;
   double salary;
+  protected String login_userName, login_password;
   //---- / Attributes
   
 
   //---- Constructor
-  Employee(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary) {
+  Employee(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary, String login_userName, String login_password) {
     super(ID, fullName);
     this.birth_date = birth_date;
     this.join_date = join_date;
     this.salary = salary;
+    this.login_userName = login_userName;
+    this.login_password = login_password;
   }
   //---- / Constructor
 
@@ -29,6 +32,7 @@ class Employee extends Person {
   public double getSalary() {
     return this.salary;
   }
+
   //---- / Getter methods
 
   

@@ -33,6 +33,12 @@ class Main
     defaultConfig();
 
     // Obtener nombre del usuario
+
+        
+    // Admins por defecto
+    
+    Admin adm1 = new Admin(12345, "David", new Date_ex(2001,10,12), new Date_ex(2018,10,12), 3000000, "123", "123");
+    
     sysout("******************* Bienvenido *******************");
     int opcionMenu_inicio = 0; String name = "", password = "";
     boolean validInput = true; 
@@ -67,16 +73,13 @@ class Main
       switch(opcionMenu_inicio) 
       {
         // Caso administrador
-        case 1:
-          Date_ex birth = new Date_ex(2001,10,12);
-          Date_ex join = new Date_ex(2018,10,12);
 
-          // Admins por defecto
-          Admin adm1 = new Admin(12345, "David", birth, join, 3000000);
-          
+        
+        case 1:          
           int optionx = askUserInt("\n1. Productos \n2. Empleados \n0. Salir");
           switch(optionx)
           {
+              
             case 1: // Productos
               int option1 = askUserInt("\n1. Modificar producto\n2. Agregar producto\n3. Eliminar producto");
               switch(option1) 
@@ -509,6 +512,9 @@ class Main
     new Product("Cheesecake",1, "Limon, mora, maracuyá o lulo", 4000, 20);
     new Product("Torta de chocolate",1, "Con relleno de arequipe", 12000, 20);
     new Product("Fresas con crema",1, "Frescas y deliciosas", 12000, 20);
-  }
+
   
+          // Empleados por defecto
+    Waiter waiter1 = new Waiter(4848, "Paco",new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123");
+  }
 }

@@ -10,8 +10,8 @@ class Waiter extends Employee {
   
 
   //---- Constructor
-  Waiter(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary, double baksheesh) {
-    super(ID, fullName, birth_date, join_date, salary);
+  Waiter(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary, double baksheesh, String login_userName, String login_password) {
+    super(ID, fullName, birth_date, join_date, salary, login_userName,login_password);
     this.baksheesh = baksheesh;
 
     waiterList.add(this);

@@ -1,11 +1,13 @@
+//import com.sun.org.apache.xpath.internal.operations.String;
+
 class Admin extends Employee {
   //---- Attributes
   //---- / Attributes
   
 
   //---- Constructor
-  Admin(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary) {
-    super(ID, fullName, birth_date, join_date, salary);
+  Admin(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary, String login_userName, String login_password) {
+    super(ID, fullName, birth_date, join_date, salary, login_userName, login_password);
   }
   //---- / Constructor
 
@@ -65,8 +67,11 @@ class Admin extends Employee {
       fecha_ingreso = Date_ex.askUserDate_ex("Ingrese la fecha de ingreso: ");
     double 
       salary = Main.askUserDouble("Ingrese el salario del nuevo empleado");
-    
-    Waiter waiter1 = new Waiter(ID, new_name, fecha_cumple, fecha_ingreso, salary, 0.0);
+    String
+      login_userName = Main.askUserStr("Ingrese el user name del empleado a crear"),
+      login_password = Main.askUserStr("Ingrese el password del empleado a crear");
+      
+    Waiter waiter1 = new Waiter(ID, new_name, fecha_cumple, fecha_ingreso, salary, 0.0, login_userName, login_password);
     Main.sysout("¡Waiter creado exitosamente!");
 
     return waiter1;
