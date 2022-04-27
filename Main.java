@@ -4,6 +4,10 @@ Que se puedan ingresar las fechas directamente en formato dd/MM/yyyy (ej: 21/10/
 'Funcionarlizar' el codigo para brindar mejor estructura y comentar el código restante
 Método [validación] para comprobar que el ID de un mesero existe o no.
 
+Para clase empleado (Employee) agregar atributo nombre y contraseña con los cuales se pueda autenticar el usuario
+Setear algunos administradores y empleados por defecto
+
+
 
 Testeo general
 Actualizar el diagrama de clases
@@ -107,20 +111,19 @@ class Main
               int optionEmp1 = askUserInt("\n1. Modificar empleado \n2. Agregar empleado \n3. Eliminar empleado");
               switch(optionEmp1){
                 case 1: 
-                  int 
-                    waiterID1 = askUserInt("Ingrese el ID del empleado"),
-                    optionEmp2 =   askUserInt("\n1. Editar sueldo \n2. Editar nombre");
+                  Waiter waiter = Waiter.getWaiterElementByInputID("Ingrese el ID del empleado:");
+                  int optionEmp2 =   askUserInt("\n1. Editar sueldo \n2. Editar nombre");
                   
                   switch(optionEmp2){
-                    case 1:   adm1.changeSalaryWaiter(waiterID1);    break;
-                    case 2:   adm1.changeNameWaiter(waiterID1);      break;  
+                    case 1:   adm1.changeSalaryWaiter(waiter);    break;
+                    case 2:   adm1.changeNameWaiter(waiter);      break;  
                   }
                 break;
-                case 2: adm1.createWaiter();
-                break;
+
+                case 2: adm1.createWaiter(); break;
                 case 3: 
-                    int waiterID2 = askUserInt("Ingrese el ID del empleado");
-                    adm1.deleteWaiter(waiterID2);
+                    Waiter waiter2 = Waiter.getWaiterElementByInputID("Ingrese el ID del empleado:");
+                    adm1.deleteWaiter(waiter2);
                 break;
               } 
             break;
@@ -132,10 +135,7 @@ class Main
         case 2:
           DateTimeFormatter fechaFormato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
           
-          int 
-            waiterID = askUserInt("Ingrese el ID: ");
-          
-          Waiter waiter1 = Waiter.getWaiterByID(waiterID);
+          Waiter waiter1 = Waiter.getWaiterElementByInputID("Id del empleado: ");
           LocalDate fecha_nacimiento = waiter1.getBirthDate().fecha;
           LocalDate fecha_ingreso = waiter1.getJoinDate().fecha;
           
@@ -209,19 +209,21 @@ class Main
         if(clientOrder.getListaProductos().size() == 0)
           sysout("Lo sentimos, no has seleccionado ningun producto aún.");
         else {
-          int propinaID = askUserInt("¿Desea registrarle propina al mesero?, en caso de que sí escriba el ID del mesero, en caso de que no, escriba '-1' (sin comillas)");
-          if(propinaID > 0) {
-            double propina_a_dar = askUserDouble("¿Cuánto desea darle al mesero?: ");
-            while (propina_a_dar < 1) {
-              sysout("Lo sentimos el valor inválido");
-              propina_a_dar = askUserDouble("¿Cuánto $ desea darle al mesero?: ");
+          if(!isDelivery) {
+            int semiBolPropina = askUserInt("¿Desea registrarle propina al mesero?\n1. Si.\nOtro número. No.");
+            if(semiBolPropina == 1) {
+              double propina_a_dar = askUserDouble("¿Cuánto desea darle al mesero?: ");
+              while (propina_a_dar < 1) {
+                sysout("Lo sentimos el valor inválido");
+                propina_a_dar = askUserDouble("¿Cuánto $ desea darle al mesero?: ");
+              }
+
+              Waiter meseroPropina = Waiter.getWaiterElementByInputID("ID del mesero:");
+              double propina_total = meseroPropina.getBaksheesh()+propina_a_dar;
+
+              meseroPropina.setBaksheesh(propina_total);
+              sysout("Genial!, le has dado $"+propina_a_dar+" al mesero "+meseroPropina.fullName+" por su buen servicio :)");
             }
-
-            Waiter meseroPropina = Waiter.getWaiterByID(propinaID);
-            double propina_total = meseroPropina.getBaksheesh()+propina_a_dar;
-
-            meseroPropina.setBaksheesh(propina_total);
-            sysout("Genial!, le has dado $"+propina_a_dar+" al mesero "+meseroPropina.fullName+" por su buen servicio :)");
           }
           imprimirFactura(clientOrder);
           break;

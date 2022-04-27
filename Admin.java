@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Admin extends Employee {
   //---- Attributes
   //---- / Attributes
@@ -75,24 +73,21 @@ class Admin extends Employee {
     }
 
   // METODO PARA MODIFICAR NOMBRE DE EMPLEADO
-  public void changeNameWaiter(int waiterID) {
-    Waiter waiterName = Waiter.getWaiterByID(waiterID);
-    waiterName.fullName = Main.askUserStr("\nIngresa el nuevo nombre de "+waiterName.fullName+": ");
+  public void changeNameWaiter(Waiter waiter) {
+    waiter.fullName = Main.askUserStr("\nIngresa el nuevo nombre de "+waiter.fullName+": ");
     Main.sysout("¡Cambio de nombre exitoso!");
   }
 
   // METODO PARA MODIFICAR EL SALARIO DE UN EMPLEADO
-  public void changeSalaryWaiter(int waiterID) {
-    Waiter waiterSalary = Waiter.getWaiterByID(waiterID);
-    waiterSalary.salary = Main.askUserDouble("\nIngresa el nuevo salario de "+waiterSalary.salary+": ");
+  public void changeSalaryWaiter(Waiter waiter) {
+    waiter.salary = Main.askUserDouble("\nIngresa el nuevo salario de "+ waiter.fullName +" ("+waiter.salary+"): ");
     Main.sysout("¡Cambio de salario exitoso!");
   }
   
   
   // METODO PARA ELIMINAR UN EMPLEADO
-  public void deleteWaiter(int waiterID) {
-    Waiter WaiterToDelete = Waiter.getWaiterByID(waiterID);
-    WaiterToDelete = null;
+  public void deleteWaiter(Waiter waiter) {
+    waiter = null;
     Main.sysout("¡Empleado eliminado exitosamente!");
   }
 

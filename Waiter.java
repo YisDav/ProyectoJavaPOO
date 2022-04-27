@@ -33,7 +33,7 @@ class Waiter extends Employee {
   //---- / Setter methods
 
 
-  public static Waiter getWaiterByID(int ID) {
+  public static Waiter getWaiterElementByID(int ID) {
     Waiter actual;
     for(int i = 0; i < waiterList.size(); i++) {
       actual = waiterList.get(i);
@@ -44,19 +44,19 @@ class Waiter extends Employee {
     return null;
   }
 
-  public static Waiter getProductElementByInputID(String message) {
+  public static Waiter getWaiterElementByInputID(String message) {
     int waiterID; Waiter waiterElement = null; boolean validID = true;
     
     do {
       waiterID = Main.askUserInt(message);
       try {
-        waiterElement = getWaiterByID(waiterID);
+        waiterElement = getWaiterElementByID(waiterID);
         String name = waiterElement.fullName; // only for test
         validID = true;
       }
       catch(Exception e) {
         validID = false;
-        Main.sysout("Lo sentimos, el producto con el ID "+waiterID+" no pudo ser encontrado");
+        Main.sysout("Lo sentimos, el empleado con el ID "+waiterID+" no pudo ser encontrado");
       }
 
     } while(!validID);
