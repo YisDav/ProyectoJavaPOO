@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-//import com.sun.org.apache.xpath.internal.operations.String;
-
 class Admin extends Employee {
   //---- Attributes
   //---- / Attributes
@@ -14,7 +12,7 @@ class Admin extends Employee {
   }
   //---- / Constructor
 
-  
+
   //---- Other methods
   // METODO PARA CREAR UN PRODUCTO
   public Product createProduct()
@@ -26,7 +24,7 @@ class Admin extends Employee {
       description = Main.askUserStr("Descripción: ");    
     
     int 
-      type = Main.askUserInt("Tipo de producto:\n1. prod1\n2. prod2\n3. prod3"),
+      type = Main.askUserInt("Tipo de producto:\n1. Bebidas\n2. Postres\n3. Platos"),
       stock = Main.askUserInt("Stock:");
     
     double 
@@ -59,7 +57,7 @@ class Admin extends Employee {
     Main.sysout("¡Cambio de descripcion exitosa!");
   }
 
-  // METODO PARA CREAR UN EMPREADO
+  // METODO PARA CREAR UN EMPLEADO
   public Waiter createWaiter() {
     String
       new_name = Main.askUserStr("Ingrese el nombre completo del nuevo empleado: ");
@@ -67,7 +65,7 @@ class Admin extends Employee {
       ID = Main.askUserInt("Ingrese el ID del nuevo empleado: ");
     Date_ex
       fecha_cumple = Date_ex.askUserDate_ex("Ingrese la fecha de nacimiento: "),
-      fecha_ingreso = Date_ex.askUserDate_ex("Ingrese la fecha de ingreso: ");
+      fecha_ingreso = Date_ex.askUserDate_ex("Digite la fecha de ingreso: ");
     double 
       salary = Main.askUserDouble("Ingrese el salario del nuevo empleado");
     String

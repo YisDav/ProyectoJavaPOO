@@ -1,8 +1,20 @@
 /*
-Testeo general
-Actualizar el diagrama de clases
-*/
+check list:
 
+Actualizar el diagrama de clases: Echo
+Actualizar word y diapositivas: Pendiente
+
+Corregir lista a la hora de agragar productos: Echo
+
+creacion de empleado: Funciona 
+Eliminar empleado: No funciona - Pendiente
+
+Agregar producto: No funciona - Pendiente
+Eliminar producto: No funciona - Pendiente
+
+Modificar producto: Funciona
+Modificar empleado: Funciona
+*/
 
 import java.util.*;
 import java.text.DecimalFormat;
@@ -10,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
 class Main 
-{  
+{
   // ---------------------- ]   CONFIG    [ ----------------------//
   public static ArrayList<String> firstMenu_Options = new ArrayList<String>(), secondMenu_Options = new ArrayList<String>(), mensajesDefault = new ArrayList<String>();
   public static ArrayList<Integer> primerMenu_exit = new ArrayList<Integer>(), segundoMenu_exit = new ArrayList<Integer>();
@@ -107,15 +119,13 @@ class Main
           sysout("\n\n******************* DATOS DEL EMPLEADO *******************");
           sysout("Nombre: " + waiter1.fullName);
           sysout("ID: " + waiter1.getID());
+          sysout("Edad: "+waiter1.getAgeString());
           sysout("Fecha de nacimiento: "+fecha_nacimiento.format(fechaFormato));
           sysout("Fecha de ingreso: "+fecha_ingreso.format(fechaFormato));
           sysout("Propina: "+waiter1.getBaksheesh());
-          sysout("Salario: "+waiter1.getSalary()); 
-          sysout("**********************************************************");
-          
+          sysout("Salario: "+waiter1.getSalary()); sysout("**********************************************************");
         break;
         
-          
         // Caso cliente
         case 3:
           String name = askUserStr("Ingrese su nombre completo: ");
@@ -124,7 +134,6 @@ class Main
       }
     }
     while(opcionMenu_inicio != 0);
-
 
     // Imprimir mensaje de despedida
     sysout(mensajesDefault.get(1));

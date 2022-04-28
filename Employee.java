@@ -69,7 +69,7 @@ class Employee extends Person {
 
   //---- Other non-static methods
   // translated from Person class
-  public String getAgeString(int[] born) {
+  public String getAgeString() {
     Period edad = this.birth_date.getPeriodTillNow();
     return String.format("%d años, %d meses y %d días",edad.getYears(), edad.getMonths(), edad.getDays());
   }
