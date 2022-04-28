@@ -5,6 +5,11 @@ Eliminar empleado: No funciona - Pendiente
 Eliminar producto: No funciona - Pendiente
 
 
+Sistema de agrupar productos iguales en la factura
+Adaptar sistema de tal forma que se muestre, al momento de elegir un producto, cuantos productos desea comprar.
+(Ejemplo comprar 8 Bueñuelos al tiempo) y que en la factura se muestre 'Bueñuelos (8)' en vez de varias lineas repetidas.
+
+
 */
 
 import java.util.*;
