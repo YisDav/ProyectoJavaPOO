@@ -298,10 +298,6 @@ class Main
     
     for(int i = 0; i < Product.getProductsCount(); i++) {
       Product product = Product.getProductElementByID(i);
-
-      System.out.println("Prueba lista productos Main.getAllProductsByType_formated:");
-      System.out.println(product.name);
-
       if(product.type == productType) {
         int Stock = product.stock;
         String price = darFormatoDinero(product.price);
