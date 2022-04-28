@@ -3,7 +3,7 @@ import java.time.*;
 class Employee extends Person {
   //---- Attributes
   private Date_ex birth_date, join_date;
-  double salary;
+  private double salary;
   private String login_userName, login_password;
   //---- / Attributes
   

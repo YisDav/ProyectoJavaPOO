@@ -1,19 +1,10 @@
 /*
 check list:
 
-Actualizar el diagrama de clases: Echo
-Actualizar word y diapositivas: Pendiente
-
-Corregir lista a la hora de agragar productos: Echo
-
-creacion de empleado: Funciona 
 Eliminar empleado: No funciona - Pendiente
-
-Agregar producto: No funciona - Pendiente
 Eliminar producto: No funciona - Pendiente
 
-Modificar producto: Funciona
-Modificar empleado: Funciona
+
 */
 
 import java.util.*;
@@ -209,7 +200,7 @@ class Main
       // Si el usuario eligió un tipo de productos
       else {
         // Preguntar al usuario por el producto a elegir
-        int opcionElegida_tercerMenu = mostrarOpciones_tercerMenu(opcionElegida_segundoMenu-1);
+        int opcionElegida_tercerMenu = mostrarOpciones_tercerMenu(opcionElegida_segundoMenu);
 
         // Obtenemos el objeto del producto que el usuario eligió
         Product productoElegido = Product.getProductElementByID(opcionElegida_tercerMenu-1);
@@ -274,17 +265,17 @@ class Main
 
   public static int mostrarOpciones_tercerMenu(int productType) 
   {
-    int choosenOption = 0;
+    int choosenOption = 0, productType_fixed = productType-1;
     
     // Menú con los productos según el tipo de producto elegido
-    String message = String.format("\n** Menú de %s **\n%s\n¿Cuál producto deseas comprar?: ", secondMenu_Options.get(productType).toLowerCase(), getAllProductsByType_formated(productType));
+    String message = String.format("\n** Menú de %s **\n%s\n¿Cuál producto deseas comprar?: ", secondMenu_Options.get(productType_fixed).toLowerCase(), getAllProductsByType_formated(productType_fixed));
 
     // Obtenemos el número correspondiente al producto que el usuario desea comprar
     do {
       choosenOption = askUserInt(message);
-      if(!isValidChoosenProduct(productType, choosenOption-1))
+      if(!isValidChoosenProduct(productType_fixed, choosenOption-1))
         sysout("\n** Producto inválido. Intentalo de nuevo **");
-    } while(!isValidChoosenProduct(productType, choosenOption-1));
+    } while(!isValidChoosenProduct(productType_fixed, choosenOption-1));
     
     return choosenOption;
   }
@@ -307,6 +298,10 @@ class Main
     
     for(int i = 0; i < Product.getProductsCount(); i++) {
       Product product = Product.getProductElementByID(i);
+
+      System.out.println("Prueba lista productos Main.getAllProductsByType_formated:");
+      System.out.println(product.name);
+
       if(product.type == productType) {
         int Stock = product.stock;
         String price = darFormatoDinero(product.price);
@@ -374,6 +369,7 @@ class Main
     try {
       sysout(message);
       answer = scanner_.nextLong();
+      valid = true;
     }
     catch (Exception e) {
       sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");

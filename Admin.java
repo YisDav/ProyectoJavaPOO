@@ -25,13 +25,15 @@ class Admin extends Employee {
     
     int 
       type = Main.askUserInt("Tipo de producto:\n1. Bebidas\n2. Postres\n3. Platos"),
-      stock = Main.askUserInt("Stock:");
+      stock = Main.askUserInt("Stock:"),
+      fixed_type = type-1;
     
     double 
       price = Main.askUserDouble("Precio:");
-      Main.sysout("¡Producto creado exitosamente!");
-    
-    return new Product(name, type, description, price, stock);
+
+    Product createdProduct = new Product(name, fixed_type, description, price, stock);  
+    Main.sysout("¡Producto '"+createdProduct.name+"' ($"+createdProduct.price+") creado exitosamente!");    
+    return createdProduct;
   }
   
   // METODO PARA ELIMINAR UN PRODUCTO
@@ -41,20 +43,22 @@ class Admin extends Employee {
   
   // METODO PARA CAMBIAR EL PRECIO UN PRODUCTO
   public void changePrice(Product product) {
+    double oldPrice = product.price;
     product.price = Main.askUserDouble("Ingresa el nuevo precio del plato '"+product.name+"':");
-    Main.sysout("¡Cambio de precio exitoso!");
+    Main.sysout("¡El cambio de precio del producto '"+product.name+"' fue exitoso! ("+oldPrice+"->"+product.price+")");
   }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
   public void changeStock(Product product) {
+    int oldStock = product.stock;
     product.stock = Main.askUserInt("\nIngresa la disponibilidad del plato '"+product.name+"': ");
-    Main.sysout("¡Cambio de stock exitoso!");
+    Main.sysout("¡El cambio de stock del producto '"+product.name+"' ("+oldStock+"->"+product.stock+") fue exitoso!");
     }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
   public void changeDesc(Product product) {
     product.description = Main.askUserStr("\nIngresa la nueva descripcion del plato '"+product.name+"': ");
-    Main.sysout("¡Cambio de descripcion exitosa!");
+    Main.sysout("¡El cambio de descripcion del producto '"+product.name+"' fue exitoso!");
   }
 
   // METODO PARA CREAR UN EMPLEADO
@@ -80,14 +84,18 @@ class Admin extends Employee {
 
   // METODO PARA MODIFICAR NOMBRE DE EMPLEADO
   public void changeNameWaiter(Waiter waiter) {
+    String oldName = waiter.fullName;
     waiter.fullName = Main.askUserStr("\nIngresa el nuevo nombre de "+waiter.fullName+": ");
-    Main.sysout("¡Cambio de nombre exitoso!");
+    Main.sysout("¡El cambio de nombre ('"+oldName+"'->'"+waiter.fullName+"') fue exitoso!");
   }
 
   // METODO PARA MODIFICAR EL SALARIO DE UN EMPLEADO
   public void changeSalaryWaiter(Waiter waiter) {
-    waiter.salary = Main.askUserDouble("\nIngresa el nuevo salario de "+ waiter.fullName +" ("+waiter.salary+"): ");
-    Main.sysout("¡Cambio de salario exitoso!");
+    double 
+      oldSalary = waiter.getSalary(),
+      newSalary = Main.askUserDouble("\nIngresa el nuevo salario de "+ waiter.fullName);;
+    waiter.setSalary(newSalary);
+    Main.sysout("¡El ambio de salario del empleado "+waiter.fullName+" fue exitoso! ($"+oldSalary+" -> $"+newSalary+")");
   }
   
   
