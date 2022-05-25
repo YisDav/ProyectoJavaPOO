@@ -55,7 +55,7 @@ class Date_ex {
 
   
   //---- Other static methods
-  public static Date_ex askUserDate_ex(String message) {
+  public static Date_ex askUserDate(String message) {
 
     Main.sysout(message);
     

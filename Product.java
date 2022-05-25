@@ -40,6 +40,11 @@ public class Product {
   * @ Métodos setter
   */
 
+  public int setID(int ID) {
+    this.ID = ID;
+    return this.ID;
+  }
+
   public String setReference(String reference) {
     this.reference = reference;
     return this.reference;
@@ -49,7 +54,7 @@ public class Product {
   /*
   * STATIC
   */
-  private static ArrayList<Product> productList2 = new ArrayList<Product>();
+  public static ArrayList<Product> productList2 = new ArrayList<Product>();
 
   public static Product getProductElementByID(int ID) {
     Product producto_actual;

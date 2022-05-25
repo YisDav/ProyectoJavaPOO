@@ -1,5 +1,11 @@
+import java.util.*;
+import java.text.DecimalFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
 /*
-check list:
+*
+*check list:
 
 Eliminar empleado: No funciona - Pendiente
 Eliminar producto: No funciona - Pendiente
@@ -9,13 +15,19 @@ Sistema de agrupar productos iguales en la factura
 Adaptar sistema de tal forma que se muestre, al momento de elegir un producto, cuantos productos desea comprar.
 (Ejemplo comprar 8 Bueñuelos al tiempo) y que en la factura se muestre 'Bueñuelos (8)' en vez de varias lineas repetidas.
 
+Cambiar nombre al proyecto
 
+
+
+
+*         --------===========] Características en diseño [===========--------
+*      *  Implementación con MySQL para almacenamiento persistente de información
+*      *  Panel administrativo: Eliminar empleados y productos.
+*      *  Validación de credenciales: Encriptación con Bcrypt de las credenciales
+*      *  Diseño de interfaz gráfica.
+*      *  Implementar fechas en la facturación 
+*
 */
-
-import java.util.*;
-import java.text.DecimalFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
 
 class Main 
 {
@@ -69,9 +81,8 @@ class Main
                 break;
                 
                 case 3: // Eliminar
-                  Product productToDelete = Product.getProductElementByInputID("Ingrese el ID del producto a eliminar:");
+                  int productToDelete = askUserInt("Ingrese el ID del producto a eliminar:");
                   adm1.deleteProduct(productToDelete);
-                  sysout("¡Producto eliminado exitosamente!");
                 break;
                   
                 default:
@@ -94,7 +105,7 @@ class Main
 
                 case 2: adm1.createWaiter(); break;
                 case 3: 
-                    Waiter waiter2 = Waiter.getWaiterElementByInputID("Ingrese el ID del empleado:");
+                    int waiter2 = askUserInt("Ingrese el ID del empleado:");
                     adm1.deleteWaiter(waiter2);
                 break;
               } 
@@ -239,7 +250,6 @@ class Main
       // Si la opción es válida, se rompe el ciclo. Se pasará al segundo menú
       else break;
     }
-    
     return choosenOption;
   }
 
@@ -452,7 +462,7 @@ class Main
     segundoMenu_exit.add(5);  // Menu 2  : Opcion 5 cancela el pedido en el menú 2
 
     // Mensajes de vuelve pronto y despedida
-    mensajesDefault.add("%s, que luego no te arrepientas. Vuelve pronto a por tus antojos");
+    mensajesDefault.add("Que luego no te arrepientas. Vuelve pronto a por tus antojos");
     mensajesDefault.add("\nMuchas gracias por utilizar nuestros servicios. \nEstaremos aquí siempre que nececites realizar tu pedido.");
     mensajesDefault.add("Gracias por comprar con nostros, ahora, ¡Satisface tus antojos!\nFinalizando pedido...");
     
@@ -472,6 +482,7 @@ class Main
     new Product("Cheesecake",1, "Limon, mora, maracuyá o lulo", 4000, 20);
     new Product("Torta de chocolate",1, "Con relleno de arequipe", 12000, 20);
     new Product("Fresas con crema",1, "Frescas y deliciosas", 12000, 20);
+
 
     
     //Admins por defecto

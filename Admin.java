@@ -37,8 +37,16 @@ class Admin extends Employee {
   }
   
   // METODO PARA ELIMINAR UN PRODUCTO
-  public void deleteProduct(Product product) {
-    product = null;
+  public void deleteProduct(int ID) {
+    ID = ID-1;
+    Product prod1 = Product.getProductElementByID(ID);
+    //prod1.productList2.remove(ID);
+    prod1.name = null;
+    prod1.description = null;
+    prod1.setReference("null");
+    prod1.stock = 0;
+    prod1.price = 0;
+    Main.sysout("¡Producto eliminado exitosamente!");
   }
   
   // METODO PARA CAMBIAR EL PRECIO UN PRODUCTO
@@ -100,8 +108,10 @@ class Admin extends Employee {
   
   
   // METODO PARA ELIMINAR UN EMPLEADO
-  public void deleteWaiter(Waiter waiter) {
-    waiter = null;
+  public void deleteWaiter(int ID) {
+    Waiter wait1 = Waiter.getWaiterElementByID(ID);
+    wait1.set_login_userName("null");
+    wait1.set_login_password("null");
     Main.sysout("¡Empleado eliminado exitosamente!");
   }
 
