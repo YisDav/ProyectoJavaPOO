@@ -78,7 +78,7 @@ public class Product {
       }
       catch(Exception e) {
         validID = false;
-        Main.sysout("Lo sentimos, el producto con el ID "+productID+" no pudo ser encontrado");
+        Utils.sysout("Lo sentimos, el producto con el ID "+productID+" no pudo ser encontrado");
       }
 
     } while(!validID);

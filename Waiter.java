@@ -56,7 +56,7 @@ class Waiter extends Employee {
       }
       catch(Exception e) {
         validID = false;
-        Main.sysout("Lo sentimos, el empleado con el ID "+waiterID+" no pudo ser encontrado");
+        Utils.sysout("Lo sentimos, el empleado con el ID "+waiterID+" no pudo ser encontrado");
       }
 
     } while(!validID);
@@ -89,15 +89,15 @@ class Waiter extends Employee {
 
       waiter = Waiter.getAdminByNameAndPassword(name, password);
 
-      if(waiter == null) Main.sysout("Credenciales inválidas, intentalo de nuevo");
+      if(waiter == null) Utils.sysout("Credenciales inválidas, intentalo de nuevo");
     }
     while (attempts < 3 && waiter == null );
 
     if(attempts >= 3) {
-      Main.sysout("Demasiados intentos.");
+      Utils.sysout("Demasiados intentos.");
       return null;
     }
-    else Main.sysout("Acceso permitido"); 
+    else Utils.sysout("Acceso permitido"); 
     return waiter; 
   }
 }

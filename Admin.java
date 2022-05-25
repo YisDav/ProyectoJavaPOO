@@ -17,7 +17,7 @@ class Admin extends Employee {
   // METODO PARA CREAR UN PRODUCTO
   public Product createProduct()
   {
-    Main.sysout("\nPor favor, ingresa los datos del producto que deseas crear");
+    Utils.sysout("\nPor favor, ingresa los datos del producto que deseas crear");
     
     String 
       name = Main.askUserStr("Nombre del producto: "),
@@ -32,7 +32,7 @@ class Admin extends Employee {
       price = Main.askUserDouble("Precio:");
 
     Product createdProduct = new Product(name, fixed_type, description, price, stock);  
-    Main.sysout("¡Producto '"+createdProduct.name+"' ($"+createdProduct.price+") creado exitosamente!");    
+    Utils.sysout("¡Producto '"+createdProduct.name+"' ($"+createdProduct.price+") creado exitosamente!");    
     return createdProduct;
   }
   
@@ -46,27 +46,27 @@ class Admin extends Employee {
     prod1.setReference("null");
     prod1.stock = 0;
     prod1.price = 0;
-    Main.sysout("¡Producto eliminado exitosamente!");
+    Utils.sysout("¡Producto eliminado exitosamente!");
   }
   
   // METODO PARA CAMBIAR EL PRECIO UN PRODUCTO
   public void changePrice(Product product) {
     double oldPrice = product.price;
     product.price = Main.askUserDouble("Ingresa el nuevo precio del plato '"+product.name+"':");
-    Main.sysout("¡El cambio de precio del producto '"+product.name+"' fue exitoso! ("+oldPrice+"->"+product.price+")");
+    Utils.sysout("¡El cambio de precio del producto '"+product.name+"' fue exitoso! ("+oldPrice+"->"+product.price+")");
   }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
   public void changeStock(Product product) {
     int oldStock = product.stock;
     product.stock = Main.askUserInt("\nIngresa la disponibilidad del plato '"+product.name+"': ");
-    Main.sysout("¡El cambio de stock del producto '"+product.name+"' ("+oldStock+"->"+product.stock+") fue exitoso!");
+    Utils.sysout("¡El cambio de stock del producto '"+product.name+"' ("+oldStock+"->"+product.stock+") fue exitoso!");
     }
 
   // METODO PARA CAMBIAR EL STOCK UN PRODUCTO
   public void changeDesc(Product product) {
     product.description = Main.askUserStr("\nIngresa la nueva descripcion del plato '"+product.name+"': ");
-    Main.sysout("¡El cambio de descripcion del producto '"+product.name+"' fue exitoso!");
+    Utils.sysout("¡El cambio de descripcion del producto '"+product.name+"' fue exitoso!");
   }
 
   // METODO PARA CREAR UN EMPLEADO
@@ -76,8 +76,8 @@ class Admin extends Employee {
     int 
       ID = Main.askUserInt("Ingrese el ID del nuevo empleado: ");
     Date_ex
-      fecha_cumple = Date_ex.askUserDate_ex("Ingrese la fecha de nacimiento: "),
-      fecha_ingreso = Date_ex.askUserDate_ex("Digite la fecha de ingreso: ");
+      fecha_cumple = Date_ex.askUserDate("Ingrese la fecha de nacimiento: "),
+      fecha_ingreso = Date_ex.askUserDate("Digite la fecha de ingreso: ");
     double 
       salary = Main.askUserDouble("Ingrese el salario del nuevo empleado");
     String
@@ -85,7 +85,7 @@ class Admin extends Employee {
       login_password = Main.askUserStr("Ingrese el password del empleado a crear");
       
     Waiter waiter1 = new Waiter(ID, new_name, fecha_cumple, fecha_ingreso, salary, 0.0, login_userName, login_password);
-    Main.sysout("¡Waiter creado exitosamente!");
+    Utils.sysout("¡Waiter creado exitosamente!");
 
     return waiter1;
   }
@@ -94,7 +94,7 @@ class Admin extends Employee {
   public void changeNameWaiter(Waiter waiter) {
     String oldName = waiter.fullName;
     waiter.fullName = Main.askUserStr("\nIngresa el nuevo nombre de "+waiter.fullName+": ");
-    Main.sysout("¡El cambio de nombre ('"+oldName+"'->'"+waiter.fullName+"') fue exitoso!");
+    Utils.sysout("¡El cambio de nombre ('"+oldName+"'->'"+waiter.fullName+"') fue exitoso!");
   }
 
   // METODO PARA MODIFICAR EL SALARIO DE UN EMPLEADO
@@ -103,7 +103,7 @@ class Admin extends Employee {
       oldSalary = waiter.getSalary(),
       newSalary = Main.askUserDouble("\nIngresa el nuevo salario de "+ waiter.fullName);;
     waiter.setSalary(newSalary);
-    Main.sysout("¡El ambio de salario del empleado "+waiter.fullName+" fue exitoso! ($"+oldSalary+" -> $"+newSalary+")");
+    Utils.sysout("¡El ambio de salario del empleado "+waiter.fullName+" fue exitoso! ($"+oldSalary+" -> $"+newSalary+")");
   }
   
   
@@ -112,7 +112,7 @@ class Admin extends Employee {
     Waiter wait1 = Waiter.getWaiterElementByID(ID);
     wait1.set_login_userName("null");
     wait1.set_login_password("null");
-    Main.sysout("¡Empleado eliminado exitosamente!");
+    Utils.sysout("¡Empleado eliminado exitosamente!");
   }
 
   
@@ -142,15 +142,15 @@ class Admin extends Employee {
 
       adm1 = Admin.getAdminByNameAndPassword(name, password);
 
-      if(adm1 == null) Main.sysout("Credenciales inválidas, intentalo de nuevo");
+      if(adm1 == null) Utils.sysout("Credenciales inválidas, intentalo de nuevo");
     }
     while (attempts < 3 && adm1 == null );
 
     if(attempts >= 3) {
-      Main.sysout("Demasiados intentos.");
+      Utils.sysout("Demasiados intentos.");
       return null;
     }
-    else Main.sysout("Acceso permitido"); 
+    else Utils.sysout("Acceso permitido"); 
     return adm1; 
   }
   
