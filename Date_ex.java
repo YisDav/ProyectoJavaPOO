@@ -1,4 +1,6 @@
+import java.text.*;
 import java.time.*;
+import java.util.*;
 
 class Date_ex {
   //---- Attributes
@@ -90,6 +92,19 @@ class Date_ex {
 
   public static LocalDate dateNow() {
     return LocalDate.now();
+  }
+
+  public static String getTodayDateTime() {
+    LocalDateTime now = LocalDateTime.now();
+
+    SimpleDateFormat date = new SimpleDateFormat("dd/MMMM/yyyy ");
+    SimpleDateFormat datetime = new SimpleDateFormat("dd/MMMM/yyyy hh:mm:s");
+    String unfomattedDate = date.format(Calendar.getInstance().getTime());
+    String time_unf = datetime.format(Calendar.getInstance().getTime());
+    String[] date_f = unfomattedDate.split("/");
+    
+    String response = String.format("%s del de mes %s de %s - %s", date_f[0], date_f[1], date_f[2], time_unf);
+    return response;
   }
   
 }

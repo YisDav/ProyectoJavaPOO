@@ -7,15 +7,17 @@ import java.time.LocalDate;
 *
 * check list:
 
+Cambiar nombre al proyecto!!!!!!!!!!!!!!!
+
+
 Eliminar empleado: Listo!
 Eliminar producto: Listo!
+Mostrar fecha en la factura: Listo!
 
-
+// Ejecutar en la interfaz para no perder tiempo haciendolo en consola y después borrarlo xd
 Sistema de agrupar productos iguales en la factura
 Adaptar sistema de tal forma que se muestre, al momento de elegir un producto, cuantos productos desea comprar.
 (Ejemplo comprar 8 Bueñuelos al tiempo) y que en la factura se muestre 'Bueñuelos (8)' en vez de varias lineas repetidas.
-
-Cambiar nombre al proyecto
 
 
 
@@ -309,6 +311,8 @@ class Main
     System.out.println(mensajesDefault.get(2)); // Mensaje de facturando...
     System.out.println("\n\n|---------------------------------------------------------------------|");
     System.out.println("|----------------------------- FACTURA -------------------------------|");
+    System.out.println("|  Fecha: " + Date_ex.getTodayDateTime());
+    System.out.println("|---------------------------------------------------------------------|");
     System.out.println("|---------------------------------------------------------------------|");
     clientOrder.Facturar();
     System.out.println("|---------------------------------------------------------------------|");
