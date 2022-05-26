@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Product {
+public class Product implements Listable {
  
   private int ID;
   public String name, description; 
@@ -8,20 +8,21 @@ public class Product {
   public int type; // bebidas,  postres  y  platos.
   public double price;
   public int stock; // cantidad de producto.
+  private int active = -1; // 0 : false ; 1 : true ; Others (-1) : undefined 
   
 
   /*
   * @ Constructor Product
   */
   Product(String name, int type, String description, double price, int stock) {
-    this.ID = productList2.size();
+    this.ID = list.size();
     this.name = name;
     this.type = type;
     this.description = description;
     this.price = price;
     this.stock = stock;
     this.reference = String.format("00%d0%d", this.ID, this.type);
-    productList2.add(this);
+    this.addToList();
   }
 
   
@@ -49,21 +50,68 @@ public class Product {
     this.reference = reference;
     return this.reference;
   }
-
   
   /*
   * STATIC
   */
-  public static ArrayList<Product> productList2 = new ArrayList<Product>();
+  public static ArrayList<Product> list = new ArrayList<Product>();
+
+  public static ArrayList<Product> getList() {
+    ArrayList<Product> fixed_list = new ArrayList<>();
+    for(Product product : list) {
+      if(product.active == 1) fixed_list.add(product);
+    }
+    return fixed_list;
+  }
+
+  public static ArrayList<Product> getList(int productType) {
+    ArrayList<Product> fixed_list = new ArrayList<>();
+    for(Product product : getList()) {
+      if(product.type == productType) fixed_list.add(product);
+    }
+    return fixed_list;
+  }
+
+  @Override
+  public void addToList() {
+    if(this.active == 0 || this.active == 1) {
+      for(Product product : list) {
+        if(product.equals(this)) {
+          if(product.active == 1) {
+            String message = String.format("Cannot add to a list because %s (ID_ex: %d) is alredy added as the same class (or eliminated). Class registrated: %s - Re-trying class: %s", this.name, this.ID, product.getClass().getName(), this.getClass().getName());
+            throw new RuntimeException(message);
+          }
+          else if(product.active == 0) {
+            throw new RuntimeException("You first have to revert the soft delete.");
+          }
+        }
+      }
+    }
+    else {
+      this.active = 1;
+      list.add(this);
+    }
+  }
+
+  @Override
+  public Product softDelete() {
+    this.active = 0;
+    return this;
+  }
+
+  @Override
+  public Product revertSoftDelete() {
+    this.active = 1;
+    return this;
+  }
 
   public static Product getProductElementByID(int ID) {
-    Product producto_actual;
-    for(int i = 0 ; i < productList2.size() ; i++) {
-      producto_actual = productList2.get(i);
-      if(producto_actual.getID() == ID)
-        return producto_actual;
+    for(Product product : getList()) {
+      if( product.active == 1 && product.getID() == ID)
+        return product;
     }
-    return null;
+    String message = String.format("No product with ID: %d was found", ID);
+    throw new RuntimeException(message);
   }
 
   public static Product getProductElementByInputID(String message) {
@@ -84,9 +132,5 @@ public class Product {
     } while(!validID);
 
     return productElement;
-  }
-
-  public static int getProductsCount(){
-    return productList2.size();
   }
 }

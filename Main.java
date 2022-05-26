@@ -5,10 +5,10 @@ import java.time.LocalDate;
 
 /*
 *
-*check list:
+* check list:
 
 Eliminar empleado: Listo!
-Eliminar producto: No funciona - Pendiente
+Eliminar producto: Listo!
 
 
 Sistema de agrupar productos iguales en la factura
@@ -320,14 +320,10 @@ class Main
   public static String getAllProductsByType_formated(int productType) 
   {
     String message = "";
-    
-    for(int i = 0; i < Product.getProductsCount(); i++) {
-      Product product = Product.getProductElementByID(i);
-      if(product.type == productType) {
-        int Stock = product.stock;
-        String price = darFormatoDinero(product.price);
-        message = String.format("%sNo. %d - %s ( %s - %d unidades disponibles )\n", message, product.getID()+1, product.name, price, Stock);
-      }
+    for(Product product : Product.getList(productType)) {
+      int Stock = product.stock;
+      String price = darFormatoDinero(product.price);
+      message = String.format("%sNo. %d - %s ( %s - %d unidades disponibles )\n", message, product.getID()+1, product.name, price, Stock);
     }
     return message;
   }

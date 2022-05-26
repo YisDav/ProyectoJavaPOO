@@ -50,14 +50,18 @@ class Admin extends Employee {
   // METODO PARA ELIMINAR UN PRODUCTO
   public void deleteProduct(int ID) {
     ID = ID-1;
-    Product prod1 = Product.getProductElementByID(ID);
-    //prod1.productList2.remove(ID);
-    prod1.name = null;
-    prod1.description = null;
-    prod1.setReference("null");
-    prod1.stock = 0;
-    prod1.price = 0;
-    System.out.println("¡Producto eliminado exitosamente!");
+    Product product = Product.getProductElementByID(ID);
+    product.softDelete();
+    System.out.printf("\n¡Producto %s (%d) eliminado exitosamente!\n", product.name, product.getID());
+
+    /* DEPRECATED: 
+      prod1.productList2.remove(ID);
+      prod1.name = null;
+      prod1.description = null;
+      prod1.setReference("null");
+      prod1.stock = 0;
+      prod1.price = 0;
+    */
   }
   
   // METODO PARA CAMBIAR EL PRECIO UN PRODUCTO

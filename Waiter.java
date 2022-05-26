@@ -43,13 +43,13 @@ class Waiter extends Employee {
   //---- / Setter methods
 
 
-  public static Waiter getWaiterElementByID(int ID) throws RuntimeException {
+  public static Waiter getWaiterElementByID(int ID) {
     for (Waiter waiter : getList()) {
       if(waiter.getID() == ID) {
         return waiter;
       }
     }
-    String message = String.format("No Waiter with ID: %d was finded", ID);
+    String message = String.format("No Waiter with ID: %d was found", ID);
     throw new RuntimeException(message);
   }
 
