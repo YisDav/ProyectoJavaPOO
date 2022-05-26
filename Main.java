@@ -7,7 +7,7 @@ import java.time.LocalDate;
 *
 *check list:
 
-Eliminar empleado: No funciona - Pendiente
+Eliminar empleado: Listo!
 Eliminar producto: No funciona - Pendiente
 
 
@@ -41,7 +41,8 @@ class Main
     // Creación de objetos y configuración de inicio (productos, menus, mensajes, etc.)
     defaultConfig();
 
-    Utils.sysout("******************* Bienvenido *******************");
+    //
+    System.out.println("******************* Bienvenido *******************");
     int opcionMenu_inicio = 0;
     do 
     {
@@ -52,7 +53,7 @@ class Main
       {
         // Caso administrador
         case 1:     
-          Admin adm1 = Admin.askUserCredentials();
+          Admin adm1 = (Admin) Admin.attemptToLogin();
           if(adm1 == null) return;
 
           int optionx = askUserInt("\n1. Productos \n2. Empleados \n0. Salir");
@@ -70,7 +71,7 @@ class Main
                     case 1:   adm1.changePrice(productToModify);    break;
                     case 2:   adm1.changeStock(productToModify);    break;
                     case 3:   adm1.changeDesc(productToModify);     break;
-                    default:  Utils.sysout("Opcion invalida");   break;
+                    default:  System.out.println("Opcion invalida");   break;
                   }
                 break;
 
@@ -84,29 +85,40 @@ class Main
                 break;
                   
                 default:
-                  Utils.sysout("Opcion invalida");
+                  System.out.println("Opcion invalida");
                 break;
               }
             break;
             case 2:  
-              int optionEmp1 = askUserInt("\n1. Modificar empleado \n2. Agregar empleado \n3. Eliminar empleado");
-              switch(optionEmp1){
-                case 1: 
+              int optionEmp1;
+              do {
+                optionEmp1 = askUserInt("\n1. Agregar empleado \n2. Modificar empleado \n3. Eliminar empleado\n4. Salir");
+                //------
+                // Crear empleado
+                if (optionEmp1 == 1) {
+                  adm1.createWaiter();
+                }
+                else if (optionEmp1 == 2 || optionEmp1 == 3 ) {
                   Waiter waiter = Waiter.getWaiterElementByInputID("Ingrese el ID del empleado:");
-                  int optionEmp2 =   askUserInt("\n1. Editar sueldo \n2. Editar nombre");
-                  
-                  switch(optionEmp2){
-                    case 1:   adm1.changeSalaryWaiter(waiter);    break;
-                    case 2:   adm1.changeNameWaiter(waiter);      break;  
+                  switch(optionEmp1) {
+                    //------
+                    // Modificar Empleado
+                    case 2: 
+                      int optionEmp2 =   askUserInt("\n1. Editar sueldo \n2. Editar nombre");
+                      switch(optionEmp2){
+                        case 1:   adm1.changeSalaryWaiter(waiter);    break;
+                        case 2:   adm1.changeNameWaiter(waiter);      break;  
+                      }
+                    break;
+                    //------
+                    // Eliminear Empleado
+                    case 3: adm1.deleteWaiter(waiter);
+                    break;
                   }
-                break;
+                }
+              } while(optionEmp1 != 4);
 
-                case 2: adm1.createWaiter(); break;
-                case 3: 
-                    int waiter2 = askUserInt("Ingrese el ID del empleado:");
-                    adm1.deleteWaiter(waiter2);
-                break;
-              } 
+
             break;
           }
           //
@@ -114,21 +126,21 @@ class Main
 
         // Caso empleado
         case 2:
-          Waiter waiter1 = Waiter.askUserCredentials();
+          Waiter waiter1 = (Waiter) Waiter.attemptToLogin();
           if(waiter1 == null) return;
 
           DateTimeFormatter fechaFormato = DateTimeFormatter.ofPattern("yyyy/MM/dd");
           LocalDate fecha_nacimiento = waiter1.getBirthDate().fecha;
           LocalDate fecha_ingreso = waiter1.getJoinDate().fecha;
           
-          Utils.sysout("\n\n******************* DATOS DEL EMPLEADO *******************");
-          Utils.sysout("Nombre: " + waiter1.fullName);
-          Utils.sysout("ID: " + waiter1.getID());
-          Utils.sysout("Edad: "+waiter1.getAgeString());
-          Utils.sysout("Fecha de nacimiento: "+fecha_nacimiento.format(fechaFormato));
-          Utils.sysout("Fecha de ingreso: "+fecha_ingreso.format(fechaFormato));
-          Utils.sysout("Propina: "+waiter1.getBaksheesh());
-          Utils.sysout("Salario: "+waiter1.getSalary()); Utils.sysout("**********************************************************");
+          System.out.println("\n\n******************* DATOS DEL EMPLEADO *******************");
+          System.out.println("Nombre: " + waiter1.fullName);
+          System.out.println("ID: " + waiter1.getID());
+          System.out.println("Edad: "+waiter1.getAgeString());
+          System.out.println("Fecha de nacimiento: "+fecha_nacimiento.format(fechaFormato));
+          System.out.println("Fecha de ingreso: "+fecha_ingreso.format(fechaFormato));
+          System.out.println("Propina: "+waiter1.getBaksheesh());
+          System.out.println("Salario: "+waiter1.getSalary()); System.out.println("**********************************************************");
         break;
         
         // Caso cliente
@@ -141,7 +153,7 @@ class Main
     while(opcionMenu_inicio != 0);
 
     // Imprimir mensaje de despedida
-    Utils.sysout(mensajesDefault.get(1));
+    System.out.println(mensajesDefault.get(1));
   }
 
 
@@ -169,7 +181,7 @@ class Main
     {
       // Romper ciclo si el usuario elige la opción de salirse del menú
       if(isInList(opcionElegida_primerMenu, primerMenu_exit)) {
-        Utils.sysout(String.format(mensajesDefault.get(0), name));  //Mensaje de salida
+        System.out.println(String.format(mensajesDefault.get(0), name));  //Mensaje de salida
         break;
       };
       
@@ -181,20 +193,20 @@ class Main
       {
         // Si se trata de cancelar pedido, entonces rompemos el ciclo
         if(opcionElegida_segundoMenu == segundoMenu_exit.get(1)) {
-          Utils.sysout(String.format(mensajesDefault.get(0), name)); //Mensaje de salida
+          System.out.println(String.format(mensajesDefault.get(0), name)); //Mensaje de salida
           break; 
         }
         
         // Sí se debe facturar y finalizar pedido
         if(clientOrder.getListaProductos().size() == 0)
-          Utils.sysout("Lo sentimos, no has seleccionado ningun producto aún.");
+          System.out.println("Lo sentimos, no has seleccionado ningun producto aún.");
         else {
           if(!isDelivery) {
             int semiBolPropina = askUserInt("¿Desea registrarle propina al mesero?\n1. Si.\nOtro número. No.");
             if(semiBolPropina == 1) {
               double propina_a_dar = askUserDouble("¿Cuánto desea darle al mesero?: ");
               while (propina_a_dar < 1) {
-                Utils.sysout("Lo sentimos el valor inválido");
+                System.out.println("Lo sentimos el valor inválido");
                 propina_a_dar = askUserDouble("¿Cuánto $ desea darle al mesero?: ");
               }
 
@@ -202,7 +214,7 @@ class Main
               double propina_total = meseroPropina.getBaksheesh()+propina_a_dar;
 
               meseroPropina.setBaksheesh(propina_total);
-              Utils.sysout("Genial!, le has dado $"+propina_a_dar+" al mesero "+meseroPropina.fullName+" por su buen servicio :)");
+              System.out.println("Genial!, le has dado $"+propina_a_dar+" al mesero "+meseroPropina.fullName+" por su buen servicio :)");
             }
           }
           imprimirFactura(clientOrder);
@@ -218,7 +230,7 @@ class Main
 
         // Obtenemos el objeto del producto que el usuario eligió
         Product productoElegido = Product.getProductElementByID(opcionElegida_tercerMenu-1);
-        Utils.sysout("\n ** Se ha añadido "+productoElegido.name+" a tu carrito. ¡Sigue satisfaciendo tus antojos! ** ");
+        System.out.println("\n ** Se ha añadido "+productoElegido.name+" a tu carrito. ¡Sigue satisfaciendo tus antojos! ** ");
         clientOrder.addProduct(productoElegido);
         productoElegido.stock -= 1;
       }
@@ -243,7 +255,7 @@ class Main
 
       // En caso de no ser válidad, se imprime mensaje y se repite el ciclo
       if(!isValidOption) 
-        Utils.sysout("Has ingresado un valor inválido, por favor intentalo de nuevo.");
+        System.out.println("Has ingresado un valor inválido, por favor intentalo de nuevo.");
 
       // Si la opción es válida, se rompe el ciclo. Se pasará al segundo menú
       else break;
@@ -267,7 +279,7 @@ class Main
 
       // En caso de no ser válidad, se imprime mensaje y se repite el ciclo
       if(!isValidOption) 
-        Utils.sysout("Has ingresado un valor inválido, por favor intentalo de nuevo.");
+        System.out.println("Has ingresado un valor inválido, por favor intentalo de nuevo.");
 
       // Si la opción es válida, se rompe el ciclo. Se pasará al segundo menú
       else break;
@@ -287,21 +299,21 @@ class Main
     do {
       choosenOption = askUserInt(message);
       if(!isValidChoosenProduct(productType_fixed, choosenOption-1))
-        Utils.sysout("\n** Producto inválido. Intentalo de nuevo **");
+        System.out.println("\n** Producto inválido. Intentalo de nuevo **");
     } while(!isValidChoosenProduct(productType_fixed, choosenOption-1));
     
     return choosenOption;
   }
 
   public static void imprimirFactura(Order clientOrder) {
-    Utils.sysout(mensajesDefault.get(2)); // Mensaje de facturando...
-    Utils.sysout("\n\n|---------------------------------------------------------------------|");
-    Utils.sysout("|----------------------------- FACTURA -------------------------------|");
-    Utils.sysout("|---------------------------------------------------------------------|");
+    System.out.println(mensajesDefault.get(2)); // Mensaje de facturando...
+    System.out.println("\n\n|---------------------------------------------------------------------|");
+    System.out.println("|----------------------------- FACTURA -------------------------------|");
+    System.out.println("|---------------------------------------------------------------------|");
     clientOrder.Facturar();
-    Utils.sysout("|---------------------------------------------------------------------|");
-    Utils.sysout("| Precio total: "+ darFormatoDinero(clientOrder.get_preciototal()));
-    Utils.sysout("|---------------------------------------------------------------------|");
+    System.out.println("|---------------------------------------------------------------------|");
+    System.out.println("| Precio total: "+ darFormatoDinero(clientOrder.get_preciototal()));
+    System.out.println("|---------------------------------------------------------------------|");
   }
 
   // Esta función retorna un string con la lista la lista de productos, a cada producto se le incluye el ID, nombre, precio, stock
@@ -341,12 +353,12 @@ class Main
     int answer = 0; boolean valid = false;
     
     try {
-      Utils.sysout(message);
+      System.out.println(message);
       answer = scanner_.nextInt();
       valid = true;
     }
     catch(Exception e) {
-      Utils.sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      System.out.println("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
       valid = false;
     }
 
@@ -359,12 +371,12 @@ class Main
     Scanner scanner_ = new Scanner(System.in);
     double answer = 0; boolean valid = false;
     try {
-      Utils.sysout(message);
+      System.out.println(message);
       answer = scanner_.nextDouble();
       valid = true;
     }
     catch (Exception e) {
-      Utils.sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      System.out.println("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
       valid = false;
     }
     if(!valid) return askUserDouble(message);    
@@ -376,12 +388,12 @@ class Main
     Scanner scanner_ = new Scanner(System.in);
     long answer = 0; boolean valid = false;
     try {
-      Utils.sysout(message);
+      System.out.println(message);
       answer = scanner_.nextLong();
       valid = true;
     }
     catch (Exception e) {
-      Utils.sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      System.out.println("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
       valid = false;
     }
     if(!valid) return askUserLong(message);    
@@ -394,12 +406,12 @@ class Main
     String answer = ""; boolean valid = false;
 
     try {
-      Utils.sysout(message);
+      System.out.println(message);
       answer = scanner_.nextLine(); 
       valid = true;
     }
     catch (Exception e) {
-      Utils.sysout("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
+      System.out.println("Lo sentimos, el valor ingresado es inválido, intetelo de nuevo");
       valid = false;
     }
     if(!valid) return askUserStr(message);    
@@ -482,6 +494,7 @@ class Main
     new Admin(1, "Benito" , new Date_ex(1990,10,12), new Date_ex(2010,10,12), 4000000, "AdminBen", "1234");
     // Empleados por defecto
     new Waiter(2, "Paco", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123");
+    new Waiter(3, "Juancho", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"321", "123");
     
   }
 }

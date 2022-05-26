@@ -1,11 +1,12 @@
 
 import java.util.ArrayList;
 
+import javax.management.RuntimeErrorException;
+
 
 class Waiter extends Employee {
   //---- Attributes
   private double baksheesh;
-  static ArrayList<Waiter> waiterList = new ArrayList<Waiter>();
   //---- / Attributes
   
 
@@ -13,8 +14,6 @@ class Waiter extends Employee {
   Waiter(int ID, String fullName, Date_ex birth_date, Date_ex join_date, double salary, double baksheesh, String login_userName, String login_password) {
     super(ID, fullName, birth_date, join_date, salary, login_userName,login_password);
     this.baksheesh = baksheesh;
-
-    waiterList.add(this);
   }
   //---- / Constructor
 
@@ -22,6 +21,17 @@ class Waiter extends Employee {
   //---- Getter methods
   public double getBaksheesh() {
     return this.baksheesh;
+  }
+  
+  public static ArrayList<Waiter> getList() {
+    ArrayList<Waiter> fixedList = new ArrayList<>();
+    for (Person cPerson : Person.getList()) {
+      if(cPerson instanceof Waiter) {
+        Waiter cAdmin = (Waiter) cPerson;
+        fixedList.add(cAdmin);
+      }
+    }
+    return fixedList;
   }
   //---- / Getter methods
 
@@ -33,15 +43,14 @@ class Waiter extends Employee {
   //---- / Setter methods
 
 
-  public static Waiter getWaiterElementByID(int ID) {
-    Waiter actual;
-    for(int i = 0; i < waiterList.size(); i++) {
-      actual = waiterList.get(i);
-      if(actual.getID() == ID) {
-        return actual;
+  public static Waiter getWaiterElementByID(int ID) throws RuntimeException {
+    for (Waiter waiter : getList()) {
+      if(waiter.getID() == ID) {
+        return waiter;
       }
     }
-    return null;
+    String message = String.format("No Waiter with ID: %d was finded", ID);
+    throw new RuntimeException(message);
   }
 
   public static Waiter getWaiterElementByInputID(String message) {
@@ -56,48 +65,11 @@ class Waiter extends Employee {
       }
       catch(Exception e) {
         validID = false;
-        Utils.sysout("Lo sentimos, el empleado con el ID "+waiterID+" no pudo ser encontrado");
+        System.out.println("Lo sentimos, el empleado con el ID "+waiterID+" no pudo ser encontrado");
       }
 
     } while(!validID);
 
     return waiterElement;
-  }
-
-  public static Waiter getAdminByNameAndPassword(String username, String password) {
-    Waiter currentWaiter = null, findedWaiter = null;
-    for(int i = 0; i < waiterList.size(); i++) {
-      currentWaiter = waiterList.get(i);
-
-      String 
-        login_userName = currentWaiter.get_login_userName(),
-        login_password = currentWaiter.get_login_password();
-
-      if( username.equals(login_userName) && password.equals(login_password) ) findedWaiter = currentWaiter;
-    }
-    return findedWaiter;
-  }
-
-  public static Waiter askUserCredentials(){
-    Waiter waiter = null;
-    int attempts = 0;
-    do {
-      attempts++;
-      String 
-        name = Main.askUserStr("Usuario:"),
-        password = Main.askUserStr("Contraseña:");
-
-      waiter = Waiter.getAdminByNameAndPassword(name, password);
-
-      if(waiter == null) Utils.sysout("Credenciales inválidas, intentalo de nuevo");
-    }
-    while (attempts < 3 && waiter == null );
-
-    if(attempts >= 3) {
-      Utils.sysout("Demasiados intentos.");
-      return null;
-    }
-    else Utils.sysout("Acceso permitido"); 
-    return waiter; 
   }
 }

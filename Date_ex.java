@@ -57,14 +57,14 @@ class Date_ex {
   //---- Other static methods
   public static Date_ex askUserDate(String message) {
 
-    Utils.sysout(message);
+    System.out.println(message);
     
     int day = 0, month = 0, year = 0;
     boolean validDate = true;
 
     do {
       if(!validDate)
-        Utils.sysout("Lo sentimos, esta fecha es invalida");
+        System.out.println("Lo sentimos, esta fecha es invalida");
       
       day = Main.askUserInt("Día: ");
       month = Main.askUserInt("Mes: ");

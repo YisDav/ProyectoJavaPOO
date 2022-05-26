@@ -10,7 +10,7 @@ class Client extends Person {
   Client(int ID, String fullName, String address, long phoneNumber) {
     super(ID, fullName);
     this.address = address;
-    this.phoneNumber = phoneNumber;    
+    this.phoneNumber = phoneNumber;
   }
   //---- / Constructor
 
