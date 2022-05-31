@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 /*
 *
-* check listt:
+* check list:
 
 Cambiar nombre al proyecto!!!!!!!!!!!!!!!
 
