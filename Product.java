@@ -114,11 +114,9 @@ public class Product implements Listable {
     throw new RuntimeException(message);
   }
 
-  public static Product getProductElementByInputID(String message) {
-    int productID; Product productElement = null; boolean validID = true;
-    
+  public static Product getProductElementByInputID(String message, int productID) {
+    Product productElement = null; boolean validID = true;
     do {
-      productID = Main.askUserInt(message);
       try {
         productElement = getProductElementByID(productID-1);
         String name = productElement.name; // only for test

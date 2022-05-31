@@ -55,41 +55,6 @@ class Date_ex {
   }
   //---- / Other non-static methods
 
-  
-  //---- Other static methods
-  public static Date_ex askUserDate(String message) {
-
-    System.out.println(message);
-    
-    int day = 0, month = 0, year = 0;
-    boolean validDate = true;
-
-    do {
-      if(!validDate)
-        System.out.println("Lo sentimos, esta fecha es invalida");
-      
-      day = Main.askUserInt("Día: ");
-      month = Main.askUserInt("Mes: ");
-      year = Main.askUserInt("Año: ");
-
-      validDate = validateDate(year, month, day);
-    }
-    while(!validDate);
-
-    return new Date_ex(year, month, day);
-  }
-  
-  public static boolean validateDate(int year, int month, int day) {
-    boolean isValid = true;
-    try {
-      LocalDate.of(year, month, day);
-    }
-    catch (Exception e) {
-      isValid = false;
-    }
-    return isValid;
-  }
-
   public static LocalDate dateNow() {
     return LocalDate.now();
   }

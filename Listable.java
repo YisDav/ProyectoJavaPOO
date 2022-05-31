@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 interface Listable {
 
     abstract void addToList();

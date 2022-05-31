@@ -53,21 +53,18 @@ class Waiter extends Employee {
     throw new RuntimeException(message);
   }
 
-  public static Waiter getWaiterElementByInputID(String message) {
-    int waiterID; Waiter waiterElement = null; boolean validID = true;
-    
+  public static Waiter getWaiterElementByInputID(String message, int WaiterID) {
+    Waiter waiterElement = null; boolean validID = true;
     do {
-      waiterID = Main.askUserInt(message);
       try {
-        waiterElement = getWaiterElementByID(waiterID);
+        waiterElement = getWaiterElementByID(WaiterID);
         String name = waiterElement.fullName; // only for test
         validID = true;
       }
       catch(Exception e) {
         validID = false;
-        System.out.println("Lo sentimos, el empleado con el ID "+waiterID+" no pudo ser encontrado");
+        System.out.println("Lo sentimos, el empleado con el ID "+WaiterID+" no pudo ser encontrado");
       }
-
     } while(!validID);
 
     return waiterElement;

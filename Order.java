@@ -27,7 +27,7 @@ public class Order {
     return ListaProductos;  
   }
   
-  public void Facturar()
+  /*public void Facturar()
   {
     for(int indice = 0; indice < ListaProductos.size(); indice++) {
         Product myProduct = ListaProductos.get(indice);
@@ -38,5 +38,5 @@ public class Order {
       String message = String.format("\tEstamos enviando tu pedido a la dirección: %s\n\tNúmero de teléfono al cual notificaremos: %s", client.getAddress(), client.getPhoneNumber());
       System.out.println(message);
     }
-  }
+  }*/
 }

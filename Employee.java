@@ -88,26 +88,14 @@ class Employee extends Person {
     return null;
   }
 
-  public static Employee attemptToLogin(){
+  public static Employee attemptToLogin(String user, String password) {
     Employee employee_ = null;
     int attempts = 0;
+
     do {
       attempts++;
-      String 
-        name = Main.askUserStr("Usuario:"),
-        password = Main.askUserStr("Contraseña:");
-
-      employee_ = validateLogin(name, password);
-
-      if(employee_ == null) System.out.println("Credenciales inválidas, intentalo de nuevo");
-    }
-    while (attempts < 3 && employee_ == null );
-
-    if(attempts >= 3) {
-      System.out.println("Demasiados intentos.");
-      return null;
-    }
-    else System.out.println("Acceso permitido"); 
+      employee_ = validateLogin(user, password);
+    } while ( attempts <= 3 && employee_ == null );
 
     return employee_; 
   }
