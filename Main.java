@@ -28,7 +28,14 @@ Adaptar sistema de tal forma que se muestre, al momento de elegir un producto, c
 *      *  Validación de credenciales: Encriptación con Bcrypt de las credenciales
 *      *  Diseño de interfaz gráfica.
 *      *  Implementar fechas en la facturación.
-*
+
+    --===========] Anotaciones para hacer funcinar la intarfaz con el codigo[===========----
+
+* Todos los datos seran pedidos por consola al igual que las impresiones. 
+* En lo posible se implementarán imagenes para los produtos.
+* Solicitar cantidad de productos y el numero de mesa 
+* 
+  
 */
 
 class Main 
