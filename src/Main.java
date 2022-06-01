@@ -100,7 +100,7 @@ new Admin(3, "Claudia" , new Date_ex(1995,10,12), new Date_ex(2019,8,16), 400000
     // Empleados por defecto
 new Waiter(4, "Paco", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123");
 new Waiter(5, "Juancho", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123"); 
-new Waiter(6, "Fico", new Date_ex(1974,9,28), new Date_ex(2022,29,5), 1200000, 150,"123", "123");    
+new Waiter(6, "Fico", new Date_ex(1974,28,9), new Date_ex(2022,29,5), 1200000, 150,"123", "123");    
 new Waiter(7, "Rodolfo", new Date_ex(1945,26,3), new Date_ex(2022,31,5), 1200000, 150,"123", "123");  
 new Waiter(8, "Petro", new Date_ex(1960,19,4), new Date_ex(2022,31,5), 1200000, 150,"123", "123");  
 new Waiter(9, "Milton", new Date_ex(1969,18,9), new Date_ex(2022,29,5), 1200000, 150,"1porciento", "1porciento");
