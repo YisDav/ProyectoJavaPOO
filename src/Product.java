@@ -1,3 +1,4 @@
+package src;
 import java.util.*;
 
 public class Product implements Listable {
@@ -67,7 +68,9 @@ public class Product implements Listable {
   public static ArrayList<Product> getList(int productType) {
     ArrayList<Product> fixed_list = new ArrayList<>();
     for(Product product : getList()) {
-      if(product.type == productType) fixed_list.add(product);
+      if(product.type == productType){
+        fixed_list.add(product);
+      }
     }
     return fixed_list;
   }
@@ -130,5 +133,14 @@ public class Product implements Listable {
     } while(!validID);
 
     return productElement;
+  }
+
+  public static Object [][] to2DObjectProductList (int productType) {
+    Object [][] obj = new Object [getList(productType).size()][4];
+    for(int i = 0; i < getList(productType).size(); i++) {
+      Product product = getList(productType).get(i);
+      obj[i] = new Object [] {product.name, product.description, product.price, product.stock};
+    }
+    return obj;
   }
 }

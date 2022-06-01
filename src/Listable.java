@@ -1,3 +1,4 @@
+package src;
 interface Listable {
 
     abstract void addToList();

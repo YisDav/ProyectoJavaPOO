@@ -1,10 +1,12 @@
-package View;
+package src.View;
 
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JFrame;
 import java.awt.event.*;
+
+import src.Product;
 
 
 public class clientWindow extends JFrame {
@@ -69,12 +71,7 @@ public class clientWindow extends JFrame {
     imgPlato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Plato.gif"))); // NOI18N
 
     tablaBebidas.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null}
-        },
+        Product.to2DObjectProductList(0),
         new String [] {
             "Bebidas", "Descripcion", "Precio", "Cantidad"
         }
@@ -104,12 +101,7 @@ public class clientWindow extends JFrame {
     imgPostre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Postre.gif"))); // NOI18N
 
     tablaPlatos.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null}
-        },
+        Product.to2DObjectProductList(2),
         new String [] {
             "Plato", "Descripcion", "Precio", "Cantidad"
         }
@@ -137,12 +129,7 @@ public class clientWindow extends JFrame {
     }
 
     tablaPostres.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null}
-        },
+        Product.to2DObjectProductList(1),
         new String [] {
             "Postre", "Descripcion", "Precio", "Cantidad"
         }

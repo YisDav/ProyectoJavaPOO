@@ -1,6 +1,9 @@
+package src;
 import java.util.*;
+
+import src.View.*;
+
 import java.text.DecimalFormat;
-import View.*;
 
 /*
 *
@@ -50,56 +53,11 @@ class Main
     iniWindow ventana = new iniWindow();
     ventana.show();
   }
-
-
-  // ----------------- ]   MENU FUNCTIONS   [ ----------------- //
-
-  /*public static void imprimirFactura(Order clientOrder) {
-    System.out.println(mensajesDefault.get(2)); // Mensaje de facturando...
-    System.out.println("\n\n|---------------------------------------------------------------------|");
-    System.out.println("|----------------------------- FACTURA -------------------------------|");
-    System.out.println("|  Fecha: " + Date_ex.getTodayDateTime());
-    System.out.println("|---------------------------------------------------------------------|");
-    System.out.println("|---------------------------------------------------------------------|");
-    clientOrder.Facturar();
-    System.out.println("|---------------------------------------------------------------------|");
-    System.out.println("| Precio total: "+ darFormatoDinero(clientOrder.get_preciototal()));
-    System.out.println("|---------------------------------------------------------------------|");
-  }*/
   
   public static String darFormatoDinero(double dinero) {
     String price = DecimalFormat.getCurrencyInstance(Locale.US).format(Math.round(dinero));
     return price;
   }
-  
-  public static boolean isValidChoosenProduct(int type, int ID) 
-  {
-    Product choosedElement = Product.getProductElementByID(ID);
-    if(choosedElement.type != type)
-      return false;
-    else return true;
-  }
-
-  // ---------------------- ]   UTILS   [ ---------------------- //  
-  
-  public static boolean isInList(int value, ArrayList<Integer> list) 
-  {
-    for(int count = 0; count < list.size(); count++) {
-      if(value == list.get(count) )
-        return true;
-    }
-    return false;
-  }
-  
-  public static String stringArrayList_toMenuString(ArrayList<String> list) 
-  {
-    String createdStr = "";
-    for(int count = 0; count < list.size(); count++) {
-      createdStr = String.format("%s%d. %s\n", createdStr, count+1, list.get(count));
-    }
-    return createdStr;
-  }
-
 
   // ----------- ]   DEFAULT COFIG AND OBJECTS   [ ----------- //
   public static void defaultConfig() 
@@ -111,11 +69,13 @@ class Main
     new Product("Salchipapa",2, "Papa, salchica y chorizo", 6000, 10);
     new Product("Pizza",2, "Mixta (pollo, carne y champiñón), 5000", 6000, 14);
     new Product("Hot Dog",2, "Chorizo, papa fosforito, cebolla, queso y tocino", 4500, 10);
+    
     new Product("Gaseosa",0, "Refrescante", 3500, 20);
     new Product("Jugo natural",0, "En leche o agua", 3000, 20);
     new Product("Cerveza",0, "Espumoza", 3800, 20);
     new Product("Agua",0, "Natural", 2500, 20);
     new Product("Té",0, "De limon o durazno", 3500, 20);
+
     new Product("Pastel tres leches",1, "Dulce y suave", 2500, 20);
     new Product("Cheesecake",1, "Limon, mora, maracuyá o lulo", 4000, 20);
     new Product("Torta de chocolate",1, "Con relleno de arequipe", 12000, 20);
