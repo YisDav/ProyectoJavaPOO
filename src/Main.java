@@ -94,16 +94,16 @@ new Product("Fresas con crema",1, "Frescas y deliciosas", 12000, 20);
 
     //Admins por defecto
 new Admin(1, "Benito" , new Date_ex(1990,10,12), new Date_ex(2010,10,12), 4000000, "AdminBen", "1234");
-new Admin(2, "Bruce" , new Date_ex(1985,10,12), new Date_ex(2020,11,13), 4000000, "AdminBen", "1234");
-new Admin(3, "Claudia" , new Date_ex(1995,10,12), new Date_ex(2019,8,16), 4000000, "AdminBen", "1234");
+new Admin(2, "Bruce" , new Date_ex(1985,10,12), new Date_ex(2020,11,13), 4000000, "AdminBruce", "1234");
+new Admin(3, "Claudia" , new Date_ex(1995,10,12), new Date_ex(2019,8,16), 4000000, "AdminClaudia", "1234");
     
     // Empleados por defecto
-new Waiter(4, "Paco", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123");
-new Waiter(5, "Juancho", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123"); 
-new Waiter(6, "Fico", new Date_ex(1974,9,28), new Date_ex(2022,5,29), 1200000, 150,"123", "123");    
-new Waiter(7, "Rodolfo", new Date_ex(1945,3,26), new Date_ex(2022,5,31), 1200000, 150,"123", "123");  
-new Waiter(8, "Petro", new Date_ex(1960,4,19), new Date_ex(2022,5,31), 1200000, 150,"123", "123");  
-new Waiter(9, "Milton", new Date_ex(1969,9,18), new Date_ex(2022,5,29), 1200000, 150,"1porciento", "1porciento");
+new Waiter(4, "Paco", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"WPaco", "123");
+new Waiter(5, "Juancho", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"Wjuancho", "123"); 
+new Waiter(6, "Fico", new Date_ex(1974,9,28), new Date_ex(2022,5,29), 1200000, 150,"Wfico", "123");    
+new Waiter(7, "Rodolfo", new Date_ex(1945,3,26), new Date_ex(2022,5,31), 1200000, 150,"Wrodolfo", "123");  
+new Waiter(8, "Petro", new Date_ex(1960,4,19), new Date_ex(2022,5,31), 1200000, 150,"Wpetro", "123");  
+new Waiter(9, "Milton", new Date_ex(1969,9,18), new Date_ex(2022,5,29), 1200000, 150,"Wmilton", "1porciento");
 
   }
 }
