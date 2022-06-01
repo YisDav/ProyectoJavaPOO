@@ -3,6 +3,9 @@ package src.View;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.UIManager.LookAndFeelInfo;
+
+import src.Product;
+
 import javax.swing.JFrame;
 import java.awt.event.*;
 
@@ -88,12 +91,7 @@ public class clientWindow extends JFrame {
         imgPlato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Plato.gif"))); // NOI18N
 
         tablaBebidas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            Product.to2DObjectProductList(0),
             new String [] {
                 "Bebidas", "Descripcion", "Precio", "Cantidad"
             }
@@ -123,12 +121,7 @@ public class clientWindow extends JFrame {
         imgPostre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Postre.gif"))); // NOI18N
 
         tablaPlatos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            Product.to2DObjectProductList(2),
             new String [] {
                 "Plato", "Descripcion", "Precio", "Cantidad"
             }
@@ -156,12 +149,7 @@ public class clientWindow extends JFrame {
         }
 
         tablaPostres.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
+            Product.to2DObjectProductList(1),
             new String [] {
                 "Postre", "Descripcion", "Precio", "Cantidad"
             }
@@ -240,7 +228,7 @@ public class clientWindow extends JFrame {
 
         tituloFact.setFont(new java.awt.Font("Comic Sans MS", 2, 18)); // NOI18N
         tituloFact.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tituloFact.setText("Factura Parcial");
+        tituloFact.setText("Factura");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿Que?");
@@ -266,7 +254,7 @@ public class clientWindow extends JFrame {
         priceTotalFact.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         priceTotalFact.setText("valorTotal");
 
-        totalFact.setText("Total");
+        totalFact.setText("Subtotal");
 
         priceDomicilioFact.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         priceDomicilioFact.setText("0");

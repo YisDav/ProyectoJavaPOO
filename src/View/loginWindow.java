@@ -6,6 +6,8 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JFrame;
 import java.awt.event.*;
 
+import src.*;
+
 // Importar paquetes necesarios
  
 public class loginWindow extends JFrame{
@@ -187,9 +189,23 @@ public class loginWindow extends JFrame{
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
 		//------------------------ADMIN O MESERO-----------------------------------------------------
-		setVisible(false);
-		adminWindow adminWindow = new adminWindow();
-		adminWindow.setVisible(true);
+		String user = txtUserLogin.getText(), password = String.valueOf(txtPassLogin.getPassword());
+        Employee loggedEmpoyee = Employee.attemptToLogin(user, password);
+        
+        if (loggedEmpoyee == null) {
+            // Error here, ask again for credentials
+            return;
+        }
+        else if ( loggedEmpoyee instanceof Admin ){
+            adminWindow admW = new adminWindow();
+            admW.setVisible(true);
+        }
+        else if ( loggedEmpoyee instanceof Waiter ) {
+            waiterWindow waiterW = new waiterWindow();
+            waiterW.setVisible(true);
+        }
+        
+        setVisible(false);
     }                                        
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {                                          

@@ -139,7 +139,7 @@ public class Product implements Listable {
     Object [][] obj = new Object [getList(productType).size()][4];
     for(int i = 0; i < getList(productType).size(); i++) {
       Product product = getList(productType).get(i);
-      obj[i] = new Object [] {product.name, product.description, product.price, product.stock};
+      obj[i] = new Object [] {product.name, product.description, product.price, 0};
     }
     return obj;
   }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.management.RuntimeErrorException;
 
 
-class Waiter extends Employee {
+public class Waiter extends Employee {
   //---- Attributes
   private double baksheesh;
   //---- / Attributes

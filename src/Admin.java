@@ -1,7 +1,7 @@
 package src;
 import java.util.ArrayList;
 
-class Admin extends Employee {
+public class Admin extends Employee {
   //---- Attributes
   //---- / Attributes
   

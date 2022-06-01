@@ -2,7 +2,7 @@ package src;
 import java.time.*;
 import java.util.ArrayList;
 
-class Employee extends Person {
+public class Employee extends Person {
   //---- Attributes
   private Date_ex birth_date, join_date;
   private double salary;
