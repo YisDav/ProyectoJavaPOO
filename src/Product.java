@@ -143,4 +143,13 @@ public class Product implements Listable {
     }
     return obj;
   }
+
+  public static Object [][] to2DObjectAllProductList () {
+    Object [][] obj = new Object [getList().size()][4];
+    for(int i = 0; i < getList().size(); i++) {
+      Product product = getList().get(i);
+      obj[i] = new Object [] {product.name, product.type, product.description, product.price, product.stock};
+    }
+    return obj;
+  }
 }

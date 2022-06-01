@@ -2,9 +2,10 @@ package src.View;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.JFrame;
 import java.awt.event.*;
+
+import src.*;
 
 
 public class adminWindow extends JFrame{
@@ -13,7 +14,7 @@ public class adminWindow extends JFrame{
  
         setIconImage(new ImageIcon(getClass().getResource("/Images/Ejp.png")).getImage());
         setResizable(false);
-        setTitle("Administrador " + "x");
+        setTitle("Ventana administrador");
         jTabbedPaneProdMes = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -70,11 +71,7 @@ public class adminWindow extends JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         TablaProductAdmin.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
+            Product.to2DObjectAllProductList(),
             new String [] {
                 "Nombre", "Tipo", "Descripcion", "Precio", "Stock"
             }
@@ -365,11 +362,7 @@ public class adminWindow extends JFrame{
         jLabel15.setText("/");
 
         tablaWaiterAdmin.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
+            Waiter.to2DObjectAllWaiterList(),
             new String [] {
                 "ID", "Nombre", "Nacimiento", "Ingreso", "Salario", "Propina", "Usuario", "Contraseña"
             }
@@ -812,57 +805,61 @@ public class adminWindow extends JFrame{
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JTable TablaProductAdmin;
-    private javax.swing.JButton btnAddProdAdmin;
-    private javax.swing.JButton btnAddWaiAdmin;
-    private javax.swing.JButton btnDelProdAdmin;
-    private javax.swing.JButton btnDelWaiAdmin;
-    private javax.swing.JButton btnInicio1;
-    private javax.swing.JButton btnInicio2;
-    private javax.swing.JButton btnModProdAdmin;
-    private javax.swing.JButton btnModWaiAdmin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTabbedPane jTabbedPaneProdMes;
-    private javax.swing.JLabel lblDateIng;
-    private javax.swing.JLabel lblDateNac;
-    private javax.swing.JLabel lblID;
-    private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblPass;
-    private javax.swing.JLabel lblPropina;
-    private javax.swing.JLabel lblSalary;
-    private javax.swing.JLabel lblUser;
-    private javax.swing.JTable tablaWaiterAdmin;
-    private javax.swing.JTextField txtDayIngWaiAdmin;
-    private javax.swing.JTextField txtDayNacWaiAdmin;
-    private javax.swing.JTextField txtDescProdAdmin;
-    private javax.swing.JTextField txtIdWaiAdmin;
-    private javax.swing.JTextField txtMonthIngWaiAdmin;
-    private javax.swing.JTextField txtMonthNacWaiAdmin;
-    private javax.swing.JTextField txtNameProdAdmin;
-    private javax.swing.JTextField txtNameWaiAdmin;
-    private javax.swing.JTextField txtPassWaiAdmin;
-    private javax.swing.JTextField txtPriceProdAdmin;
-    private javax.swing.JTextField txtPropWaiAdmin;
-    private javax.swing.JTextField txtSalaryWaiAdmin;
-    private javax.swing.JTextField txtStockProdAdmin;
-    private javax.swing.JTextField txtTypeProdAdmin;
-    private javax.swing.JTextField txtUserWaiAdmin;
-    private javax.swing.JTextField txtYearIngWaiAdmin;
-    private javax.swing.JTextField txtYearNacWaiAdmin;
-    private javax.swing.JLabel jLabel6;
-    // End of variables declaration                   
+    private JTable TablaProductAdmin;
+    private JButton btnAddProdAdmin;
+    private JButton btnAddWaiAdmin;
+    private JButton btnDelProdAdmin;
+    private JButton btnDelWaiAdmin;
+    private JButton btnInicio1;
+    private JButton btnInicio2;
+    private JButton btnModProdAdmin;
+    private JButton btnModWaiAdmin;
+    private JLabel jLabel1;
+    private JLabel jLabel10;
+    private JLabel jLabel15;
+    private JLabel jLabel18;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JLabel jLabel9;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JScrollPane jScrollPane2;
+    private JScrollPane jScrollPane5;
+    private JSeparator jSeparator1;
+    private JSeparator jSeparator2;
+    private JTabbedPane jTabbedPaneProdMes;
+    private JLabel lblDateIng;
+    private JLabel lblDateNac;
+    private JLabel lblID;
+    private JLabel lblName;
+    private JLabel lblPass;
+    private JLabel lblPropina;
+    private JLabel lblSalary;
+    private JLabel lblUser;
+    private JTable tablaWaiterAdmin;
+    private JTextField txtDayIngWaiAdmin;
+    private JTextField txtDayNacWaiAdmin;
+    private JTextField txtDescProdAdmin;
+    private JTextField txtIdWaiAdmin;
+    private JTextField txtMonthIngWaiAdmin;
+    private JTextField txtMonthNacWaiAdmin;
+    private JTextField txtNameProdAdmin;
+    private JTextField txtNameWaiAdmin;
+    private JTextField txtPassWaiAdmin;
+    private JTextField txtPriceProdAdmin;
+    private JTextField txtPropWaiAdmin;
+    private JTextField txtSalaryWaiAdmin;
+    private JTextField txtStockProdAdmin;
+    private JTextField txtTypeProdAdmin;
+    private JTextField txtUserWaiAdmin;
+    private JTextField txtYearIngWaiAdmin;
+    private JTextField txtYearNacWaiAdmin;
+    private JLabel jLabel6;
+    // End of variables declaration                 
+    
+    public void setLogged(Admin loggedAdmin) {
+        this.setTitle("Administrador "+loggedAdmin.fullName);
+    }               
 }

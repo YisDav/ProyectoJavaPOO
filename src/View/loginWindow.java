@@ -191,17 +191,25 @@ public class loginWindow extends JFrame{
 		//------------------------ADMIN O MESERO-----------------------------------------------------
 		String user = txtUserLogin.getText(), password = String.valueOf(txtPassLogin.getPassword());
         Employee loggedEmpoyee = Employee.attemptToLogin(user, password);
-        
-        if (loggedEmpoyee == null) {
+
+        try {
+            loggedEmpoyee.equals("something");
+        } catch (Exception e) {
+            System.out.println("Error");
             // Error here, ask again for credentials
             return;
         }
-        else if ( loggedEmpoyee instanceof Admin ){
+        
+        if ( loggedEmpoyee instanceof Admin ){
+            System.out.println("Admin");
             adminWindow admW = new adminWindow();
+            admW.setLogged((Admin)loggedEmpoyee);
             admW.setVisible(true);
         }
         else if ( loggedEmpoyee instanceof Waiter ) {
+            System.out.println("Waiter");
             waiterWindow waiterW = new waiterWindow();
+            waiterW.setLogged((Waiter)loggedEmpoyee);
             waiterW.setVisible(true);
         }
         

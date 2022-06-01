@@ -79,26 +79,21 @@ public class Employee extends Person {
     return fixedList;
   }
 
-  public static Employee validateLogin(String username, String password) {
-    for(Employee employee_ : getList()) {
-      String 
-        login_userName = employee_.get_login_userName(),
-        login_password = employee_.get_login_password();
-        if( username.equals(login_userName) && password.equals(login_password) ) return employee_;
-    }
-    return null;
-  }
-
   public static Employee attemptToLogin(String user, String password) {
-    Employee employee_ = null;
+    Employee employee = null;
     int attempts = 0;
 
     do {
       attempts++;
-      employee_ = validateLogin(user, password);
-    } while ( attempts <= 3 && employee_ == null );
+      for(Employee employee_ : getList()) {
+        String 
+          login_userName = employee_.get_login_userName(),
+          login_password = employee_.get_login_password();        
+          if( login_userName.equals(user) && login_password.equals(password) ) return employee_;
+      }
+    } while ( attempts <= 3 && employee == null );
 
-    return employee_; 
+    return employee; 
   }
 
   //---- Other non-static methods

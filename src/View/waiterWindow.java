@@ -3,6 +3,9 @@ package src.View;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.UIManager.LookAndFeelInfo;
+
+import src.Waiter;
+
 import javax.swing.JFrame;
 import java.awt.event.*;
 
@@ -304,26 +307,37 @@ public class waiterWindow extends JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JButton btnInicio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel txtIdWaiter;
-    private javax.swing.JLabel txtIngDateWaiter;
-    private javax.swing.JLabel txtNacDateWaiter;
-    private javax.swing.JLabel txtNameWaiter;
-    private javax.swing.JLabel txtPropWaiter;
-    private javax.swing.JLabel txtSalaryWaiter;
-    private javax.swing.JLabel txtUserWaiter;
-    private javax.swing.JLabel welcomeWaiter;
-    private javax.swing.JLabel welcomeWaiter2;
+    private JButton btnInicio;
+    private JPanel jPanel1;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JLabel jLabel4;
+    private JLabel jLabel5;
+    private JLabel jLabel11;
+    private JLabel jLabel12;
+    private JLabel jLabel13;
+    private JLabel jLabel16;
+    private JSeparator jSeparator1;
+    private JLabel txtIdWaiter;
+    private JLabel txtIngDateWaiter;
+    private JLabel txtNacDateWaiter;
+    private JLabel txtNameWaiter;
+    private JLabel txtPropWaiter;
+    private JLabel txtSalaryWaiter;
+    private JLabel txtUserWaiter;
+    private JLabel welcomeWaiter;
+    private JLabel welcomeWaiter2;
     // End of variables declaration                   
+    
+    public void setLogged(Waiter loggedwaiter) {
+        jLabel1.setText("Hi  dear  "+loggedwaiter.fullName);
+        txtIdWaiter.setText(String.valueOf(loggedwaiter.getID()));
+        txtNameWaiter.setText(loggedwaiter.fullName);
+        txtNacDateWaiter.setText(loggedwaiter.getBirthDate().toString());
+        txtIngDateWaiter.setText(loggedwaiter.getJoinDate().toString());
+        txtSalaryWaiter.setText(String.valueOf(loggedwaiter.getSalary()));
+        txtPropWaiter.setText(String.valueOf(loggedwaiter.getBaksheesh()));
+        txtUserWaiter.setText(loggedwaiter.get_login_userName());
+    }
 }

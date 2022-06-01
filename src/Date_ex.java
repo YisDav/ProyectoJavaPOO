@@ -3,7 +3,7 @@ import java.text.*;
 import java.time.*;
 import java.util.*;
 
-class Date_ex {
+public class Date_ex {
   //---- Attributes
   private int day, month, year;
   protected LocalDate fecha;
@@ -48,6 +48,10 @@ class Date_ex {
     this.year = year;
   }
   //---- / Setter methods
+
+  public String toString () {
+    return String.format("%d/%d/%d", this.day, this.month, this.year);
+  }
 
 
   //---- Other non-static methods
