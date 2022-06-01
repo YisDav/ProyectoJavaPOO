@@ -107,7 +107,7 @@ public class Product implements Listable {
 
   public static Product getProductElementByID(int ID) {
     for(Product product : getList()) {
-      if( product.active == 1 && product.getID() == ID)
+      if( product.getID() == ID )
         return product;
     }
     String message = String.format("No product with ID: %d was found", ID);

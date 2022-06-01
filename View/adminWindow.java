@@ -1,4 +1,5 @@
-import javax.swing.*;
+package View;
+
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.UIManager.LookAndFeelInfo;

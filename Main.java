@@ -1,5 +1,6 @@
 import java.util.*;
 import java.text.DecimalFormat;
+import View.*;
 
 /*
 *
@@ -45,6 +46,9 @@ class Main
   {
     // Creación de objetos y configuración de inicio (productos, menus, mensajes, etc.)
     defaultConfig();
+    
+    iniWindow ventana = new iniWindow();
+    ventana.show();
   }
 
 
