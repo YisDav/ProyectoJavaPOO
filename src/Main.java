@@ -84,9 +84,9 @@ new Product("Cerveza",0, "Espumoza", 3800, 20);
 new Product("Agua",0, "Natural", 2500, 20);
 new Product("Té",0, "De limon o durazno", 3500, 20);
 
-new Product("Cheesecake Maracuya",2, "Cheesecake de textura suave, una base de galletas  y delicada crema de maracuyá.", 4500, 10);
-new Product("Tiramissú",2, "Postre al frio humedecido en café, capas suave a base de queso crema y cocoa.", 4500, 10);
-new Product("Milhoja",2, "Rellenas de crema pastelera y cubierta de chocolate.", 4500, 10);
+new Product("Cheesecake Maracuya",1, "Cheesecake de textura suave, una base de galletas  y delicada crema de maracuyá.", 4500, 10);
+new Product("Tiramissú",1, "Postre al frio humedecido en café, capas suave a base de queso crema y cocoa.", 4500, 10);
+new Product("Milhoja",1, "Rellenas de crema pastelera y cubierta de chocolate.", 4500, 10);
 new Product("Pastel tres leches",1, "Dulce y suave", 2500, 20);
 new Product("Cheesecake",1, "Limon, mora, maracuyá o lulo", 4000, 20);
 new Product("Torta de chocolate",1, "Con relleno de arequipe", 12000, 20);
@@ -100,10 +100,10 @@ new Admin(3, "Claudia" , new Date_ex(1995,10,12), new Date_ex(2019,8,16), 400000
     // Empleados por defecto
 new Waiter(4, "Paco", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123");
 new Waiter(5, "Juancho", new Date_ex(2000,10,12), new Date_ex(2018,10,12), 1200000, 150,"123", "123"); 
-new Waiter(6, "Fico", new Date_ex(1974,28,9), new Date_ex(2022,29,5), 1200000, 150,"123", "123");    
-new Waiter(7, "Rodolfo", new Date_ex(1945,26,3), new Date_ex(2022,31,5), 1200000, 150,"123", "123");  
-new Waiter(8, "Petro", new Date_ex(1960,19,4), new Date_ex(2022,31,5), 1200000, 150,"123", "123");  
-new Waiter(9, "Milton", new Date_ex(1969,18,9), new Date_ex(2022,29,5), 1200000, 150,"1porciento", "1porciento");
+new Waiter(6, "Fico", new Date_ex(1974,9,28), new Date_ex(2022,5,29), 1200000, 150,"123", "123");    
+new Waiter(7, "Rodolfo", new Date_ex(1945,3,26), new Date_ex(2022,5,31), 1200000, 150,"123", "123");  
+new Waiter(8, "Petro", new Date_ex(1960,4,19), new Date_ex(2022,5,31), 1200000, 150,"123", "123");  
+new Waiter(9, "Milton", new Date_ex(1969,9,18), new Date_ex(2022,5,29), 1200000, 150,"1porciento", "1porciento");
 
   }
 }
