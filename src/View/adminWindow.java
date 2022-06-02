@@ -77,14 +77,14 @@ public class adminWindow extends JFrame{
         TablaProductAdmin.setModel(new javax.swing.table.DefaultTableModel(
             Product.to2DObjectAllProductList(),
             new String [] {
-                "Nombre", "Tipo", "Descripcion", "Precio", "Stock"
+                "ID", "Nombre", "Tipo", "Descripcion", "Precio", "Stock"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -102,6 +102,7 @@ public class adminWindow extends JFrame{
             TablaProductAdmin.getColumnModel().getColumn(2).setResizable(false);
             TablaProductAdmin.getColumnModel().getColumn(3).setResizable(false);
             TablaProductAdmin.getColumnModel().getColumn(4).setResizable(false);
+            TablaProductAdmin.getColumnModel().getColumn(5).setResizable(false);
         }
         
         TablaProductAdmin.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
@@ -754,7 +755,6 @@ public class adminWindow extends JFrame{
             }
             
             createdProduct = admin.createProduct(nombre, int_tipo, descripcion, double_precio, Integer.parseInt(stock));
-
             success = true;
         } 
         catch (Exception e) {
@@ -764,17 +764,60 @@ public class adminWindow extends JFrame{
 
         if(success) {
             JOptionPane.showMessageDialog(this, "Muy bien, se ha creado el producto "+createdProduct.name+" con ID: "+createdProduct.getID());
-            this.setVisible(false);
-            adminWindow.showWindow(this.loggedAdmin);
+            this.reloadWindow();
         }
     }                                               
 
     private void btnModProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // Modificar producto desde el panel administrativo
+        int 
+            row = TablaProductAdmin.getSelectedRow(),
+            ID = Integer.parseInt(String.valueOf(TablaProductAdmin.getValueAt(row, 0)));
+        
+        Product product = Product.getProductElementByID(ID);
+
+        String  descripcion = "";
+        int precio = 0, stock = 0;
+        boolean success = true;
+        success = true;
+        
+        try {
+            // nombre = String.valueOf(TablaProductAdmin.getValueAt(row, 0));                           //NOT ALLOWED TO EDIT
+            // tipo = Integer.parseInt(String.valueOf(TablaProductAdmin.getValueAt(row, 1)));           //NOT ALLOWED TO EDIT
+            
+            descripcion = String.valueOf(TablaProductAdmin.getValueAt(row, 3));
+            precio = (int) Double.parseDouble(String.valueOf(TablaProductAdmin.getValueAt(row, 4)));
+            stock = Integer.parseInt(String.valueOf(TablaProductAdmin.getValueAt(row, 5)));
+
+            this.loggedAdmin.changeDesc(product, descripcion);
+            this.loggedAdmin.changePrice(product, precio);
+            this.loggedAdmin.changeStock(product, stock);
+            
+            success = true;
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, por favor comprueba los campos de la tabla");
+            success = false;
+        }
+        if(success) {
+            String response = String.format("Muy bien, ha modificado el producto %s (ID: %d)", product.name, product.getID());
+            JOptionPane.showMessageDialog(this, response);
+            this.reloadWindow();
+        }
     }                                               
 
     private void btnDelProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // Elminar producto desde el panel administrativo
+        int 
+            row = TablaProductAdmin.getSelectedRow(),
+            ID = Integer.parseInt(String.valueOf(TablaProductAdmin.getValueAt(row, 0)));
+        
+        Product product = Product.getProductElementByID(ID);
+        product.softDelete();
+
+        String response = String.format("Muy bien, el producto %s (%d) fue eliminado", product.name, product.getID());
+        JOptionPane.showMessageDialog(this, response);
+        this.reloadWindow();
+        
     }                                               
 
     private void btnInicio2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -924,6 +967,11 @@ public class adminWindow extends JFrame{
         admW.setLogged(loggedAdmin);
         admW.setVisible(true);
         return admW;
+    }
+
+    public void reloadWindow () {
+        this.setVisible(false);
+        adminWindow.showWindow(this.loggedAdmin);
     }
 
     public void setLogged(Admin adminLogged) {
