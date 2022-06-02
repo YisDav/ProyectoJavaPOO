@@ -159,7 +159,7 @@ public class clientWindow extends JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, true
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
