@@ -478,11 +478,24 @@ public class clientWindow extends JFrame {
             }
           });
 
+          txtAddresClient.setEnabled(false);
+          txtTelefonClient.setEnabled(false);
         pack();
     }// </editor-fold>                        
 
+
+    
     private void checkAddresClientActionPerformed(java.awt.event.ActionEvent evt) {                                                  
         // TODO add your handling code here:
+
+        if(checkAddresClient.isSelected()){
+            txtAddresClient.setEnabled(true);
+            txtTelefonClient.setEnabled(true);
+          }else{
+            txtAddresClient.setEnabled(false);
+            txtTelefonClient.setEnabled(false);
+          }
+        
     }                                                 
 
     private void txtAddresClientActionPerformed(java.awt.event.ActionEvent evt) {                                                
@@ -491,6 +504,7 @@ public class clientWindow extends JFrame {
 
     private void txtTelefonClientActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
+        
     }                                                
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -506,6 +520,9 @@ public class clientWindow extends JFrame {
 
     private void btnClearClientActionPerformed(java.awt.event.ActionEvent evt) {                                               
         // TODO add your handling code here:
+        txtAddresClient.setText(null);
+        txtTelefonClient.setText(null);
+
     }                                              
 
     /**
