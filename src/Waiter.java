@@ -75,7 +75,7 @@ public class Waiter extends Employee {
     Object [][] obj = new Object [getList().size()][4];
     for(int i = 0; i < getList().size(); i++) {
       Waiter waiter = getList().get(i);
-      obj[i] = new Object [] {waiter.getID(), waiter.fullName, waiter.getBirthDate().toString(), waiter.getJoinDate().toString(), waiter.getSalary(), waiter.getBaksheesh(), waiter.get_login_userName(), waiter.get_login_userName()};
+      obj[i] = new Object [] {waiter.getID(), waiter.fullName, waiter.getBirthDate().toString(), waiter.getJoinDate().toString(), waiter.getSalary(), waiter.getBaksheesh(), waiter.get_login_userName(), waiter.get_login_password()};
     }
     return obj;
   }
