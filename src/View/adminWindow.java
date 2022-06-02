@@ -665,14 +665,6 @@ public class adminWindow extends JFrame{
 
         pack();
     }// </editor-fold>         
-    
-    private void edicionTablaProductos(TableModelEvent e) {
-        System.out.println("Se esta modificando");
-    }
-
-    private void edicionTablaWaiter(TableModelEvent e) {
-        System.out.println("Se esta modificando");
-    }
 
     private void txtNameProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
@@ -849,7 +841,7 @@ public class adminWindow extends JFrame{
     }                                                  
 
     private void btnAddWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        /*// Agregar producto desde el panel administrativo
+        // Agregar producto desde el panel administrativo
         String 
             identificacion = txtIdWaiAdmin.getText(), 
             nombre = txtNameWaiAdmin.getText(), 
@@ -864,7 +856,7 @@ public class adminWindow extends JFrame{
             usuario = txtUserWaiAdmin.getText(), 
             contrasenia = txtPassWaiAdmin.getText();
 
-        Boolean success; Product createdProduct = null;
+        Boolean success; Waiter created = null;
         
         try {
             int 
@@ -879,13 +871,11 @@ public class adminWindow extends JFrame{
                 int_salario = Integer.parseInt(salario);
 
             Admin admin = loggedAdmin;
-            //Date_ex birth = new Date_ex();
-                
-            if(int_tipo < 1 || int_tipo > 3 || double_precio < 0) {
-                throw new RuntimeException("Error"); // Error ocasionado intencionalmente
-            }
+            Date_ex birth = new Date_ex(int_fn_anio, int_fn_mes, int_fn_dia);
+            Date_ex join = new Date_ex(int_ingr_anio, int_ingr_mes, int_ingr_dia);
+
+            created = admin.createWaiter(nombre, int_id, birth, join, int_salario, usuario, contrasenia);                
             
-            createdProduct = admin.createProduct(nombre, int_tipo, descripcion, double_precio, Integer.parseInt(stock));
             success = true;
         } 
         catch (Exception e) {
@@ -894,17 +884,49 @@ public class adminWindow extends JFrame{
         }
 
         if(success) {
-            JOptionPane.showMessageDialog(this, "Muy bien, se ha creado el producto "+createdProduct.name+" con ID: "+createdProduct.getID());
+            String response = String.format("Se ha creado al empleado %s (ID: %d) con salario %f", created.fullName, created.getID(), created.getSalary());
+            JOptionPane.showMessageDialog(this, response);
             this.reloadWindow();
-        }*/
+        }
     }                                              
 
-    private void btnModWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
+    private void btnModWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {
+        // Modificar waiter
+        int 
+            row = tablaWaiterAdmin.getSelectedRow(),
+            ID = Integer.parseInt(String.valueOf(tablaWaiterAdmin.getValueAt(row, 0)));        
+            
+        Waiter waiter = Waiter.getWaiterElementByID(ID);
+        boolean success; String nombre = ""; double salario = 0;
+        try {
+            nombre = String.valueOf(tablaWaiterAdmin.getValueAt(row, 1));
+            salario = Double.parseDouble(String.valueOf(tablaWaiterAdmin.getValueAt(row, 4)));
+            this.loggedAdmin.changeNameWaiter(waiter, nombre);
+            this.loggedAdmin.changeSalaryWaiter(waiter, salario);
+            success = true;
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, por favor comprueba los campos de la tabla");
+            success = false;
+        }
+        if(success) {
+            String response = String.format("Muy bien, ha modificado el empleado %s (ID: %d)", waiter.fullName, waiter.getID());
+            JOptionPane.showMessageDialog(this, response);
+            this.reloadWindow();
+        }
     }                                              
 
     private void btnDelProdAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
+        // Eliminar Empleado
+        int 
+            row = tablaWaiterAdmin.getSelectedRow(),
+            ID = Integer.parseInt(String.valueOf(tablaWaiterAdmin.getValueAt(row, 0)));        
+            
+        Waiter waiter = Waiter.getWaiterElementByID(ID);
+        waiter.softDelete();
+        String response = String.format("Muy bien, ha eliminado el empleado %s (ID: %d)", waiter.fullName, waiter.getID());
+        JOptionPane.showMessageDialog(this, response);
+        this.reloadWindow();
     }                                                
 
     /**

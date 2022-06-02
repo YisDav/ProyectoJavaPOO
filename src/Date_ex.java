@@ -11,7 +11,7 @@ public class Date_ex {
 
   
   //---- Constructor
-  Date_ex(int year, int month, int day) {    
+  public Date_ex(int year, int month, int day) {    
     this.day = day;
     this.month = month;
     this.year = year;
