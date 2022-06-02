@@ -1,11 +1,11 @@
 Pendiente:
 
 
-* Arreglar botón cancelar
+* Arreglar botï¿½n cancelar
 
 * Guardar cantidad de los productos a comprar
 * Acciones al dar a "Facturar" (cambiar nombre si es el caso)
 
 
-* Sistema de añadir, modificar y eliminar producto.
-* Sistema de añadir, modificar y eliminar mesero.
+* Sistema de aï¿½adir, modificar y eliminar producto.
+* Sistema de aï¿½adir, modificar y eliminar mesero.

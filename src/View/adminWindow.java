@@ -1,8 +1,12 @@
 package src.View;
 
+import javax.management.RuntimeErrorException;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.JFrame;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+
 import java.awt.event.*;
 
 import src.*;
@@ -99,6 +103,13 @@ public class adminWindow extends JFrame{
             TablaProductAdmin.getColumnModel().getColumn(3).setResizable(false);
             TablaProductAdmin.getColumnModel().getColumn(4).setResizable(false);
         }
+        
+        TablaProductAdmin.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+        TablaProductAdmin.getModel().addTableModelListener(new TableModelListener() {
+            public void tableChanged(TableModelEvent e) {
+                edicionTablaProductos(e);
+            }
+        });
 
         jLabel1.setText("Nombre");
 
@@ -393,6 +404,12 @@ public class adminWindow extends JFrame{
             tablaWaiterAdmin.getColumnModel().getColumn(6).setResizable(false);
             tablaWaiterAdmin.getColumnModel().getColumn(7).setResizable(false);
         }
+        tablaWaiterAdmin.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+        tablaWaiterAdmin.getModel().addTableModelListener(new TableModelListener() {
+            public void tableChanged(TableModelEvent e) {
+                edicionTablaWaiter(e);
+            }
+        });
 
         jLabel10.setText("/");
 
@@ -657,7 +674,15 @@ public class adminWindow extends JFrame{
           
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>         
+    
+    private void edicionTablaProductos(TableModelEvent e) {
+        System.out.println("Se esta modificando");
+    }
+
+    private void edicionTablaWaiter(TableModelEvent e) {
+        System.out.println("Se esta modificando");
+    }
 
     private void txtNameProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
@@ -707,15 +732,49 @@ public class adminWindow extends JFrame{
     }                                                 
 
     private void btnAddProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+        // Agregar producto desde el panel administrativo
+        String 
+            nombre = txtNameProdAdmin.getText(), 
+            tipo = txtTypeProdAdmin.getText(), 
+            descripcion = txtDescProdAdmin.getText(), 
+            precio = txtPriceProdAdmin.getText(), 
+            stock = txtStockProdAdmin.getText();
+
+        Boolean success; Product createdProduct = null;
+        try {
+            Admin admin = loggedAdmin;
+
+            int 
+                int_tipo = Integer.parseInt(tipo),
+                int_stock = Integer.parseInt(stock);
+            double double_precio = Double.parseDouble(precio);
+                
+            if(int_tipo < 1 || int_tipo > 3 || double_precio < 0) {
+                throw new RuntimeException("Error"); // Error ocasionado intencionalmente
+            }
+            
+            createdProduct = admin.createProduct(nombre, int_tipo, descripcion, double_precio, Integer.parseInt(stock));
+
+            success = true;
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, por favor comprueba los campos");
+            success = false;
+        }
+
+        if(success) {
+            JOptionPane.showMessageDialog(this, "Muy bien, se ha creado el producto "+createdProduct.name+" con ID: "+createdProduct.getID());
+            this.setVisible(false);
+            adminWindow.showWindow(this.loggedAdmin);
+        }
     }                                               
 
     private void btnModProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+        // Modificar producto desde el panel administrativo
     }                                               
 
     private void btnDelProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+        // Elminar producto desde el panel administrativo
     }                                               
 
     private void btnInicio2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -857,9 +916,18 @@ public class adminWindow extends JFrame{
     private JTextField txtYearIngWaiAdmin;
     private JTextField txtYearNacWaiAdmin;
     private JLabel jLabel6;
+    private Admin loggedAdmin;
     // End of variables declaration                 
     
-    public void setLogged(Admin loggedAdmin) {
-        this.setTitle("Administrador "+loggedAdmin.fullName);
+    public static adminWindow showWindow (Admin loggedAdmin) {
+        adminWindow admW = new adminWindow();
+        admW.setLogged(loggedAdmin);
+        admW.setVisible(true);
+        return admW;
+    }
+
+    public void setLogged(Admin adminLogged) {
+        this.loggedAdmin = adminLogged;
+        this.setTitle("Administrador "+this.loggedAdmin.fullName);
     }               
 }

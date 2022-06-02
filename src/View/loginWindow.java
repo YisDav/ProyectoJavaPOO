@@ -202,9 +202,7 @@ public class loginWindow extends JFrame{
         
         if ( loggedEmpoyee instanceof Admin ){
             System.out.println("Admin");
-            adminWindow admW = new adminWindow();
-            admW.setLogged((Admin)loggedEmpoyee);
-            admW.setVisible(true);
+            adminWindow.showWindow((Admin)loggedEmpoyee);
         }
         else if ( loggedEmpoyee instanceof Waiter ) {
             System.out.println("Waiter");
