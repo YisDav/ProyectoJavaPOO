@@ -8,6 +8,7 @@ import src.Product;
 
 import javax.swing.JFrame;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 
 public class clientWindow extends JFrame {
@@ -233,31 +234,31 @@ public class clientWindow extends JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("¿Que?");
 
-        numPlatosFact.setText("# platos");
+        numPlatosFact.setText("Platos");
 
-        numBebidasFact.setText("# bebidas");
+        numBebidasFact.setText("Bebidas");
 
-        numPostresFact.setText("# postres");
+        numPostresFact.setText("Postres");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Precio");
 
         pricePlatosFact.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        pricePlatosFact.setText("valorPlatos");
+        pricePlatosFact.setText("0.0");
 
         priceBebidasFact.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        priceBebidasFact.setText("valorBebidas");
+        priceBebidasFact.setText("0.0");
 
         pricePostresFact.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        pricePostresFact.setText("valorPostres");
+        pricePostresFact.setText("0.0");
 
         priceTotalFact.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        priceTotalFact.setText("valorTotal");
+        priceTotalFact.setText("0.0");
 
         totalFact.setText("Subtotal");
 
         priceDomicilioFact.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        priceDomicilioFact.setText("0");
+        priceDomicilioFact.setText("0.0");
 
         domicilioFact.setText("Domicilio");
 
@@ -491,9 +492,11 @@ public class clientWindow extends JFrame {
         if(checkAddresClient.isSelected()){
             txtAddresClient.setEnabled(true);
             txtTelefonClient.setEnabled(true);
+            priceDomicilioFact.setText("5000.0");
           }else{
             txtAddresClient.setEnabled(false);
             txtTelefonClient.setEnabled(false);
+            priceDomicilioFact.setText("0");
           }
         
     }                                                 
@@ -515,7 +518,98 @@ public class clientWindow extends JFrame {
     }                                         
 
     private void btnFacturarClientActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
+        // Facturar al clientev
+        /*ArrayList<String> nombresPlatos = new ArrayList<String>();
+        ArrayList<Double> preciosPlatos = new ArrayList<Double>();
+        ArrayList<Integer> cantidaPlatos = new ArrayList<Integer>();*/
+        double precioTotalPlatos = 0;
+        String responsePlato = "";
+        int numPlts = 0;
+        double precioTotalBebidas = 0;
+        String responseBebida = "";
+        int numBebid = 0;
+        double precioTotalPostres = 0;
+        String responsePostre = "";
+        int numPostr = 0;
+        double totalFact = 0;
+
+        //DATOS PARA PLATOS--------------
+
+        for(int pl = 0; pl < Product.getList(2).size(); pl++)
+        {
+            String nombrePlato = String.valueOf(tablaPlatos.getValueAt(pl, 0));
+            double precioPlato = Double.parseDouble(String.valueOf(tablaPlatos.getValueAt(pl, 2)));
+            int cantidadPlatos = Integer.parseInt(String.valueOf(tablaPlatos.getValueAt(pl, 3)));
+
+            if(cantidadPlatos > 0) {
+                /*nombresPlatos.add(nombrePlato);
+                preciosPlatos.add(precioPlato);
+                cantidaPlatos.add(cantidadPlatos);*/
+                precioTotalPlatos = precioTotalPlatos+(precioPlato*cantidadPlatos);
+                numPlts += cantidadPlatos;
+                responsePlato = String.format("%s %s (Q: %d): $%f\n", responsePlato, nombrePlato, cantidadPlatos, precioPlato);
+
+            }
+        }
+        numPlatosFact.setText(numPlts+" plato(s)");
+        pricePlatosFact.setText(new Double(precioTotalPlatos).toString());
+        
+        
+        //DATOS PARA BEBIDAS-----------------
+
+        for(int bd = 0; bd < Product.getList(0).size(); bd++)
+        {
+            String nombreBebida = String.valueOf(tablaBebidas.getValueAt(bd, 0));
+            double precioBebida = Double.parseDouble(String.valueOf(tablaBebidas.getValueAt(bd, 2)));
+            int cantidadBebidas = Integer.parseInt(String.valueOf(tablaBebidas.getValueAt(bd, 3)));
+
+            if(cantidadBebidas > 0) {
+                /*nombresPlatos.add(nombrePlato);
+                preciosPlatos.add(precioPlato);
+                cantidaPlatos.add(cantidadPlatos);*/
+                System.out.println("C: "+cantidadBebidas);
+                System.out.println("P: "+precioBebida);
+                precioTotalBebidas = precioTotalBebidas+(precioBebida*cantidadBebidas);
+                System.out.println("PT: "+precioTotalBebidas);
+                numBebid += cantidadBebidas;
+                responseBebida = String.format("%s %s (Q: %d): $%f\n", responseBebida, nombreBebida, cantidadBebidas, precioBebida);
+
+            }
+        }
+        numBebidasFact.setText(numBebid+" bebida(s)");
+        priceBebidasFact.setText(new Double(precioTotalBebidas).toString());
+        
+        //DATOS PARA POSTRES---------------
+
+        for(int pt = 0; pt < Product.getList(1).size(); pt++)
+        {
+            String nombrePostre = String.valueOf(tablaPostres.getValueAt(pt, 0));
+            double precioPostre = Double.parseDouble(String.valueOf(tablaPostres.getValueAt(pt, 2)));
+            int cantidadPostres = Integer.parseInt(String.valueOf(tablaPostres.getValueAt(pt, 3)));
+
+            if(cantidadPostres > 0) {
+                /*nombresPlatos.add(nombrePlato);
+                preciosPlatos.add(precioPlato);
+                cantidaPlatos.add(cantidadPlatos);*/
+                precioTotalPostres = precioTotalPostres+(precioPostre*cantidadPostres);
+                numPostr += cantidadPostres;
+                responsePostre = String.format("%s %s (Q: %d): $%f\n", responsePostre, nombrePostre, cantidadPostres, precioPostre);
+
+            }
+        }
+
+        numPostresFact.setText(numPostr+" postre(s)");
+        pricePostresFact.setText(new Double(precioTotalPostres).toString());
+
+        //TOTAL DE LA FACTURA-------------------
+
+        totalFact = (precioTotalPlatos+precioTotalBebidas+precioTotalPostres+Double.parseDouble(priceDomicilioFact.getText()));
+        priceTotalFact.setText(new Double(totalFact).toString());
+
+        System.out.println(responsePlato);
+        System.out.println(responseBebida);
+        System.out.println(responsePostre);
+        
     }                                                 
 
     private void btnClearClientActionPerformed(java.awt.event.ActionEvent evt) {                                               
@@ -601,5 +695,6 @@ public class clientWindow extends JFrame {
     private javax.swing.JLabel totalFact;
     private javax.swing.JTextField txtAddresClient;
     private javax.swing.JTextField txtTelefonClient;
+    double domicilio = 5000;
     // End of variables declaration                   
 }
