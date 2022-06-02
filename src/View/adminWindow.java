@@ -116,30 +116,6 @@ public class adminWindow extends JFrame{
 
         jLabel5.setText("Stock");
 
-        txtNameProdAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameProdAdminActionPerformed(evt);
-            }
-        });
-
-        txtTypeProdAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTypeProdAdminActionPerformed(evt);
-            }
-        });
-
-        txtPriceProdAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPriceProdAdminActionPerformed(evt);
-            }
-        });
-
-        txtStockProdAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStockProdAdminActionPerformed(evt);
-            }
-        });
-
         btnAddProdAdmin.setBackground(new java.awt.Color(204, 255, 204));
         btnAddProdAdmin.setText("Agregar");
         btnAddProdAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -172,12 +148,6 @@ public class adminWindow extends JFrame{
             }
         });
 
-        txtDescProdAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescProdAdminActionPerformed(evt);
-            }
-        });
-
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("1. Plato - 2. Bebida - 3. Postre");
 
@@ -193,11 +163,11 @@ public class adminWindow extends JFrame{
                                 .addGap(16, 16, 16)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE))
                                 .addGap(36, 36, 36))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)))
@@ -269,12 +239,6 @@ public class adminWindow extends JFrame{
 
         jTabbedPaneProdMes.addTab("Productos", jPanel1);
 
-        txtPropWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPropWaiAdminActionPerformed(evt);
-            }
-        });
-
         btnModWaiAdmin.setBackground(new java.awt.Color(255, 255, 204));
         btnModWaiAdmin.setText("Modificar");
         btnModWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -299,18 +263,6 @@ public class adminWindow extends JFrame{
 
         lblUser.setText("Usuario");
 
-        txtIdWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdWaiAdminActionPerformed(evt);
-            }
-        });
-
-        txtNameWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameWaiAdminActionPerformed(evt);
-            }
-        });
-
         btnAddWaiAdmin.setBackground(new java.awt.Color(204, 255, 204));
         btnAddWaiAdmin.setText("Agregar");
         btnAddWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -319,49 +271,11 @@ public class adminWindow extends JFrame{
             }
         });
 
-        txtYearNacWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtYearNacWaiAdminActionPerformed(evt);
-            }
-        });
-
         lblPropina.setText("Propina");
 
         lblSalary.setText("Salario");
 
         lblPass.setText("Contraseña");
-
-        txtMonthNacWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMonthNacWaiAdminActionPerformed(evt);
-            }
-        });
-
-        txtDayNacWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDayNacWaiAdminActionPerformed(evt);
-            }
-        });
-
-        lblDateIng.setText("Fecha de ingreso");
-
-        txtUserWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUserWaiAdminActionPerformed(evt);
-            }
-        });
-
-        txtSalaryWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSalaryWaiAdminActionPerformed(evt);
-            }
-        });
-
-        txtPassWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPassWaiAdminActionPerformed(evt);
-            }
-        });
 
         jLabel9.setText("/");
 
@@ -404,24 +318,6 @@ public class adminWindow extends JFrame{
         jLabel10.setText("/");
 
         jLabel18.setText("/");
-
-        txtYearIngWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtYearIngWaiAdminActionPerformed(evt);
-            }
-        });
-
-        txtMonthIngWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMonthIngWaiAdminActionPerformed(evt);
-            }
-        });
-
-        txtDayIngWaiAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDayIngWaiAdminActionPerformed(evt);
-            }
-        });
 
         btnInicio1.setBackground(new java.awt.Color(153, 153, 153));
         btnInicio1.setText("Atrás");
@@ -664,39 +560,7 @@ public class adminWindow extends JFrame{
           
 
         pack();
-    }// </editor-fold>         
-
-    private void txtNameProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
-    }                                                
-
-    private void txtStockProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
-    
-    }                                                 
-
-    private void txtPropWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
-    
-    }                                               
-
-    private void txtIdWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
-    
-    }                                             
-
-    private void txtUserWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
-    
-    }                                               
-
-    private void txtSalaryWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
-    }                                                 
-
-    private void txtPassWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
-    }                                               
+    }// </editor-fold>                                                 
 
     private void btnInicio1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
@@ -704,14 +568,6 @@ public class adminWindow extends JFrame{
 		iniWindow initWindow = new iniWindow();
 		initWindow.setVisible(true);
     }                                          
-
-    private void txtTypeProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
-    }                                                
-
-    private void txtPriceProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
-    }                                                 
 
     private void btnAddProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // Agregar producto desde el panel administrativo
@@ -808,37 +664,6 @@ public class adminWindow extends JFrame{
 		initWindow.setVisible(true);
     }                                          
 
-    private void txtDescProdAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        // TODO add your handling code here:
-    }                                                
-
-    private void txtNameWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
-    }                                               
-
-    private void txtDayNacWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
-    }                                                 
-
-    private void txtMonthNacWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        // TODO add your handling code here:
-    }                                                   
-
-    private void txtYearNacWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-        // TODO add your handling code here:
-    }                                                  
-
-    private void txtDayIngWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                  
-        // TODO add your handling code here:
-    }                                                 
-
-    private void txtMonthIngWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                    
-        // TODO add your handling code here:
-    }                                                   
-
-    private void txtYearIngWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                                   
-        // TODO add your handling code here:
-    }                                                  
 
     private void btnAddWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                               
         // Agregar producto desde el panel administrativo

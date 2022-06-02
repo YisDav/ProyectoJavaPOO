@@ -158,16 +158,23 @@ public class iniWindow extends JFrame {
     private void btnClientActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
         String Message = "Asi como nos interesa tu dinero, nos interesas tú, ¿como te llamas?";
-        nameInput = JOptionPane.showInputDialog(Message);
-        //JOptionPane.showMessageDialog(null, "Bienvenido/a "+nameInput);
-        setVisible(false);
-        clientWindow clientWindow = new clientWindow();
-        clientWindow.setVisible(true);
+        nameInput = JOptionPane.showInputDialog(this, Message,
+                "Ingresa tu nombre",
+                JOptionPane.INFORMATION_MESSAGE);
+                if ((nameInput != null) && (nameInput.length() > 0)) {
+                    
+                    setVisible(false);
+                    clientWindow clientWindow = new clientWindow();
+                    clientWindow.setVisible(true);
+                }else{
+                }
+
     }                                         
 
     private void btnLogoActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
         setBackground(new Color(255, 243, 243));
+        
     }                                       
 
     /**

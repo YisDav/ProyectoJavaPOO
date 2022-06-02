@@ -195,7 +195,10 @@ public class loginWindow extends JFrame{
         try {
             loggedEmpoyee.equals("something");
         } catch (Exception e) {
-            System.out.println("Error");
+            JOptionPane.showMessageDialog(this,
+                "Contraseña y/o usuario incorrecta/o",
+                "Error",
+                JOptionPane.WARNING_MESSAGE);
             // Error here, ask again for credentials
             return;
         }

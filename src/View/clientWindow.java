@@ -86,6 +86,7 @@ public class clientWindow extends JFrame {
         lblMenu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblMenu.setName(""); // NOI18N
         lblMenu.setVerifyInputWhenFocusTarget(false);
+        
 
         imgBebida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Bebida.gif"))); // NOI18N
 
@@ -496,7 +497,7 @@ public class clientWindow extends JFrame {
           }else{
             txtAddresClient.setEnabled(false);
             txtTelefonClient.setEnabled(false);
-            priceDomicilioFact.setText("0");
+            priceDomicilioFact.setText("0.0");
           }
         
     }                                                 
@@ -606,10 +607,10 @@ public class clientWindow extends JFrame {
         totalFact = (precioTotalPlatos+precioTotalBebidas+precioTotalPostres+Double.parseDouble(priceDomicilioFact.getText()));
         priceTotalFact.setText(new Double(totalFact).toString());
 
-        System.out.println(responsePlato);
-        System.out.println(responseBebida);
-        System.out.println(responsePostre);
-        
+        JOptionPane.showMessageDialog(this,
+                "¡Gracias por preferirnos!\nHemos enviado un e-mail para que continues con el pago. ¡Disfruta!",
+                "Pago en curso...",
+                JOptionPane.INFORMATION_MESSAGE);
     }                                                 
 
     private void btnClearClientActionPerformed(java.awt.event.ActionEvent evt) {                                               

@@ -3,9 +3,5 @@ Pendiente:
 
 * Arreglar bot�n cancelar
 
-* Guardar cantidad de los productos a comprar
+
 * Acciones al dar a "Facturar" (cambiar nombre si es el caso)
-
-
-* Sistema de a�adir, modificar y eliminar producto.
-* Sistema de a�adir, modificar y eliminar mesero.

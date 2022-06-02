@@ -1,8 +1,5 @@
 package src;
-
 import java.util.ArrayList;
-
-import javax.management.RuntimeErrorException;
 
 
 public class Waiter extends Employee {
@@ -59,7 +56,6 @@ public class Waiter extends Employee {
     do {
       try {
         waiterElement = getWaiterElementByID(WaiterID);
-        String name = waiterElement.fullName; // only for test
         validID = true;
       }
       catch(Exception e) {
