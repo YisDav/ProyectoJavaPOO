@@ -104,13 +104,7 @@ public class adminWindow extends JFrame{
             TablaProductAdmin.getColumnModel().getColumn(4).setResizable(false);
             TablaProductAdmin.getColumnModel().getColumn(5).setResizable(false);
         }
-        
         TablaProductAdmin.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-        TablaProductAdmin.getModel().addTableModelListener(new TableModelListener() {
-            public void tableChanged(TableModelEvent e) {
-                edicionTablaProductos(e);
-            }
-        });
 
         jLabel1.setText("Nombre");
 
@@ -406,11 +400,6 @@ public class adminWindow extends JFrame{
             tablaWaiterAdmin.getColumnModel().getColumn(7).setResizable(false);
         }
         tablaWaiterAdmin.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
-        tablaWaiterAdmin.getModel().addTableModelListener(new TableModelListener() {
-            public void tableChanged(TableModelEvent e) {
-                edicionTablaWaiter(e);
-            }
-        });
 
         jLabel10.setText("/");
 
@@ -860,7 +849,54 @@ public class adminWindow extends JFrame{
     }                                                  
 
     private void btnAddWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
+        /*// Agregar producto desde el panel administrativo
+        String 
+            identificacion = txtIdWaiAdmin.getText(), 
+            nombre = txtNameWaiAdmin.getText(), 
+            fecha_nacimiento_dia = txtDayNacWaiAdmin.getText(), 
+            fecha_nacimiento_mes = txtMonthNacWaiAdmin.getText(), 
+            fecha_nacimiento_anio = txtYearNacWaiAdmin.getText(), 
+            fecha_ingreso_dia = txtDayIngWaiAdmin.getText(), 
+            fecha_ingreso_mes = txtMonthIngWaiAdmin.getText(), 
+            fecha_ingreso_anio = txtYearIngWaiAdmin.getText(), 
+            propina = txtPropWaiAdmin.getText(),
+            salario = txtSalaryWaiAdmin.getText(), 
+            usuario = txtUserWaiAdmin.getText(), 
+            contrasenia = txtPassWaiAdmin.getText();
+
+        Boolean success; Product createdProduct = null;
+        
+        try {
+            int 
+                int_id = Integer.parseInt(identificacion),
+                int_fn_dia = Integer.parseInt(fecha_nacimiento_dia),
+                int_fn_mes = Integer.parseInt(fecha_nacimiento_mes),
+                int_fn_anio = Integer.parseInt(fecha_nacimiento_anio),
+                int_ingr_dia = Integer.parseInt(fecha_ingreso_dia),
+                int_ingr_mes = Integer.parseInt(fecha_ingreso_mes),
+                int_ingr_anio = Integer.parseInt(fecha_ingreso_anio),
+                int_propia = Integer.parseInt(propina),
+                int_salario = Integer.parseInt(salario);
+
+            Admin admin = loggedAdmin;
+            //Date_ex birth = new Date_ex();
+                
+            if(int_tipo < 1 || int_tipo > 3 || double_precio < 0) {
+                throw new RuntimeException("Error"); // Error ocasionado intencionalmente
+            }
+            
+            createdProduct = admin.createProduct(nombre, int_tipo, descripcion, double_precio, Integer.parseInt(stock));
+            success = true;
+        } 
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error, por favor comprueba los campos");
+            success = false;
+        }
+
+        if(success) {
+            JOptionPane.showMessageDialog(this, "Muy bien, se ha creado el producto "+createdProduct.name+" con ID: "+createdProduct.getID());
+            this.reloadWindow();
+        }*/
     }                                              
 
     private void btnModWaiAdminActionPerformed(java.awt.event.ActionEvent evt) {                                               
